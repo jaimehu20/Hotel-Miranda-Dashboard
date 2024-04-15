@@ -7,6 +7,13 @@ import { CiBellOn } from "react-icons/ci";
 import { MdOutlineTextsms } from "react-icons/md";
 import { FaUser } from "react-icons/fa";
 import { FaHotel } from "react-icons/fa6";
+import { IoBedOutline } from "react-icons/io5";
+import { FaRegCalendarCheck } from "react-icons/fa6";
+import { LuArrowRightFromLine } from "react-icons/lu";
+import { LuArrowLeftFromLine } from "react-icons/lu";
+import { MdOutlineDashboard } from "react-icons/md";
+import { SlKey } from "react-icons/sl";
+import { GrUserManager } from "react-icons/gr";
 
 
 const LateralMenu = styled.div`
@@ -21,7 +28,6 @@ const LateralMenu = styled.div`
 `
 const Logo = styled.div`
 margin-left: 32px;
-font-family: 'Poppins';
 svg {
   padding-top: 28px;
   padding-right: 10px;
@@ -50,30 +56,38 @@ svg {
 `;
 const Options = styled.div`
   flex-direction: column;
-  font-family: 'Poppins';
   font-size: 18px;
   color: #799283;
   transition: all 3s ease;
   width: 80%;
-  p:hover{
+  div:hover{
     color: red;
+  }
+  div {
+    align-items: center;
+    gap: 1em;
+    padding-bottom: 30px;
+    cursor: pointer;
+    svg {
+      width: 30px;
+      height: 30px;
+    }
   }
 `;
 const UserData = styled.div`
   flex-direction: column;
   align-items: center;
-  font-family: 'Poppins';
   border-radius: 18px;
   box-shadow: 0px 20px 30px #00000014;
   padding-left: 30px;
   padding-right: 30px;
   padding-bottom: 26px;
+  margin-top: 70px;
   img {
     width: 70px;
     border-radius: 8px;
     height: 90px;
     object-fit: cover;
-
   }
   p:first-of-type{
     font-size: 16px;
@@ -85,17 +99,16 @@ const UserData = styled.div`
   }
   button{
     background: #EBF1EF;
-    font-family: 'Poppins';
     font-weight: bold;
     color: #135846;
     margin-top: 10px;
     padding: 12px 38px 12px 38px;
     border-radius: 8px;
     border: none;
+    cursor: pointer;
   }
 `
 const CopyText = styled.div`
-font-family: 'Poppins';
 flex-direction: column;
   p:first-of-type{
     font-size: 16px;
@@ -108,7 +121,7 @@ flex-direction: column;
     margin-top: 0px;
   }
 `
-const Cuadrado = styled.div`
+const NavBar = styled.div`
   display: flex;
   align-items: center;
   height: 60px;
@@ -123,18 +136,73 @@ const Icons = styled.div`
   display:flex;
   align-items: center;
   gap: 24px;
-  margin-right: 40px;
+  margin-right: 140px;
   height: 80px;
+  svg {
+    width: 22px;
+    height: 22px;
+    color: #135846;
+    cursor: pointer;
+  }
+  svg:first-of-type{
+    margin-right: 80px;
+    color: gray;
+  }
+  p {
+    color: red;
+  }
 `;
-const User = styled.div`
-  background: lightgray;
-  padding: 10px;
-  padding-right: 13px;
-  padding-left: 13px;
-  border-radius: 20%;
-`;
+const Stats = styled.section`
+  display: flex;
+  justify-content: space-around;
+  padding-top: 50px;
+  background: #F8F8F8;
+  height: 100vh;
+`
+const StatsContainer = styled.div`
+  align-items: center;
+  gap: 2em;
+  box-shadow: 0px 4px 4px #00000005;
+  border-radius: 12px;
+  padding: 0px 104px 0px 45px;
+  background: #ffffff;
+  min-width: 164px;
+  height: 90px;
+  transition: all 1s ease-out ;
+  &:hover {
+   
+    transform: scale(1.2); 
+    svg {
+      background: #E23428;
+      color: #ffffff;
+    }
+  }
+  svg {
+    width: 28px;
+    height: 28px;
+    background: #FFEDEC;
+    padding: 10px;
+    border-radius: 9px;
+    color: #E23428;
+  }
+  div {
+    flex-direction: column;
+    padding-top: 10px;
+    p:first-of-type {
+      margin-bottom: 0px;
+      margin-top: 0px;
+      font-size: 30px;
+      font-weight: 600;
+    }
+    p:last-of-type {
+      margin-top: 0px;
+      font-size: 14px;
+      color: #787878;
+    }
+  }
+`
 
-function Mew() {
+function Home() {
   return (
     <>
       <LateralMenu>
@@ -146,11 +214,26 @@ function Mew() {
           </div>
         </Logo>
         <Options>
-          <p>Dashboard</p>
-          <p>Room</p>
-          <p>Bookings</p>
-          <p>Guest</p>
-          <p>Concierge</p>
+          <div>
+            <MdOutlineDashboard />
+            <p>Dashboard</p>
+          </div>
+          <div>
+            <SlKey />
+            <p>Room</p>
+          </div>
+          <div>
+            <FaRegCalendarCheck />
+            <p>Bookings</p>
+          </div>
+          <div>
+            <FaUser />
+            <p>Guest</p>
+          </div>
+          <div>
+            <GrUserManager />
+            <p>Concierge</p>
+          </div>
         </Options>
         <UserData>
           <img src="./src/assets/profilePic.jpg"/>
@@ -163,26 +246,55 @@ function Mew() {
           <p>© 2024 All Rights Reserved</p>
         </CopyText>
       </LateralMenu>
-      <nav>
-        <Cuadrado>
+      <main>
+        <nav>
+        <NavBar>
         <IoIosStats />
         <p>Dashboard</p>
-        </Cuadrado>
+        </NavBar>
         <Icons>
           <FaMagnifyingGlass />
           <CiHeart />
           <MdOutlineEmail />
           <CiBellOn />
           <MdOutlineTextsms />
-          <User>
-            <FaUser />
-          </User>
+          <img src="./src/assets/profilePic.jpg"/>
           <p>EN</p>
         </Icons>
-      </nav>
-      
+        </nav>
+        <Stats>
+          <StatsContainer>
+            <IoBedOutline />
+            <div>
+              <p>8,461</p>
+              <p>New Booking</p>
+            </div>
+          </StatsContainer>
+          <StatsContainer>
+            <FaRegCalendarCheck />
+            <div>
+              <p>963</p>
+              <p>Scheduled Room</p>
+            </div>
+          </StatsContainer>
+          <StatsContainer>
+            <LuArrowRightFromLine />
+            <div>
+              <p>753</p>
+              <p>Check In</p>
+            </div>
+          </StatsContainer>
+          <StatsContainer>
+            <LuArrowLeftFromLine />
+            <div>
+              <p>516</p>
+              <p>Check Out</p>
+            </div>
+          </StatsContainer>
+        </Stats>
+      </main>
     </>
   )
 }
 
-export default Mew
+export default Home;
