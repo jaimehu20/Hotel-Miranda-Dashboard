@@ -14,7 +14,7 @@ import { SlKey } from "react-icons/sl";
 import { MdConnectWithoutContact } from "react-icons/md";
 
 
-const LateralMenu = styled.div`
+export const LateralMenu = styled.div`
   height: 100vh;
   width: 250px;
   flex-direction: column;
@@ -24,7 +24,7 @@ const LateralMenu = styled.div`
   padding-right: 40px;
   padding-left: 40px;
 `
-const Logo = styled.div`
+export const Logo = styled.div`
 margin-left: 32px;
 svg {
   padding-top: 28px;
@@ -52,7 +52,7 @@ svg {
     color: #5D5449;
   }
 `;
-const Options = styled.div`
+export const Options = styled.div`
   flex-direction: column;
   font-size: 18px;
   color: #799283;
@@ -60,6 +60,7 @@ const Options = styled.div`
   width: 80%;
   div:hover{
     color: red;
+    font-weight: bold;
   }
   div {
     align-items: center;
@@ -72,7 +73,7 @@ const Options = styled.div`
     }
   }
 `;
-const UserData = styled.div`
+export const UserData = styled.div`
   flex-direction: column;
   align-items: center;
   border-radius: 18px;
@@ -106,7 +107,7 @@ const UserData = styled.div`
     cursor: pointer;
   }
 `
-const CopyText = styled.div`
+export const CopyText = styled.div`
 flex-direction: column;
   p:first-of-type{
     font-size: 16px;
@@ -119,7 +120,7 @@ flex-direction: column;
     margin-top: 0px;
   }
 `
-const NavBar = styled.div`
+export const NavBar = styled.div`
   display: flex;
   align-items: center;
   height: 60px;
@@ -130,7 +131,7 @@ const NavBar = styled.div`
     transform: rotate(90deg);
   }
 `;
-const Icons = styled.div`
+export const Icons = styled.div`
   display:flex;
   align-items: center;
   gap: 24px;

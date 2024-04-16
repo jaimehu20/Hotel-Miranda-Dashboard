@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { BrowserRouter, Navigate, Route, Routes, Router } from 'react-router-dom'
+import { useState } from "react";
+import { BrowserRouter, Route, Routes, Router } from 'react-router-dom'
 import LoginMenu from "./pages/LoginPage";
 import Home from './pages/IndexPage.jsx';
 import Bookings from "./pages/BookingsPage.jsx";
@@ -8,8 +8,8 @@ import Contact from "./pages/ContactPage.jsx";
 import Users from "./pages/UsersPage.jsx";
 import PrivateRoute from "./app/PrivateRoute.js";
 
-export default function LogIn() {
- 
+function LogIn() {
+
     const [auth, setAuth ] = useState(localStorage.getItem("AUTH_LS_KEY") || false);
     
     return (
@@ -43,7 +43,8 @@ export default function LogIn() {
                     </PrivateRoute>
                 } />
             </Routes>
-    </BrowserRouter>
+        </BrowserRouter>
     )
 }
 
+export default LogIn;
