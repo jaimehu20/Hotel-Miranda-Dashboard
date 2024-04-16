@@ -1,35 +1,49 @@
 import { useEffect, useState } from "react";
 import { BrowserRouter, Navigate, Route, Routes, Router } from 'react-router-dom'
-import MyComp from "./pages/LoginPage";
+import LoginMenu from "./pages/LoginPage";
 import Home from './pages/IndexPage.jsx';
+import Bookings from "./pages/BookingsPage.jsx";
+import Rooms from "./pages/RoomsPage.jsx";
+import Contact from "./pages/ContactPage.jsx";
+import Users from "./pages/UsersPage.jsx";
+import PrivateRoute from "./app/PrivateRoute.js";
 
-export default function Tron() {
-    const [auth, setAuth ] = useState(localStorage);
-    useEffect(() => {
-        if (auth) {
-            localStorage.setItem("AUTH_LS_KEY", "1");
-        } else {
-            localStorage.removeItem("AUTH_LS_KEY");
-        }
-    }, [auth]);
+export default function LogIn() {
+ 
+    const [auth, setAuth ] = useState(localStorage.getItem("AUTH_LS_KEY") || false);
+    
     return (
         <BrowserRouter>
             <Routes>
-                <Route path='' component={<MyComp setAuth={setAuth} />} element={<MyComp />} />
-                <Route path="/home" auth={
+                <Route path='/' element={<LoginMenu setAuth={setAuth} />} />
+                <Route path='/login' element={<LoginMenu setAuth={setAuth} />} />
+                <Route path="/home" element={
+                        <PrivateRoute auth={auth}>
+                            <Home />
+                        </PrivateRoute>
+                } />
+                <Route path="/bookings" element={
                     <PrivateRoute auth={auth}>
-                        <Home />
+                        <Bookings />
                     </PrivateRoute>
-                } element={<Home />} />
+                } />
+                <Route path="/rooms" element={
+                    <PrivateRoute auth={auth}>
+                        <Rooms />
+                    </PrivateRoute>
+                } />
+                <Route path="/contact" element={
+                    <PrivateRoute auth={auth}>
+                        <Contact />
+                    </PrivateRoute>
+                } />
+                <Route path="/users" element={
+                    <PrivateRoute auth={auth}>
+                        <Users />
+                    </PrivateRoute>
+                } />
             </Routes>
     </BrowserRouter>
     )
-}
-
-function PrivateRoute({auth, children}) {
-    if (!auth) {
-        Navigate('');
-        return children;
-    } 
 }
 
