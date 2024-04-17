@@ -3,9 +3,9 @@ import { BrowserRouter, Route, Routes, Router } from 'react-router-dom'
 import LoginMenu from "./pages/LoginPage";
 import Home from './pages/IndexPage.jsx';
 import Bookings from "./pages/BookingsPage.jsx";
-import Rooms from "./pages/RoomsPage.jsx";
-import Contact from "./pages/ContactPage.jsx";
 import Users from "./pages/UsersPage.jsx";
+import Contact from "./pages/ContactPage.jsx";
+import Rooms from "./pages/RoomsPage.jsx";
 import PrivateRoute from "./app/PrivateRoute.js";
 
 function LogIn() {
@@ -41,10 +41,14 @@ function LogIn() {
                     <PrivateRoute auth={auth}>
                         <Users />
                     </PrivateRoute>
-                } />
+                } />*/
             </Routes>
         </BrowserRouter>
     )
 }
 
 export default LogIn;
+
+
+
+                

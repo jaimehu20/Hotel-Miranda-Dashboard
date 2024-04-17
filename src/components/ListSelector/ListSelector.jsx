@@ -54,7 +54,7 @@ const Select = styled.select`
     border: 2px solid #135846;
 `
 
-export function OptionList() {
+export function Filter() {
     return (
         <>
             <Container>

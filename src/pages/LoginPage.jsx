@@ -43,7 +43,6 @@ function LoginMenu({setAuth}) {
     
     const navigate = useNavigate();
 
-
     const InputChecker = () => {
     const userName = document.getElementById('username').value;
     const password = document.getElementById('password').value;
@@ -52,8 +51,6 @@ function LoginMenu({setAuth}) {
         setAuth(true);
         navigate("/home");
         
-    } else {
-        localStorage.removeItem("AUTH_LS_KEY");
     }
 }
         return (
