@@ -5,13 +5,14 @@ import { LuArrowRightFromLine } from "react-icons/lu";
 import { LuArrowLeftFromLine } from "react-icons/lu";
 import { SideBar } from '../components/SideBar/SideBar';
 import { NavContainer } from '../components/NavBar/NavBar';
+import { ReviewsContainer } from '../components/Reviews/Reviews';
 
 const Stats = styled.section`
   display: flex;
   justify-content: space-around;
   padding-top: 50px;
+  padding-bottom: 50px;
   background: #F8F8F8;
-  height: 100vh;
 `
 const StatsContainer = styled.div`
   align-items: center;
@@ -55,7 +56,6 @@ const StatsContainer = styled.div`
     }
   }
 `
-
 function Home() {
 
   return (
@@ -93,6 +93,7 @@ function Home() {
             </div>
           </StatsContainer>
         </Stats>
+        <ReviewsContainer />
       </main>
     </>
   )

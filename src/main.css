@@ -34,3 +34,7 @@ nav {
     object-fit: cover;
   }
 }
+
+.swiper {
+  width: 76% !important;
+}

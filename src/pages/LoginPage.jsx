@@ -50,7 +50,6 @@ function LoginMenu({setAuth}) {
         localStorage.setItem("AUTH_LS_KEY", "1");
         setAuth(true);
         navigate("/home");
-        
     }
 }
         return (

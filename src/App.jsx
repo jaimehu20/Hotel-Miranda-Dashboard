@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { BrowserRouter, Route, Routes, Router } from 'react-router-dom'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import LoginMenu from "./pages/LoginPage";
 import Home from './pages/IndexPage.jsx';
 import Bookings from "./pages/BookingsPage.jsx";
@@ -48,7 +48,4 @@ function LogIn() {
 }
 
 export default LogIn;
-
-
-
                 
