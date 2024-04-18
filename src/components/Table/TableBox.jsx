@@ -12,6 +12,7 @@ const TableContainer = styled.div`
         text-align: left;
         padding-left: 12px;
         padding-top: 12px;
+        padding-bottom: 20px;
         margin-left: 24px;
         border-radius: 12px;
         box-shadow: 0px 4px 4px #00000029;
@@ -41,6 +42,12 @@ const TableContainer = styled.div`
                 }
                 td {
                     font-weight: 400;
+                    img {
+                        width: 135px;
+                        height: 72px;
+                        border-radius: 18px;
+                        object-fit: cover;
+                    }
                 }
                 td:nth-child(5) {
                     button{
@@ -53,6 +60,14 @@ const TableContainer = styled.div`
                         padding: 10px;
                         margin-left: 20px;
                         cursor: pointer;
+                    }
+                }
+                td:nth-child(4) {
+                    p{
+                        display: inline;
+                    }
+                    svg {
+                        padding-right: 10px;
                     }
                 }
                 td:last-of-type {
@@ -69,6 +84,11 @@ const TableContainer = styled.div`
                         width: 20px;
                         height: 20px;
                     }
+                    }
+                    button {
+                        border-radius: 18px;
+                        border: none;
+                        padding: 10px;
                     }
                     
                 }

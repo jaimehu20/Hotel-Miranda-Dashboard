@@ -85,3 +85,47 @@ export function Filter() {
         </>
     )
 }
+
+export function Filter3() {
+    return (
+        <>
+            <Container>
+                <List>
+                    <li>
+                        <button>All Rooms</button>
+                    </li>
+                    <li>
+                        <button>Active Employee</button>
+                    </li>
+                    <li>
+                        <button>Inactive Employee</button>
+                    </li>
+                </List>
+                <div>
+                    <ButtonNew>+ NEW ROOM</ButtonNew>
+                </div>
+            </Container>
+        </>
+    )
+}
+
+export function Filter4() {
+    return (
+        <>
+            <Container>
+                <List>
+                    <li>
+                        <button>All Contacts</button>
+                    </li>
+                    <li>
+                        <button>Archived</button>
+                    </li>
+                    <li>
+                        <button>Archived</button>
+                    </li>
+                </List>
+            </Container>
+        </>
+    )
+}
+

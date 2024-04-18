@@ -21,12 +21,14 @@ function Bookings(props) {
       <RxCrossCircled />
     </div>)}
 ];
+
+
   return (
     <>
       <SideBar />
       <main>
         <NavContainer title="Bookings" />
-        <Filter/>
+        <Filter title="All Bookings"/>
         <Table columns={columns} data={data}/>
       </main>
     </>
