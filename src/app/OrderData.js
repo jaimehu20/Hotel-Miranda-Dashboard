@@ -7,7 +7,8 @@ export const data = [{
   "check_out": "May 8th, 2023",
   "time": "4:23 PM",
   "checkIn_hour": "8:36 AM",
-  "checkOut_hour": "5:34 AM"
+  "checkOut_hour": "5:34 AM",
+  "room_type": "Double Bed"
   }, {
   "id": 2,
   "first_name": "Herta",
@@ -17,7 +18,8 @@ export const data = [{
   "check_out": "May 30th, 2023",
   "time": "7:27 PM",
   "checkIn_hour": "12:25 AM",
-  "checkOut_hour": "3:58 AM"
+  "checkOut_hour": "3:58 AM",
+  "room_type": "Single Bed"
   }, {
   "id": 3,
   "first_name": "Malva",
@@ -27,7 +29,8 @@ export const data = [{
   "check_out": "May 24th, 2023",
   "time": "5:16 AM",
   "checkIn_hour": "5:36 AM",
-  "checkOut_hour": "11:06 AM"
+  "checkOut_hour": "11:06 AM",
+  "room_type": "Double Bed Superior"
   }, {
   "id": 4,
   "first_name": "Alia",
@@ -37,7 +40,8 @@ export const data = [{
   "check_out": "May 17th, 2023",
   "time": "1:35 AM",
   "checkIn_hour": "9:28 AM",
-  "checkOut_hour": "3:53 PM"
+  "checkOut_hour": "3:53 PM",
+  "room_type": "Suite"
   }, {
   "id": 5,
   "first_name": "Bevan",
@@ -47,7 +51,8 @@ export const data = [{
   "check_out": "May 6th, 2023",
   "time": "7:11 PM",
   "checkIn_hour": "8:58 AM",
-  "checkOut_hour": "2:35 AM"
+  "checkOut_hour": "2:35 AM",
+  "room_type": "Single Bed"
   }, {
   "id": 6,
   "first_name": "Berti",
@@ -57,7 +62,8 @@ export const data = [{
   "check_out": "May 2nd, 2023",
   "time": "6:06 PM",
   "checkIn_hour": "5:44 AM",
-  "checkOut_hour": "5:37 AM"
+  "checkOut_hour": "5:37 AM",
+  "room_type": "Suite"
   }, {
   "id": 7,
   "first_name": "Dodi",
@@ -67,7 +73,8 @@ export const data = [{
   "check_out": "May 3rd, 2023",
   "time": "9:58 PM",
   "checkIn_hour": "5:18 AM",
-  "checkOut_hour": "3:58 PM"
+  "checkOut_hour": "3:58 PM",
+  "room_type": "Double Bed"
   }, {
   "id": 8,
   "first_name": "Tracey",
@@ -77,7 +84,8 @@ export const data = [{
   "check_out": "May 24th, 2023",
   "time": "7:00 AM",
   "checkIn_hour": "12:18 AM",
-  "checkOut_hour": "11:02 AM"
+  "checkOut_hour": "11:02 AM",
+  "room_type": "Single Bed"
   }, {
   "id": 9,
   "first_name": "Tonya",
@@ -87,7 +95,8 @@ export const data = [{
   "check_out": "May 21th, 2023",
   "time": "8:07 AM",
   "checkIn_hour": "11:58 AM",
-  "checkOut_hour": "5:30 PM"
+  "checkOut_hour": "5:30 PM",
+  "room_type": "Suite"
   }, {
   "id": 10,
   "first_name": "Star",
@@ -97,55 +106,7 @@ export const data = [{
   "check_out": "May 2nd, 2023",
   "time": "7:26 AM",
   "checkIn_hour": "1:59 PM",
-  "checkOut_hour": "12:58 PM"
-  }, {
-  "id": 11,
-  "first_name": "Billy",
-  "last_name": "Fisk",
-  "order_date": "Jan 25th, 2023",
-  "check_in": "Apr 26th, 2023",
-  "check_out": "May 1st, 2023",
-  "time": "2:03 AM",
-  "checkIn_hour": "2:04 PM",
-  "checkOut_hour": "12:22 PM"
-  }, {
-  "id": 12,
-  "first_name": "Violante",
-  "last_name": "Ubee",
-  "order_date": "Jan 6th, 2023",
-  "check_in": "Apr 22th, 2023",
-  "check_out": "May 17th, 2023",
-  "time": "9:33 PM",
-  "checkIn_hour": "10:01 AM",
-  "checkOut_hour": "12:51 PM"
-  }, {
-  "id": 13,
-  "first_name": "Carny",
-  "last_name": "Senior",
-  "order_date": "Jan 11th, 2023",
-  "check_in": "Apr 14th, 2023",
-  "check_out": "May 20th, 2023",
-  "time": "9:16 PM",
-  "checkIn_hour": "3:24 PM",
-  "checkOut_hour": "2:43 PM"
-  }, {
-  "id": 14,
-  "first_name": "Dina",
-  "last_name": "Bunclark",
-  "order_date": "Jan 4th, 2023",
-  "check_in": "Apr 30th, 2023",
-  "check_out": "May 20th, 2023",
-  "time": "3:26 PM",
-  "checkIn_hour": "3:14 AM",
-  "checkOut_hour": "4:03 AM"
-}, {
-  "id": 15,
-  "first_name": "Michael",
-  "last_name": "Belcher",
-  "order_date": "Jan 21th, 2023",
-  "check_in": "Apr 29th, 2023",
-  "check_out": "May 1st, 2023",
-  "time": "11:58 AM",
-  "checkIn_hour": "7:21 AM",
-  "checkOut_hour": "6:16 AM"
-}]
+  "checkOut_hour": "12:58 PM",
+  "room_type": "Double Bed Superior"
+  },
+]

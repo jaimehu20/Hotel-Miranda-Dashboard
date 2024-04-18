@@ -10,10 +10,12 @@ const ReviewsSection = styled.section`
 const ReviewsBox = styled.div`
     display: block;
     background: #ffffff;
-    width: 95%;
+    width: 92%;
     margin: 0 auto;
     border-radius: 18px;
     padding-bottom: 40px;
+    box-shadow: 0px 4px 4px #00000005;
+    max-width: 1708px;
     h3 {
         font-size: 20px;
         font-weight: 500;

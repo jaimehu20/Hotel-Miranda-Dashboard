@@ -38,3 +38,8 @@ nav {
 .swiper {
   width: 76% !important;
 }
+
+.swiper-slide {
+  width: 353px !important;
+}
+

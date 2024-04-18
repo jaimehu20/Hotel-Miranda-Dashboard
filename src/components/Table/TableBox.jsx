@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { data } from "../../app/data"; 
 
 const TableContainer = styled.div`
     display: block;
@@ -20,10 +19,8 @@ const TableContainer = styled.div`
         thead {
             tr {
                 height: 45px;
-                td {
-                    box-shadow: 0px 1px 0px #00000009;
+                box-shadow: 0px 1px 0px #00000009;
                     font-weight: bold;
-                }
             }
         }
         tbody {
@@ -36,8 +33,10 @@ const TableContainer = styled.div`
                         font-size: 13px;
                         margin-top: 0px;
                         margin-bottom: 0px;
-                        font-weight: 400;
+                    }
+                    small {
                         color: gray;
+                        font-weight: 400;
                     }
                 }
                 td {
@@ -56,55 +55,50 @@ const TableContainer = styled.div`
                         cursor: pointer;
                     }
                 }
+                td:last-of-type {
+                    div {
+                        gap: 10px;
+                        margin-left: 12px;
+                        svg:first-of-type {
+                        color: green;
+                        width: 20px;
+                        height: 20px;
+                        }
+                        svg:last-of-type {
+                        color: red;
+                        width: 20px;
+                        height: 20px;
+                    }
+                    }
+                    
+                }
             }
         }
     }
 `
-export function Table() {
-
-   const hola = data.map((e, index) => {
-        console.log(e.last_name)
-        return (
-            <tr>
-                <td>
-                    {`${e.first_name} ${e.last_name}`}
-                    <p>#{e.id}</p>
-                </td>
-                <td>{`${e.order_date} ${e.time}`}</td>
-                <td>{`${e.check_in} ${e.checkIn_hour}`}</td>
-                <td>{`${e.check_out} ${e.checkOut_hour}`}</td>
-                <td>
-                    <button>View Notes</button>
-                </td>
-                <td>Room Type</td>
-                <td>
-                    <button>Check In</button>
-                </td>
-            </tr>
-        )
-   }) 
+export function Table(props) {
     
+    const displayRow = row => (
+         <tr>
+            {props.columns.map(col => 
+            <td>
+                {col.display ? col.display(row) : row[col.property]}
+            </td>)}
+         </tr>
+)
     return (
         <>
             <TableContainer>
                 <table>
                     <thead>
                         <tr>
-                            <td>Guest Name</td>
-                            <td>Order Date</td>
-                            <td>Check In</td>
-                            <td>Check Out</td>
-                            <td>Special Request</td>
-                            <td>Room Type</td>
-                            <td>Status</td>
+                            {props.columns.map((col, i) => <th key={i}>{col.label}</th>)}
                         </tr>
                     </thead>
                     <tbody>
-                        {hola}
+                        {props.data.map(displayRow)}
                     </tbody>
-
-                </table>
-                
+                </table>     
             </TableContainer>
         </>
     )

@@ -1,7 +1,7 @@
 import { SwiperSlide, Swiper } from "swiper/react"
 import 'swiper/swiper-bundle.css';
 import styled from "styled-components";
-import { data } from "../../app/data";
+import { data } from "../../app/OrderData";
 import { SiTicktick } from "react-icons/si";
 import { RxCrossCircled } from "react-icons/rx";
 
@@ -26,7 +26,7 @@ const SlideContainer = styled.div`
         }
         div:first-of-type {
             flex-direction: column;
-            width: 50%;
+            width: 60%;
             p{
                 font-weight: bold;
                 color: black;
@@ -39,6 +39,7 @@ const SlideContainer = styled.div`
             }
         }
         div:last-of-type {
+            align-items: center;
             svg:first-of-type{
                 color: #5AD07A;
                 cursor: pointer;
@@ -59,7 +60,7 @@ export const Slider = () => {
     return (
         <Swiper
             loop={true}
-            spaceBetween={50}
+            spaceBetween={74}
             slidesPerView={3}>
                 <SwiperSlide>
                     <SlideContainer>
