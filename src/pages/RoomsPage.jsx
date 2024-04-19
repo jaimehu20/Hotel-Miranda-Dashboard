@@ -3,7 +3,7 @@ import { NavContainer } from "../components/NavBar/NavBar";
 import { Filter3 } from "../components/ListSelector/ListSelector.jsx";
 import { Table } from "../components/Table/TableBox.jsx"
 import { data } from "../app/RoomsList.js";
-
+import roomPic from "../assets/room1.jpg"
 
 
 function Rooms(props) {
@@ -11,7 +11,7 @@ function Rooms(props) {
   const columns = [
     {property: 'room_id', label: 'Room Name', display: e => (<>
       <div className="room-container">
-        <img src="src\assets\room1.jpg"/>
+        <img src={roomPic}/>
         <div>
           <p>{e.room_id}</p>
           <p>{e.room_code}</p>

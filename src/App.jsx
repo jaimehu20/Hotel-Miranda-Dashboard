@@ -6,6 +6,7 @@ import Bookings from "./pages/BookingsPage.jsx";
 import Users from "./pages/UsersPage.jsx";
 import Contact from "./pages/ContactPage.jsx";
 import Rooms from "./pages/RoomsPage.jsx";
+import { RoomDetails } from "./pages/RoomDetails.jsx";
 import PrivateRoute from "./app/PrivateRoute.js";
 
 function LogIn() {
@@ -30,6 +31,11 @@ function LogIn() {
                 <Route path="/rooms" element={
                     <PrivateRoute auth={auth}>
                         <Rooms />
+                    </PrivateRoute>
+                } />
+                <Route path="/rooms/:id" element={
+                    <PrivateRoute auth={auth}>
+                        <RoomDetails />
                     </PrivateRoute>
                 } />
                 <Route path="/contact" element={

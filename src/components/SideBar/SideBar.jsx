@@ -6,6 +6,7 @@ import { MdConnectWithoutContact } from "react-icons/md";
 import { FaUser } from "react-icons/fa";
 import styled from "styled-components";
 import { useNavigate } from "react-router";
+import profilePic from "../../assets/profilePic.jpg"
 
 export const LateralMenu = styled.div`
   height: 100vh;
@@ -150,7 +151,7 @@ export function SideBar() {
             </div>
             </Options>
             <UserData>
-            <img src="./src/assets/profilePic.jpg"/>
+            <img src={profilePic}/>
             <p>Jaime Hurtado</p>
             <p>jaimehu.dev@gmail.com</p>
             <button>Contact Us</button>

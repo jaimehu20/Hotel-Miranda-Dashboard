@@ -4,6 +4,7 @@ import { Filter3 } from "../components/ListSelector/ListSelector";
 import { Table } from "../components/Table/TableBox";
 import { data } from "../app/EmployeeData";
 import { FaPhone } from "react-icons/fa6";
+import userPic from "../assets/employee.jpg"
 
 function Users(props) {
 
@@ -11,7 +12,7 @@ function Users(props) {
       {property: "employee_name", label: "Name", display: e => (
       <>
         <div className="employee-container">
-          <img src="src\assets\employee.jpg"/>
+          <img src={userPic}/>
           <div>
             <p>{e.employee_name}</p>
             <p>#{e.employee_id}</p>

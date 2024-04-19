@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+
 const TableContainer = styled.div`
     display: block;
     font-size: 15px;
@@ -7,6 +8,8 @@ const TableContainer = styled.div`
     background: #F8F8F8;
     padding-top: 30px;
     padding-right: 62px;
+    padding-bottom: 30px;
+    height: 80vh;
     table {
         width: 100%;
         text-align: left;

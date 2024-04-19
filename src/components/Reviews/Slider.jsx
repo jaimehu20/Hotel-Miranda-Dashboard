@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { data } from "../../app/OrderData";
 import { SiTicktick } from "react-icons/si";
 import { RxCrossCircled } from "react-icons/rx";
+import profilePic from "../../assets/profilePic.jpg"
 
 const SlideContainer = styled.div`
     border: 1px solid #EBEBEB;
@@ -66,7 +67,7 @@ export const Slider = () => {
                     <SlideContainer>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
                         <div>
-                            <img src="src\assets\profilePic.jpg"/>
+                            <img src={profilePic}/>
                             <div>
                                 <p>{`${data[0].first_name} ${data[0].last_name}`}</p>
                                 <small>4m ago</small>
@@ -82,7 +83,7 @@ export const Slider = () => {
                     <SlideContainer>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
                         <div>
-                            <img src="src\assets\profilePic.jpg"/>
+                            <img src={profilePic}/>
                             <div>
                                 <p>{`${data[0].first_name} ${data[0].last_name}`}</p>
                                 <small>4m ago</small>
@@ -98,7 +99,7 @@ export const Slider = () => {
                     <SlideContainer>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
                         <div>
-                            <img src="src\assets\profilePic.jpg"/>
+                            <img src={profilePic}/>
                             <div>
                                 <p>{`${data[0].first_name} ${data[0].last_name}`}</p>
                                 <small>4m ago</small>
@@ -114,7 +115,7 @@ export const Slider = () => {
                     <SlideContainer>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
                         <div>
-                            <img src="src\assets\profilePic.jpg"/>
+                            <img src={profilePic}/>
                             <div>
                                 <p>{`${data[0].first_name} ${data[0].last_name}`}</p>
                                 <small>4m ago</small>
