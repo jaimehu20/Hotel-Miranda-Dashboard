@@ -1,4 +1,5 @@
 import { FaCircleUser } from "react-icons/fa6";
+import { useNavigate } from "react-router";
 import styled from "styled-components";
 
 const LogForm = styled.section`
@@ -33,34 +34,33 @@ const LogForm = styled.section`
     }
     input:last-of-type {
         padding: 10px 56px 10px 56px;
-        cursor:
+        cursor: pointer;
     }
 `;
 
 
-function MyComp() {
+function LoginMenu({setAuth}) {
     
-    const prueba2 = () => {
+    const navigate = useNavigate();
+
+    const InputChecker = () => {
     const userName = document.getElementById('username').value;
     const password = document.getElementById('password').value;
     if (userName && password) {
         localStorage.setItem("AUTH_LS_KEY", "1");
-        setAuth = setAuth
-        
-    } else {
-        localStorage.removeItem("AUTH_LS_KEY");
+        setAuth(true);
+        navigate("/home");
     }
 }
         return (
             <>
-        
             <LogForm>
                 <FaCircleUser />
                 <p>Welcome to Hotel Miranda Dashboard</p>
                 <p>Authorized personal only</p>
                 <input id="username" type="text" placeholder="abcdefg"/>
                 <input id="password" type="text" placeholder="123456789"/>
-                <input type="submit" value="Log In" onClick={prueba2}/>
+                <input type="submit" value="Log In" onClick={InputChecker}/>
             </LogForm>
          
         </>
@@ -68,4 +68,4 @@ function MyComp() {
     }
 
 
-export default MyComp;
+export default LoginMenu;

@@ -1,0 +1,103 @@
+html {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0; 
+}
+
+body {
+  min-width: 320px;
+  margin: 0;
+  font-family: 'Poppins';
+}
+
+div {
+  display: flex;
+}
+
+main {
+  width: 100%;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Poppins';
+  font-weight: 500;
+  width: 100%;
+  padding-left: 100px;
+  box-shadow: 0px 3px 10px #00000005;
+  height: 82px;
+  img {
+    width: 44px;
+    border-radius: 8px;
+    height: 44px;
+    object-fit: cover;
+  }
+}
+
+.swiper {
+  width: 76% !important;
+}
+
+.swiper-slide {
+  width: 353px !important;
+}
+
+.room-container {
+  display: flex;
+  align-items: center;
+  div {
+    display: block;
+    padding-left: 30px;
+  }
+  p:first-of-type {
+    padding-bottom: 8px;
+    color: #799283;
+    font-weight: 400;
+  }
+  p:last-of-type {
+    font-size: 16px !important;
+    font-weight: 600;
+    color: #393939;
+  }
+}
+
+.room-amenities {
+  width: 124px;
+}
+
+.employee-container {
+  padding-bottom: 15px;
+  div {
+    flex-direction: column;
+    padding-left: 10px;
+    p:first-of-type{
+      font-size: 16px !important;
+      font-weight: 500 !important;
+    }
+    p:last-of-type {
+      font-size: 14px !important;
+      font-weight: 400 !important;
+      color: #393939;
+    }
+    p:nth-child(2){
+      font-size: 14px !important;
+      font-weight: 400 !important;
+      color: #393939;
+    }
+  }
+  
+  
+
+}
+
+.contact-container {
+  section:first-of-type {
+    height: 26em;
+  }
+}
+
+.customer-container {
+    flex-direction: column;
+    font-weight: 600;
+}
