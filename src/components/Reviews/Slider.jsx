@@ -1,7 +1,7 @@
 import { SwiperSlide, Swiper } from "swiper/react"
 import 'swiper/swiper-bundle.css';
 import styled from "styled-components";
-import { data } from "../../app/OrderData";
+import { data } from "../../data/OrderData";
 import { SiTicktick } from "react-icons/si";
 import { RxCrossCircled } from "react-icons/rx";
 import profilePic from "../../assets/profilePic.jpg"

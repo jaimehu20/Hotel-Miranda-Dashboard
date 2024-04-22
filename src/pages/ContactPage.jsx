@@ -3,7 +3,7 @@ import { NavContainer } from "../components/NavBar/NavBar";
 import { ReviewsContainer } from "../components/Reviews/Reviews";
 import { Filter4 } from "../components/ListSelector/ListSelector";
 import { Table } from "../components/Table/TableBox";
-import { data } from "../app/CustomerData";
+import { data } from "../data/CustomerData";
 
 function Contact(props) {
 

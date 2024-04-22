@@ -2,7 +2,7 @@ import { SideBar } from "../components/SideBar/SideBar";
 import { NavContainer } from "../components/NavBar/NavBar";
 import { Filter3 } from "../components/ListSelector/ListSelector.jsx";
 import { Table } from "../components/Table/TableBox.jsx"
-import { data } from "../app/RoomsList.js";
+import { data } from "../data/RoomsList.js";
 import roomPic from "../assets/room1.jpg"
 
 

@@ -2,7 +2,7 @@ import { Table } from "../components/Table/TableBox.jsx"
 import { SideBar } from '../components/SideBar/SideBar';
 import { NavContainer } from '../components/NavBar/NavBar';
 import { Filter } from "../components/ListSelector/ListSelector.jsx";
-import { data } from "../app/OrderData.js"
+import { data } from "../data/OrderData.js"
 import { FaEdit } from "react-icons/fa";
 import { RxCrossCircled } from "react-icons/rx";
 

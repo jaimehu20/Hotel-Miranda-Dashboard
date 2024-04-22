@@ -2,7 +2,7 @@ import { SideBar } from "../components/SideBar/SideBar";
 import { NavContainer } from "../components/NavBar/NavBar";
 import { Filter3 } from "../components/ListSelector/ListSelector";
 import { Table } from "../components/Table/TableBox";
-import { data } from "../app/EmployeeData";
+import { data } from "../data/EmployeeData";
 import { FaPhone } from "react-icons/fa6";
 import userPic from "../assets/employee.jpg"
 
