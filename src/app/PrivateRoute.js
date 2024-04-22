@@ -1,14 +1,16 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
+import { useAuth } from "../Hooks/useAuth";
 
-const PrivateRoute = ({auth, children}) => {
+const PrivateRoute = ({children}) => {
     const navigate = useNavigate();
+    const {logged} = useAuth();
 
-    useEffect(() => {
-        if (!auth) {
+   useEffect(() => {
+        if (!logged.isAuth) {
             navigate("/login");
         }
-    }, [auth])
+    }, [logged])
     return children;
 };
 

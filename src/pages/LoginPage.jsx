@@ -1,6 +1,9 @@
 import { FaCircleUser } from "react-icons/fa6";
 import { useNavigate } from "react-router";
 import styled from "styled-components";
+import { useAuth } from "../Hooks/useAuth";
+import { useContext } from "react";
+import { AuthContext } from "../Context/AuthProvider";
 
 const LogForm = styled.section`
     display:flex;
@@ -39,16 +42,17 @@ const LogForm = styled.section`
 `;
 
 
-function LoginMenu({setAuth}) {
+function LoginMenu() {
     
     const navigate = useNavigate();
+
+    const {dispatch} = useAuth()
 
     const InputChecker = () => {
     const userName = document.getElementById('username').value;
     const password = document.getElementById('password').value;
     if (userName && password) {
-        localStorage.setItem("AUTH_LS_KEY", "1");
-        setAuth(true);
+        dispatch('login')
         navigate("/home");
     }
 }
@@ -63,9 +67,8 @@ function LoginMenu({setAuth}) {
                 <input type="submit" value="Log In" onClick={InputChecker}/>
             </LogForm>
          
-        </>
+            </>
         )
     }
-
 
 export default LoginMenu;

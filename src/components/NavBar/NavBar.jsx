@@ -4,6 +4,8 @@ import { CiBellOn } from "react-icons/ci";
 import { IoLogOutOutline } from "react-icons/io5";
 import styled from "styled-components";
 import { useNavigate } from "react-router";
+import { useContext } from "react";
+import { useAuth } from "../../Hooks/useAuth";
 
 
 const NavBar = styled.div`
@@ -38,6 +40,8 @@ export function NavContainer(props) {
 
     const navigate = useNavigate();
 
+    const { dispatch} = useAuth();
+
     return (
         <nav>
           <NavBar>
@@ -47,7 +51,7 @@ export function NavContainer(props) {
           <Icons>
             <MdOutlineEmail />
             <CiBellOn />
-            <IoLogOutOutline onClick={() => {localStorage.removeItem("AUTH_LS_KEY"); navigate("/login")}} />
+            <IoLogOutOutline onClick={() => {dispatch('logout')}} />
           </Icons>
         </nav>
     )

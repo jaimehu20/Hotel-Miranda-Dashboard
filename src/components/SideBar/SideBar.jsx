@@ -7,6 +7,7 @@ import { FaUser } from "react-icons/fa";
 import styled from "styled-components";
 import { useNavigate } from "react-router";
 import profilePic from "../../assets/profilePic.jpg"
+import { useAuth } from "../../Hooks/useAuth";
 
 export const LateralMenu = styled.div`
   height: 100vh;
@@ -119,6 +120,9 @@ export function SideBar() {
 
   const navigate = useNavigate();
 
+    const {logged} = useAuth();
+    console.log(logged)
+
     return (
         <LateralMenu>
             <Logo>
@@ -152,7 +156,7 @@ export function SideBar() {
             </Options>
             <UserData>
             <img src={profilePic}/>
-            <p>Jaime Hurtado</p>
+            <p>{logged.userName}</p>
             <p>jaimehu.dev@gmail.com</p>
             <button>Contact Us</button>
             </UserData>
