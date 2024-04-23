@@ -16,7 +16,7 @@ function LogIn() {
         <BrowserRouter>
             <AuthProvider>
                 <Routes>
-                    <Route path='/login' element={<LoginMenu />} />
+                    <Route path='/' element={<LoginMenu />} />
                     <Route path="/home" element={
                             <PrivateRoute>
                                 <Home />

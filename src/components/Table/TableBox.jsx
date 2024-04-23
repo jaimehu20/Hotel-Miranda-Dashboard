@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-
 const TableContainer = styled.div`
     display: block;
     font-size: 15px;

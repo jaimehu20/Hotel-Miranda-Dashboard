@@ -121,7 +121,6 @@ export function SideBar() {
   const navigate = useNavigate();
 
     const {logged} = useAuth();
-    console.log(logged)
 
     return (
         <LateralMenu>
@@ -157,7 +156,7 @@ export function SideBar() {
             <UserData>
             <img src={profilePic}/>
             <p>{logged.userName}</p>
-            <p>jaimehu.dev@gmail.com</p>
+            <p>{logged.userMail}</p>
             <button>Contact Us</button>
             </UserData>
             <CopyText>

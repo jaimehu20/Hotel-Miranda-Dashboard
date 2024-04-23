@@ -5,9 +5,31 @@ import { Table } from "../components/Table/TableBox";
 import { data } from "../data/EmployeeData";
 import { FaPhone } from "react-icons/fa6";
 import userPic from "../assets/employee.jpg"
+import { useDispatch, useSelector } from "react-redux";
+import { getAllEmployees, getEmployee, getEmployeeError, getEmployeeStatus } from "../app/store/Employees/EmployeesSlice";
+import { fetchEmployees } from "../app/store/Employees/EmployeesThunk";
+import { useEffect } from "react";
 
 function Users(props) {
 
+  const dispatch = useDispatch();
+  const multipleEmployees = useSelector(getAllEmployees);
+  const individualEmployee = useSelector(getEmployee);
+  const employeeStatus = useSelector(getEmployeeStatus);
+  const employeeError = useSelector(getEmployeeError);
+  
+  useEffect(() => {
+    if (employeeStatus === "pending"){
+      console.log(employeeStatus);
+    } else if (employeeStatus === "rejected"){
+      console.log(employeeError)
+    } else if (employeeStatus === "fulfilled") {
+      console.log(employeeStatus)
+    } else if (employeeStatus === "idle") {
+      dispatch(fetchEmployees());
+    }
+    },[dispatch, multipleEmployees])
+    
   const columns = [
       {property: "employee_name", label: "Name", display: e => (
       <>
@@ -31,7 +53,7 @@ function Users(props) {
       <main>
         <NavContainer title="Users" />
         <Filter3 />
-        <Table columns={columns} data={data}/>
+        <Table columns={columns} data={multipleEmployees}/>
       </main>
     </>
   )

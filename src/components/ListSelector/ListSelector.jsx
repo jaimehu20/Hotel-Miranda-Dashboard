@@ -1,3 +1,4 @@
+import { useDispatch } from "react-redux"
 import styled from "styled-components"
 
 const Container = styled.section`
@@ -55,6 +56,9 @@ const Select = styled.select`
 `
 
 export function Filter() {
+
+    const dispatch = useDispatch()
+
     return (
         <>
             <Container>
@@ -79,7 +83,7 @@ export function Filter() {
                         <option>Check In</option>
                         <option>Check Out</option>
                     </Select>
-                    <ButtonNew>+ NEW BOOKING</ButtonNew>
+                    <ButtonNew onClick={() => {dispatch("hola")}}>+ NEW BOOKING</ButtonNew>
                 </div>
             </Container>
         </>

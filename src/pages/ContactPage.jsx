@@ -4,8 +4,30 @@ import { ReviewsContainer } from "../components/Reviews/Reviews";
 import { Filter4 } from "../components/ListSelector/ListSelector";
 import { Table } from "../components/Table/TableBox";
 import { data } from "../data/CustomerData";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllComments, getComment, getCommentsError, getCommentsStatus } from "../app/store/Messages/MessagesSlice";
+import { useEffect } from "react";
+import { fetchComments } from "../app/store/Messages/MessagesThunk";
 
 function Contact(props) {
+
+  const dispatch = useDispatch();
+  const multipleComments = useSelector(getAllComments);
+  const individualComment = useSelector(getComment);
+  const commentsStatus = useSelector(getCommentsStatus);
+  const commentsError = useSelector(getCommentsError);
+
+  useEffect(() => {
+    if (commentsStatus === "pending"){
+      console.log(commentsStatus)
+    } else if (commentsStatus === "rejected"){
+      console.log(commentsError);
+    } else if (commentsStatus === "fulfilled"){
+      console.log("fulfilled")
+    } else if (commentsStatus === "idle") {
+      dispatch(fetchComments());
+    }
+  })
 
   const columns = [
     {property: "comment_info", label: "Date", display: e => (
@@ -36,7 +58,7 @@ function Contact(props) {
         <NavContainer title="Contact" />
         <ReviewsContainer />
         <Filter4 />
-        <Table columns={columns} data={data} />
+        <Table columns={columns} data={multipleComments} />
       </main>
     </>
   )
