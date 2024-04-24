@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchRooms } from "./RoomsThunk";
+import { fetchRoom, fetchRooms } from "./RoomsThunk";
 export const RoomsSlice = createSlice({
 
     name: "rooms",
@@ -18,6 +18,16 @@ export const RoomsSlice = createSlice({
             state.error = action.error.message
         }).addCase(fetchRooms.fulfilled, (state,action) => {
             state.rooms = action.payload;
+            state.status = "fulfilled";
+        })
+
+        builder.addCase(fetchRoom.pending, (state,action) => {
+            state.status = "pending";
+        }).addCase(fetchRoom.rejected, (state,action) => {
+            state.error = action.error.message;
+            state.status = "rejected";
+        }).addCase(fetchRoom.fulfilled, (state,action) => {
+            state.room = action.payload;
             state.status = "fulfilled";
         })
     }

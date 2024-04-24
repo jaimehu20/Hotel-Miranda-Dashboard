@@ -6,8 +6,9 @@ import { FaEdit } from "react-icons/fa";
 import { RxCrossCircled } from "react-icons/rx";
 import { useDispatch, useSelector } from "react-redux";
 import { getAll, getOnly, getAllStatus, getAllError } from "../app/store/Bookings/BookingsSlice.js";
-import { useEffect } from "react";
-import { fetchBookings } from "../app/store/Bookings/BookingsThunk.js";
+import { useEffect, useState } from "react";
+import { fetchBooking, fetchBookings } from "../app/store/Bookings/BookingsThunk.js";
+import { data } from "../data/OrderData.js";
 
 function Bookings(props) {
   
@@ -50,6 +51,7 @@ function Bookings(props) {
         <NavContainer title="Bookings" />
         <Filter title="All Bookings"/>
         <Table columns={columns} data={multipleBookings}/>
+        <input type="text" onChange={(event) => dispatch(fetchBooking(event.target.value))}/>
       </main>
     </>
   )

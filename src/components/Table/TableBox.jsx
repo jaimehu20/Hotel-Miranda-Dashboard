@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { data } from "../../data/RoomsList";
 
 const TableContainer = styled.div`
     display: block;
@@ -99,7 +100,7 @@ const TableContainer = styled.div`
     }
 `
 export function Table(props) {
-    
+
     const displayRow = row => (
          <tr>
             {props.columns.map(col => 

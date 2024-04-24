@@ -1,35 +1,28 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { data } from "../../../data/OrderData";
-
-function delayData(orderData, delay = 200){
-    return new Promise(resolve => {
-        setTimeout(() => {
-            resolve(orderData);
-        }, [delay])
-    });
-}
+import { delay } from "../../delay";
 
 export const fetchBookings = createAsyncThunk('bookings/fetchBookings', async  () => {
-    const response = await delayData(data);
+    const response = await delay(data);
     return response;
 })
 
-export const fetchBooking = createAsyncThunk('bookings/fetchBooking', async  () => {
-    const response = await delayData(data);
-    return response;
+export const fetchBooking = createAsyncThunk('bookings/fetchBooking', async (id) => {
+    const fetchedBooking = data.find((item) => item.id === id);
+    return fetchedBooking;
 })
 
-export const newBooking = createAsyncThunk('bookings/newBooking', async  () => {
+/* export const newBooking = createAsyncThunk('bookings/newBooking', async  () => {
     const response = await delayData(data);
     return response;
 })
 
 export const editBooking = createAsyncThunk('bookings/editBooking', async  () => {
-    const response = await delayData(data);
+    const response = await delayData([]);
     return response;
 })
 
-export const deleteBooking = createAsyncThunk('bookings/deleteBooking', async  () => {
-    const response = await delayData(data);
-    return response;
-})
+export const deleteBooking = createAsyncThunk('bookings/deleteBooking', async  (id) => {
+    await delayData();
+    return id;
+}) */

@@ -101,3 +101,8 @@ nav {
     flex-direction: column;
     font-weight: 600;
 }
+
+a{
+  text-decoration: none;
+  color: #799283;
+}

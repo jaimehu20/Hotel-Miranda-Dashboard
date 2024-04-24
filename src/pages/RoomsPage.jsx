@@ -7,24 +7,24 @@ import roomPic from "../assets/room1.jpg"
 import { useDispatch, useSelector } from "react-redux";
 import { getAllRooms, getRoom, getRoomError, getRoomsStatus } from "../app/store/Rooms/RoomsSlice.js";
 import { useEffect } from "react";
-import { fetchRooms } from "../app/store/Rooms/RoomsThunk.js";
+import { fetchRooms, fetchRoom } from "../app/store/Rooms/RoomsThunk.js";
+import { Link } from "react-router-dom";
 
 
 function Rooms(props) {
 
   const dispatch = useDispatch();
   const multipleRooms = useSelector(getAllRooms);
-  const individualRoom = useSelector(getRoom);
   const roomStatus = useSelector(getRoomsStatus);
   const roomError = useSelector(getRoomError);
 
   useEffect(() => {
     if (roomStatus === "pending") {
-      console.log(roomStatus);
+      // Petición pendiente
     } else if (roomStatus === "rejected"){
       console.log(roomError);
     } else if (roomStatus === "fulfilled") {
-      console.log(roomStatus);
+      // Petición correcta
     } else if (roomStatus === "idle"){
       dispatch(fetchRooms());
     }
@@ -32,13 +32,15 @@ function Rooms(props) {
 
   const columns = [
     {property: 'room_id', label: 'Room Name', display: e => (<>
+    <Link to={`/rooms/${e.room_id}`}>
       <div className="room-container">
         <img src={roomPic}/>
         <div>
-          <p>{e.room_id}</p>
+          <p>#{e.room_id}</p>
           <p>{e.room_code}</p>
         </div>
       </div>
+    </Link>
     </>)},
     {property: "room_type", label:"Bed Type"},
     {property: "room_floor", label:"Room Floor"},
@@ -60,3 +62,4 @@ function Rooms(props) {
 }
 
 export default Rooms;
+

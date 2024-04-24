@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchBookings } from "./BookingsThunk";
+import { fetchBookings, fetchBooking } from "./BookingsThunk";
 
 export const BookingsSlice = createSlice({
     name: "bookings",
@@ -15,10 +15,20 @@ export const BookingsSlice = createSlice({
             state.status = "pending";
         }).addCase(fetchBookings.rejected, (state, action) => {
             state.status = "rejected";
-            state.error = action.error.message
+            state.error = action.error.message;
         }).addCase(fetchBookings.fulfilled, (state, action) => {
             state.bookings = action.payload;
             state.status = "fulfilled";
+        })
+
+        builder.addCase(fetchBooking.pending, (state,action) => {
+            state.status = "pending";
+        }).addCase(fetchBooking.rejected, (action,state) => {
+            state.status = action.error.message;
+        }).addCase(fetchBooking.fulfilled, (action,state) => {
+            state.booking = action.payload;
+            state.status = "fulfilled";
+            console.log(state.booking);
         })
     }
 })
