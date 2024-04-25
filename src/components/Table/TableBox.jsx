@@ -51,6 +51,9 @@ const TableContainer = styled.div`
                         border-radius: 18px;
                         object-fit: cover;
                     }
+                    a {
+                        color: black;
+                    }
                 }
                 td:nth-child(5) {
                     button{

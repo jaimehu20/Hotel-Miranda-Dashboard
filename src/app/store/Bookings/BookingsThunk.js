@@ -8,7 +8,7 @@ export const fetchBookings = createAsyncThunk('bookings/fetchBookings', async  (
 })
 
 export const fetchBooking = createAsyncThunk('bookings/fetchBooking', async (id) => {
-    const fetchedBooking = data.find((item) => item.id === id);
+    const fetchedBooking = data.find((item) => item.id === id)
     return fetchedBooking;
 })
 

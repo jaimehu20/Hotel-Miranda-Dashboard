@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import LoginMenu from "./pages/LoginPage";
 import Home from './pages/IndexPage.jsx';
@@ -7,6 +6,8 @@ import Users from "./pages/UsersPage.jsx";
 import Contact from "./pages/ContactPage.jsx";
 import Rooms from "./pages/RoomsPage.jsx";
 import { RoomDetails } from "./pages/RoomDetails.jsx";
+import { BookingDetails } from './pages/BookingDetails.jsx';
+import { UserDetails } from './pages/UserDetails.jsx';
 import PrivateRoute from "./app/PrivateRoute.js";
 import { AuthProvider } from "./Context/AuthProvider.jsx";
 
@@ -27,6 +28,11 @@ function LogIn() {
                             <Bookings />
                         </PrivateRoute>
                     } />
+                    <Route path="/bookings/:id" element={
+                        <PrivateRoute>
+                            <BookingDetails />
+                        </PrivateRoute>
+                    } />
                     <Route path="/rooms" element={
                         <PrivateRoute>
                             <Rooms />
@@ -45,6 +51,11 @@ function LogIn() {
                     <Route path="/users" element={
                         <PrivateRoute>
                             <Users />
+                        </PrivateRoute>
+                    } />
+                    <Route path="/users/:id" element={
+                        <PrivateRoute>
+                            <UserDetails />
                         </PrivateRoute>
                     } />
                 </Routes>

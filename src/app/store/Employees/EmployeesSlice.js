@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchEmployees } from "./EmployeesThunk";
+import { fetchEmployees, fetchEmployee } from "./EmployeesThunk";
 
 export const EmployeesSlice = createSlice({
     name: "employees",
@@ -18,6 +18,15 @@ export const EmployeesSlice = createSlice({
             state.error = action.error.message
         }).addCase(fetchEmployees.fulfilled, (state, action) => {
             state.employees = action.payload;
+            state.status = "fulfilled";
+        })
+
+        builder.addCase(fetchEmployee.pending, (state,action) => {
+            state.status = "pending";
+        }).addCase(fetchEmployee.rejected, (state,action) => {
+            state.status = action.error.message;
+        }).addCase(fetchEmployee.fulfilled, (state,action) => {
+            state.employee = action.payload;
             state.status = "fulfilled";
         })
     }

@@ -1,6 +1,6 @@
 export const data = [{
     "employee_name": "Sherwynd Smitherham",
-    "employee_id": 7265,
+    "employee_id": "7265",
     "employee_email": "ssmitherham0@home.pl",
     "employee_startDate": "5/2/2023",
     "employee_description": "VP Accounting",
@@ -8,7 +8,7 @@ export const data = [{
     "employee_status": "Active"
   }, {
     "employee_name": "Gusti Normaville",
-    "employee_id": 6705,
+    "employee_id": "6705",
     "employee_email": "gnormaville1@ocn.ne.jp",
     "employee_startDate": "5/8/2024",
     "employee_description": "Assistant Professor",
@@ -16,7 +16,7 @@ export const data = [{
     "employee_status": "Active"
   }, {
     "employee_name": "Nessie Wheatman",
-    "employee_id": 2573,
+    "employee_id": "2573",
     "employee_email": "nwheatman2@ovh.net",
     "employee_startDate": "5/17/2024",
     "employee_description": "Paralegal",
@@ -24,7 +24,7 @@ export const data = [{
     "employee_status": "Inactive"
   }, {
     "employee_name": "Alexandr Ifill",
-    "employee_id": 6205,
+    "employee_id": "6205",
     "employee_email": "aifill3@mozilla.com",
     "employee_startDate": "5/18/2024",
     "employee_description": "Marketing Assistant",
@@ -32,7 +32,7 @@ export const data = [{
     "employee_status": "Inactive"
   }, {
     "employee_name": "Hyacinth Von Welldun",
-    "employee_id": 6940,
+    "employee_id": "6940",
     "employee_email": "hvon4@java.com",
     "employee_startDate": "7/9/2024",
     "employee_description": "Senior Quality Engineer",
@@ -40,7 +40,7 @@ export const data = [{
     "employee_status": "Active"
   }, {
     "employee_name": "Robena Vassbender",
-    "employee_id": 5040,
+    "employee_id": "5040",
     "employee_email": "rvassbender5@linkedin.com",
     "employee_startDate": "9/14/2023",
     "employee_description": "Junior Executive",
@@ -48,7 +48,7 @@ export const data = [{
     "employee_status": "Inactive"
   }, {
     "employee_name": "Regina Wise",
-    "employee_id": 9948,
+    "employee_id": "9948",
     "employee_email": "rwise6@joomla.org",
     "employee_startDate": "11/30/2023",
     "employee_description": "Internal Auditor",
@@ -56,7 +56,7 @@ export const data = [{
     "employee_status": "Active"
   }, {
     "employee_name": "Janeta Cavet",
-    "employee_id": 9162,
+    "employee_id": "9162",
     "employee_email": "jcavet7@nhs.uk",
     "employee_startDate": "8/14/2023",
     "employee_description": "Assistant Manager",
@@ -64,7 +64,7 @@ export const data = [{
     "employee_status": "Inactive"
   }, {
     "employee_name": "Vasilis Rochelle",
-    "employee_id": 7065,
+    "employee_id": "7065",
     "employee_email": "vrochelle8@people.com.cn",
     "employee_startDate": "5/16/2024",
     "employee_description": "Physical Therapy Assistant",
@@ -72,7 +72,7 @@ export const data = [{
     "employee_status": "Inactive"
   }, {
     "employee_name": "Terri Boodell",
-    "employee_id": 5946,
+    "employee_id": "5946",
     "employee_email": "tboodell9@indiegogo.com",
     "employee_startDate": "3/8/2024",
     "employee_description": "Operator",

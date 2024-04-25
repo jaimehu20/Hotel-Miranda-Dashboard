@@ -1,5 +1,6 @@
-import { useDispatch } from "react-redux"
-import styled from "styled-components"
+import styled from "styled-components";
+import { useRef } from "react";
+
 
 const Container = styled.section`
     display: flex;
@@ -31,6 +32,11 @@ const List = styled.ul`
         }
     }
    }
+   input {
+    padding: 10px;
+    border-radius: 18px;
+    border: 1px solid black;
+   }
 `
 const ButtonNew = styled.button`
     height: 46px;
@@ -55,74 +61,79 @@ const Select = styled.select`
     border: 2px solid #135846;
 `
 
-export function Filter() {
+export function BookingFilter({props, setSearchInput, setStatusFilter, setChoosen, hoosen}) {
 
-    const dispatch = useDispatch()
+    const selectRef = useRef();
+
+    const handleSelect = () => {
+        const selectedValue = selectRef.current.value;
+        setChoosen(selectedValue);
+        return selectedValue;
+    }
 
     return (
         <>
             <Container>
                 <List>
                     <li>
-                        <button>All Bookings</button>
+                        <button onClick={() => {setStatusFilter("all")}}>All Bookings</button>
                     </li>
                     <li>
-                        <button>Check In</button>
+                        <button onClick={() => {setStatusFilter("checkin")}}>Check In</button>
                     </li>
                     <li>
-                        <button>Check Out</button>
+                        <button onClick={() => {setStatusFilter("checkout")}}>Check Out</button>
                     </li>
                     <li>
-                        <button>In Progress</button>
+                        <button onClick={() => {setStatusFilter("inprogress")}}>In Progress</button>
                     </li>
+                    <input type="text" placeholder="Filter by guest name..." onChange={(event) => setSearchInput(event.target.value)}/>
                 </List>
                 <div>
-                    <Select>
-                        <option>Order Date</option>
-                        <option>Guest</option>
-                        <option>Check In</option>
-                        <option>Check Out</option>
+                    <Select ref={selectRef} onChange={handleSelect}>
+                        <option value="order_date">Order Date</option>
+                        <option value="guest">Guest</option>
+                        <option value="checkin">Check In</option>
+                        <option value="checkout">Check Out</option>
                     </Select>
-                    <ButtonNew onClick={() => {dispatch("hola")}}>+ NEW BOOKING</ButtonNew>
+                    <ButtonNew>+ NEW BOOKING</ButtonNew>
                 </div>
             </Container>
         </>
     )
 }
 
-export function Filter3() {
+export function EmployeesFilter({setSearchInput, setClicked}) {
     return (
         <>
             <Container>
                 <List>
                     <li>
-                        <button>All Rooms</button>
+                        <button onClick={() => setClicked("all")}>All Employee</button>
                     </li>
                     <li>
-                        <button>Active Employee</button>
+                        <button onClick={() => setClicked("Active")}>Active Employee</button>
                     </li>
                     <li>
-                        <button>Inactive Employee</button>
+                        <button onClick={() => setClicked("Inactive")}>Inactive Employee</button>
                     </li>
+                    <input type="text" placeholder="Filter by employee name..." onChange={(event) => setSearchInput(event.target.value)}/>
                 </List>
                 <div>
-                    <ButtonNew>+ NEW ROOM</ButtonNew>
+                    <ButtonNew>+ NEW EMPLOYEE</ButtonNew>
                 </div>
             </Container>
         </>
     )
 }
 
-export function Filter4() {
+export function ContactFilter() {
     return (
         <>
             <Container>
                 <List>
                     <li>
                         <button>All Contacts</button>
-                    </li>
-                    <li>
-                        <button>Archived</button>
                     </li>
                     <li>
                         <button>Archived</button>

@@ -8,12 +8,12 @@ export const fetchEmployees = createAsyncThunk('employees/fetchEmployees', async
     return response;
 })
 
-export const fetchEmployee = createAsyncThunk('employees/fetchEmployee', async () => {
-    const response = await delay(data);
-    return response;
+export const fetchEmployee = createAsyncThunk('employees/fetchEmployee', async (id) => {
+    const fetchedEmployee = data.find((item) => item.employee_id === id)
+    return fetchedEmployee;
 })
 
-export const newEmployee = createAsyncThunk('employees/newEmployee', async () => {
+/* export const newEmployee = createAsyncThunk('employees/newEmployee', async () => {
     const response = await delay(data);
     return response;
 })
@@ -26,4 +26,4 @@ export const editEmployee = createAsyncThunk('employees/editEmployee', async () 
 export const deleteEmployee = createAsyncThunk('employees/deleteEmployee', async () => {
     const response = await delay(data);
     return response;
-})
+}) */

@@ -1,22 +1,26 @@
 import { Table } from "../components/Table/TableBox.jsx"
 import { SideBar } from '../components/SideBar/SideBar';
 import { NavContainer } from '../components/NavBar/NavBar';
-import { Filter } from "../components/ListSelector/ListSelector.jsx";
+import { BookingFilter } from "../components/ListSelector/ListSelector.jsx";
 import { FaEdit } from "react-icons/fa";
 import { RxCrossCircled } from "react-icons/rx";
 import { useDispatch, useSelector } from "react-redux";
-import { getAll, getOnly, getAllStatus, getAllError } from "../app/store/Bookings/BookingsSlice.js";
+import { getAll, getAllStatus, getAllError } from "../app/store/Bookings/BookingsSlice.js";
 import { useEffect, useState } from "react";
-import { fetchBooking, fetchBookings } from "../app/store/Bookings/BookingsThunk.js";
-import { data } from "../data/OrderData.js";
+import { fetchBookings } from "../app/store/Bookings/BookingsThunk.js";
+import { filteredByName, filteredByStatus } from "../app/filters.js";
+import { sortData } from "../app/filters.js";
+import { Link } from "react-router-dom";
 
 function Bookings(props) {
   
   const dispatch = useDispatch();
   const multipleBookings = useSelector(getAll);
-  const individualBooking = useSelector(getOnly);
   const bookingStatus = useSelector(getAllStatus);
-  const bookingsError = useSelector(getAllError); 
+  const bookingsError = useSelector(getAllError);
+  const [ searchInput, setSearchInput ] = useState("");
+  const [ statusFilter, setStatusFilter ] = useState("all");
+  const [ choosen, setChoosen ] = useState("all");
   
   useEffect(() => {
     if (bookingStatus === "pending"){
@@ -29,15 +33,20 @@ function Bookings(props) {
       dispatch(fetchBookings());
     }
     },[dispatch, multipleBookings])
+    
+  let filteredBookingList = filteredByName(multipleBookings, searchInput);
+      filteredBookingList = filteredByStatus(filteredBookingList, statusFilter);
+      filteredBookingList = sortData(filteredBookingList, choosen);
+      
 
   const columns = [
-    {property: 'guest', label: 'Guest', display: item => (<><p>{item.first_name} {item.last_name}</p><small>#{item.id}</small></>)},
+    {property: 'guest', label: 'Guest', display: item => (<><Link to={`/bookings/${item.id}`}><p>{item.first_name} {item.last_name}</p><small>#{item.id}</small></Link></>)},
     {property: 'order_date', label: 'Order Date'},
     {property: 'check_in', label: 'Check In'},
     {property: 'check_out', label: 'Check Out'},
     {property: 'special,request', label: 'Special Request', display: item => (<button>View Notes</button>)},
     {property: 'room_type', label: 'Room Type'},
-    {property: 'status', label: 'Status', display: item => (<button>Check In</button>)},
+    {property: 'status', label: 'Status', display: item => (<button>{item.status}</button>)},
     {property: 'actions', label: 'Actions', display: item => (<div>
       <FaEdit />
       <RxCrossCircled />
@@ -48,10 +57,9 @@ function Bookings(props) {
     <>
       <SideBar />
       <main>
-        <NavContainer title="Bookings" />
-        <Filter title="All Bookings"/>
-        <Table columns={columns} data={multipleBookings}/>
-        <input type="text" onChange={(event) => dispatch(fetchBooking(event.target.value))}/>
+        <NavContainer title="Bookings"  />
+        <BookingFilter title="All Bookings" setSearchInput={setSearchInput} setStatusFilter={setStatusFilter} setChoosen={setChoosen} choosen={choosen}/>
+        <Table columns={columns} data={filteredBookingList}/>
       </main>
     </>
   )

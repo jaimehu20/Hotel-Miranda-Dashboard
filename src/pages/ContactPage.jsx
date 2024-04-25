@@ -1,9 +1,8 @@
 import { SideBar } from "../components/SideBar/SideBar";
 import { NavContainer } from "../components/NavBar/NavBar";
 import { ReviewsContainer } from "../components/Reviews/Reviews";
-import { Filter4 } from "../components/ListSelector/ListSelector";
+import { ContactFilter } from "../components/ListSelector/ListSelector";
 import { Table } from "../components/Table/TableBox";
-import { data } from "../data/CustomerData";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllComments, getComment, getCommentsError, getCommentsStatus } from "../app/store/Messages/MessagesSlice";
 import { useEffect } from "react";
@@ -57,7 +56,7 @@ function Contact(props) {
       <main className="contact-container">
         <NavContainer title="Contact" />
         <ReviewsContainer />
-        <Filter4 />
+        <ContactFilter />
         <Table columns={columns} data={multipleComments} />
       </main>
     </>

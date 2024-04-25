@@ -1,7 +1,7 @@
 import { SideBar } from "../components/SideBar/SideBar"
 import { NavContainer } from "../components/NavBar/NavBar"
 import { useDispatch, useSelector } from "react-redux"
-import { getRoom, getRoomsStatus, getRoomError } from "../app/store/Rooms/RoomsSlice";
+import { getRoom } from "../app/store/Rooms/RoomsSlice";
 import { useEffect, useState } from "react";
 import { fetchRoom } from "../app/store/Rooms/RoomsThunk";
 import { useParams } from "react-router";
@@ -12,11 +12,15 @@ export function RoomDetails() {
     const dispatch = useDispatch();
     const individualRoom = useSelector(getRoom);
     const [ loading, setLoading ] = useState(true);
+
+    console.log(loading)
     
     useEffect(() => {
         setLoading(false);
         dispatch(fetchRoom(id));
     }, [])
+
+    console.log(loading)
 
     return (
         <>

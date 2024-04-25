@@ -23,12 +23,11 @@ export const BookingsSlice = createSlice({
 
         builder.addCase(fetchBooking.pending, (state,action) => {
             state.status = "pending";
-        }).addCase(fetchBooking.rejected, (action,state) => {
+        }).addCase(fetchBooking.rejected, (state,action) => {
             state.status = action.error.message;
-        }).addCase(fetchBooking.fulfilled, (action,state) => {
+        }).addCase(fetchBooking.fulfilled, (state,action) => {
             state.booking = action.payload;
             state.status = "fulfilled";
-            console.log(state.booking);
         })
     }
 })
