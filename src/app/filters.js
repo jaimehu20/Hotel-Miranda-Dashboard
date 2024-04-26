@@ -36,6 +36,15 @@ export function sortData(data, choosen){
 
 // ROOMS SECTION FILTERS
 
+export function filteredByRoomStatus(data, clicked){
+    if (clicked === "all"){
+        return [...data]
+    } else if (clicked === "available"){
+        return data.filter((item) => item.room_status === "Available")
+    } else if (clicked === "booked"){
+        return data.filter((item) => item.room_status === "Booked");
+    }
+}
 
 
 // USERS SECTION FILTERS

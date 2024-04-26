@@ -1,13 +1,15 @@
 import { SideBar } from "../components/SideBar/SideBar";
 import { NavContainer } from "../components/NavBar/NavBar";
-import { EmployeesFilter } from "../components/ListSelector/ListSelector.jsx";
-import { Table } from "../components/Table/TableBox.jsx"
+import { RoomsFilter } from "../components/ListSelector/ListSelector.jsx";
+import { Table } from "../components/Table/TableBox.jsx";
+import { NewRoomModal } from "../components/RoomModal/Modal.jsx";
 import roomPic from "../assets/room1.jpg"
 import { useDispatch, useSelector } from "react-redux";
-import { getAllRooms, getRoom, getRoomError, getRoomsStatus } from "../app/store/Rooms/RoomsSlice.js";
-import { useEffect } from "react";
-import { fetchRooms, fetchRoom } from "../app/store/Rooms/RoomsThunk.js";
+import { getAllRooms, getRoomError, getRoomsStatus } from "../app/store/Rooms/RoomsSlice.js";
+import { useEffect, useState } from "react";
+import { fetchRooms } from "../app/store/Rooms/RoomsThunk.js";
 import { Link } from "react-router-dom";
+import { filteredByRoomStatus } from "../app/filters.js";
 
 
 function Rooms(props) {
@@ -16,6 +18,8 @@ function Rooms(props) {
   const multipleRooms = useSelector(getAllRooms);
   const roomStatus = useSelector(getRoomsStatus);
   const roomError = useSelector(getRoomError);
+  const [ clicked, setClicked ] = useState("all");
+  const [visible, setVisible ] = useState(false)
 
   useEffect(() => {
     if (roomStatus === "pending") {
@@ -28,6 +32,8 @@ function Rooms(props) {
       dispatch(fetchRooms());
     }
   })
+
+  const filteredRoomList = filteredByRoomStatus(multipleRooms, clicked);
 
   const columns = [
     {property: 'room_id', label: 'Room Name', display: e => (<>
@@ -53,12 +59,12 @@ function Rooms(props) {
       <SideBar />
       <main>
         <NavContainer title="Rooms" />
-        <EmployeesFilter />
-        <Table columns={columns} data={multipleRooms}/>
+        <RoomsFilter setClicked={setClicked} setVisible={setVisible}/>
+        <Table columns={columns} data={filteredRoomList}/>
+        <NewRoomModal visible={visible} setVisible={setVisible}/>
       </main>
     </>
   )
 }
 
 export default Rooms;
-

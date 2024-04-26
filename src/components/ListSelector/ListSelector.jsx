@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 
 const Container = styled.section`
@@ -61,7 +61,7 @@ const Select = styled.select`
     border: 2px solid #135846;
 `
 
-export function BookingFilter({props, setSearchInput, setStatusFilter, setChoosen, hoosen}) {
+export function BookingFilter({props, setSearchInput, setStatusFilter, setChoosen,}) {
 
     const selectRef = useRef();
 
@@ -103,6 +103,47 @@ export function BookingFilter({props, setSearchInput, setStatusFilter, setChoose
     )
 }
 
+export function RoomsFilter({setClicked, setVisible}) {
+
+    return (
+        <>
+            <Container>
+                <List>
+                    <li>
+                        <button onClick={() => setClicked("all")}>All Rooms</button>
+                    </li>
+                    <li>
+                        <button onClick={() => setClicked("available")}>Available</button>
+                    </li>
+                    <li>
+                        <button onClick={() => setClicked("booked")}>Booked</button>
+                    </li>
+                </List>
+                <div>
+                    <ButtonNew onClick={() => setVisible(true)}>+ NEW ROOM</ButtonNew>
+                </div>
+            </Container>
+        </>
+    )
+}
+
+export function ContactFilter() {
+    return (
+        <>
+            <Container>
+                <List>
+                    <li>
+                        <button>All Contacts</button>
+                    </li>
+                    <li>
+                        <button>Archived</button>
+                    </li>
+                </List>
+            </Container>
+        </>
+    )
+}
+
 export function EmployeesFilter({setSearchInput, setClicked}) {
     return (
         <>
@@ -122,23 +163,6 @@ export function EmployeesFilter({setSearchInput, setClicked}) {
                 <div>
                     <ButtonNew>+ NEW EMPLOYEE</ButtonNew>
                 </div>
-            </Container>
-        </>
-    )
-}
-
-export function ContactFilter() {
-    return (
-        <>
-            <Container>
-                <List>
-                    <li>
-                        <button>All Contacts</button>
-                    </li>
-                    <li>
-                        <button>Archived</button>
-                    </li>
-                </List>
             </Container>
         </>
     )
