@@ -1,7 +1,7 @@
 import { Table } from "../components/Table/TableBox.jsx"
-import { SideBar } from '../components/SideBar/SideBar';
-import { NavContainer } from '../components/NavBar/NavBar';
-import { BookingFilter } from "../components/ListSelector/ListSelector.jsx";
+import { SideBar } from '../components/SideBar/SideBar.jsx';
+import { NavContainer } from '../components/NavBar/NavBar.jsx';
+import { BookingFilter } from "../components/ListSelector/ListSelector.js";
 import { FaEdit } from "react-icons/fa";
 import { RxCrossCircled } from "react-icons/rx";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,16 +11,17 @@ import { fetchBookings } from "../app/store/Bookings/BookingsThunk.js";
 import { filteredByName, filteredByStatus } from "../app/filters.js";
 import { sortData } from "../app/filters.js";
 import { Link } from "react-router-dom";
+import { useAppSelector, useAppDispatch } from "../Hooks/hooks.js";
 
 function Bookings(props) {
   
-  const dispatch = useDispatch();
-  const multipleBookings = useSelector(getAll);
-  const bookingStatus = useSelector(getAllStatus);
-  const bookingsError = useSelector(getAllError);
-  const [ searchInput, setSearchInput ] = useState("");
+  const dispatch = useAppDispatch();
+  const multipleBookings = useAppSelector(getAll);
+  const bookingStatus = useAppSelector(getAllStatus);
+  const bookingsError = useAppSelector(getAllError);
+  const [ searchInput, setSearchInput ] = useState<string>("");
   const [ statusFilter, setStatusFilter ] = useState("all");
-  const [ choosen, setChoosen ] = useState("all");
+  const [ choosen, setChoosen ] = useState<string>("all");
   
   useEffect(() => {
     if (bookingStatus === "pending"){

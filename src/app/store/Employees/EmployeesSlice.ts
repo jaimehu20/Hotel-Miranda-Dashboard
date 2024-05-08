@@ -1,14 +1,24 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { fetchEmployees, fetchEmployee } from "./EmployeesThunk";
+
+
+type initialState = {
+    employees: object[],
+    employee: object[],
+    status: string,
+    error: null
+
+}
+const initialState : initialState = {
+    employees: [],
+    employee: [],
+    status: "idle",
+    error: null
+}
 
 export const EmployeesSlice = createSlice({
     name: "employees",
-    initialState: {
-        employees: [],
-        employee: null,
-        status: "idle",
-        error: null
-    },
+    initialState,
     reducers: {},
     extraReducers: (builder) => {
         builder.addCase(fetchEmployees.pending, (state, action) => {
@@ -16,7 +26,7 @@ export const EmployeesSlice = createSlice({
         }).addCase(fetchEmployees.rejected, (state, action) => {
             state.status = "rejected";
             state.error = action.error.message
-        }).addCase(fetchEmployees.fulfilled, (state, action) => {
+        }).addCase(fetchEmployees.fulfilled, (state, action: PayloadAction<object[]>) => {
             state.employees = action.payload;
             state.status = "fulfilled";
         })
@@ -25,14 +35,14 @@ export const EmployeesSlice = createSlice({
             state.status = "pending";
         }).addCase(fetchEmployee.rejected, (state,action) => {
             state.status = action.error.message;
-        }).addCase(fetchEmployee.fulfilled, (state,action) => {
+        }).addCase(fetchEmployee.fulfilled, (state,action: PayloadAction<object[]>) => {
             state.employee = action.payload;
             state.status = "fulfilled";
         })
     }
 })
 
-export const getAllEmployees = state => state.getEmployees.employees;
-export const getEmployee = state => state.getEmployees.employee;
-export const getEmployeeStatus = state => state.getEmployees.status;
-export const getEmployeeError = state => state.getEmployees.error;
+export const getAllEmployees = (state: any) => state.getEmployees.employees;
+export const getEmployee = (state: any) => state.getEmployees.employee;
+export const getEmployeeStatus = (state: any) => state.getEmployees.status;
+export const getEmployeeError = (state: any) => state.getEmployees.error;

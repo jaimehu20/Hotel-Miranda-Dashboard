@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { useRef, useState } from "react";
-
+import { useRef } from "react";
+import { BookingFilterInterface, RoomsFilterInterface, EmployeesFilterInterface } from "./ListSelectorInterfaces";
 
 const Container = styled.section`
     display: flex;
@@ -61,14 +61,19 @@ const Select = styled.select`
     border: 2px solid #135846;
 `
 
-export function BookingFilter({props, setSearchInput, setStatusFilter, setChoosen,}) {
 
-    const selectRef = useRef();
+
+export function BookingFilter({ setSearchInput, setStatusFilter, setChoosen,}: BookingFilterInterface) {
+
+    const selectRef = useRef<HTMLSelectElement>(null);
 
     const handleSelect = () => {
-        const selectedValue = selectRef.current.value;
-        setChoosen(selectedValue);
-        return selectedValue;
+        if (selectRef.current){
+            const selectedValue = selectRef.current.value;
+            setChoosen(selectedValue);
+            return selectedValue
+        }
+        return "No input";
     }
 
     return (
@@ -76,7 +81,7 @@ export function BookingFilter({props, setSearchInput, setStatusFilter, setChoose
             <Container>
                 <List>
                     <li>
-                        <button onClick={() => {setStatusFilter("all")}}>All Bookings</button>
+                        <button onClick={() => setStatusFilter("all")}>All Bookings</button>
                     </li>
                     <li>
                         <button onClick={() => {setStatusFilter("checkin")}}>Check In</button>
@@ -103,7 +108,7 @@ export function BookingFilter({props, setSearchInput, setStatusFilter, setChoose
     )
 }
 
-export function RoomsFilter({setClicked, setVisible}) {
+export function RoomsFilter({setClicked, setVisible} : RoomsFilterInterface) {
 
     return (
         <>
@@ -144,7 +149,7 @@ export function ContactFilter() {
     )
 }
 
-export function EmployeesFilter({setSearchInput, setClicked}) {
+export function EmployeesFilter({setSearchInput, setClicked}: EmployeesFilterInterface) {
     return (
         <>
             <Container>

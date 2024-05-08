@@ -18,8 +18,8 @@ function Users(props) {
   const multipleEmployees = useSelector(getAllEmployees);
   const employeeStatus = useSelector(getEmployeeStatus);
   const employeeError = useSelector(getEmployeeError);
-  const [ searchInput, setSearchInput ] = useState("");
-  const [ clicked, setClicked ] = useState("all");
+  const [ searchInput, setSearchInput ] = useState<string>("");
+  const [ clicked, setClicked ] = useState<string>("all");
   
   useEffect(() => {
     if (employeeStatus === "pending"){

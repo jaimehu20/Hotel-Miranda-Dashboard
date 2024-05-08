@@ -2,8 +2,7 @@ import { FaCircleUser } from "react-icons/fa6";
 import { useNavigate } from "react-router";
 import styled from "styled-components";
 import { useAuth } from "../Hooks/useAuth";
-import { useContext } from "react";
-import { AuthContext } from "../Context/AuthProvider";
+
 
 const LogForm = styled.section`
     display:flex;

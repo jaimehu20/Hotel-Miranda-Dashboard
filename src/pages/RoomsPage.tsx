@@ -1,6 +1,6 @@
-import { SideBar } from "../components/SideBar/SideBar";
-import { NavContainer } from "../components/NavBar/NavBar";
-import { RoomsFilter } from "../components/ListSelector/ListSelector.jsx";
+import { SideBar } from "../components/SideBar/SideBar.jsx";
+import { NavContainer } from "../components/NavBar/NavBar.jsx";
+import { RoomsFilter } from "../components/ListSelector/ListSelector.js";
 import { Table } from "../components/Table/TableBox.jsx";
 import { NewRoomModal } from "../components/RoomModal/Modal.jsx";
 import roomPic from "../assets/room1.jpg"
