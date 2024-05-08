@@ -1,14 +1,30 @@
 
 // BOOKINGS SECTION FILTERS
 
-export function filteredByName(data, searchData){
+interface BookingsNameFilter {
+    first_name : string,
+    status : string
+}
+
+interface BookingsStatusFilter {
+    status : string
+}
+
+interface BookingsSort {
+    order_date: string,
+    first_name: string,
+    check_in: string,
+    check_out: string
+}
+
+export function filteredByName(data : BookingsNameFilter[], searchData : string){
     if (!searchData){
       return data;
     }
     return data.filter((item) => item.first_name.toLowerCase().includes(searchData.toLowerCase()));
   }
 
-export function filteredByStatus(data, clicked){
+export function filteredByStatus(data : BookingsStatusFilter[], clicked : string){
     if (clicked === "all"){
         return [...data];
     } else if (clicked === "checkin"){
@@ -20,7 +36,7 @@ export function filteredByStatus(data, clicked){
     }
 }
 
-export function sortData(data, choosen){
+export function sortData(data : BookingsSort[], choosen : string){
     if (choosen === "all"){
         return [...data];
     } else if (choosen === "order_date"){
@@ -36,7 +52,11 @@ export function sortData(data, choosen){
 
 // ROOMS SECTION FILTERS
 
-export function filteredByRoomStatus(data, clicked){
+interface RoomsFilter {
+    room_status : string
+}
+
+export function filteredByRoomStatus(data : RoomsFilter[], clicked : string){
     if (clicked === "all"){
         return [...data]
     } else if (clicked === "available"){
@@ -49,14 +69,22 @@ export function filteredByRoomStatus(data, clicked){
 
 // USERS SECTION FILTERS
 
-export function filteredByEmployee(data, searchData){
+interface EmployeeNameFilter {
+    employee_name: string
+}
+
+interface EmployeeStatusFilter {
+    employee_status : string;
+}
+
+export function filteredByEmployee(data : EmployeeNameFilter[], searchData : string){
     if (!searchData){
       return data;
     }
     return data.filter((item) => item.employee_name.toLowerCase().includes(searchData.toLowerCase()));
   }
 
-  export function filteredByEmployeeStatus(data, clicked){
+export function filteredByEmployeeStatus(data : EmployeeStatusFilter[], clicked : string){
     if (clicked === "all"){
         return data;
     } else if (clicked === "Inactive"){

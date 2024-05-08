@@ -1,4 +1,4 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { Reducer, configureStore } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
 import { BookingsSlice } from "./Bookings/BookingsSlice";
 import { EmployeesSlice } from "./Employees/EmployeesSlice";
@@ -8,10 +8,10 @@ import { CommentsSlice } from "./Messages/MessagesSlice";
 
 export const store = configureStore({
     reducer: {
-        getBookings: BookingsSlice.reducer,
-        getEmployees: EmployeesSlice.reducer,
-        getRooms: RoomsSlice.reducer,
-        getComments: CommentsSlice.reducer
+        getBookings: <Reducer>BookingsSlice.reducer,
+        getEmployees: <Reducer>EmployeesSlice.reducer,
+        getRooms: <Reducer>RoomsSlice.reducer,
+        getComments: <Reducer>CommentsSlice.reducer
     }
 })
 

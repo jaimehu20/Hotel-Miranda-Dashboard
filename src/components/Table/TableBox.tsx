@@ -102,9 +102,13 @@ const TableContainer = styled.div`
         }
     }
 `
-export function Table(props) {
+type props = {
+    columns: object[]
+    data: object
+}
 
-    const displayRow = row => (
+export function Table(props : props) {
+    const displayRow = (row : object) => (
          <tr>
             {props.columns.map(col => 
             <td>

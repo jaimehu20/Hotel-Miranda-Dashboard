@@ -8,7 +8,7 @@ export const fetchEmployees = createAsyncThunk('employees/fetchEmployees', async
     return response;
 })
 
-export const fetchEmployee = createAsyncThunk('employees/fetchEmployee', async (id) => {
+export const fetchEmployee = createAsyncThunk('employees/fetchEmployee', async (id : string) => {
     const fetchedEmployee = data.find((item) => item.employee_id === id)
     return fetchedEmployee;
 })

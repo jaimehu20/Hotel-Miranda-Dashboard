@@ -7,7 +7,7 @@ export const fetchRooms = createAsyncThunk('rooms/fetchRooms', async () => {
     return response;
 })
 
-export const fetchRoom = createAsyncThunk('rooms/fetchRoom', async (id) => {
+export const fetchRoom = createAsyncThunk('rooms/fetchRoom', async (id : string) => {
     const fetchedRoom = data.find((item) => item.room_id === id);
     return fetchedRoom;
 })

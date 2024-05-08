@@ -1,9 +1,6 @@
 import { ReactNode, createContext, useReducer } from "react";
 
-export const AuthContext = createContext<{
-    logged: AuthState;
-    dispatch: React.Dispatch<string>;
-} | undefined>(undefined);
+export const AuthContext = createContext()
 
 interface AuthState {
     isAuth: boolean;

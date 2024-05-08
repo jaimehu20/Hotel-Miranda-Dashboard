@@ -18,12 +18,13 @@ const ModalInfo = styled.div`
         flex-direction: column;
     }
 `
-const sendInfo = () => {
-    console.log("hola")
+
+type props = {
+    visible: React.Dispatch<React.SetStateAction<boolean>>,
+    setVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-
-const VisibleModalBox = ({setVisible}) => {
+const VisibleModalBox = ({setVisible}: props) => {
     return (
         <ModalInfo>
             <button onClick={() => setVisible(false)}>Cerrar modal</button>
@@ -50,7 +51,7 @@ const HiddenModalBox = () => {
 }
 
 
-export function NewRoomModal({visible, setVisible}) {
+export function NewRoomModal({visible, setVisible}: props) {
     return (
         <>
         {visible ? <VisibleModalBox setVisible={setVisible}/> : <HiddenModalBox/>}

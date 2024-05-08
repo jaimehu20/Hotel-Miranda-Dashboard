@@ -3,8 +3,6 @@ import { MdOutlineEmail } from "react-icons/md";
 import { CiBellOn } from "react-icons/ci";
 import { IoLogOutOutline } from "react-icons/io5";
 import styled from "styled-components";
-import { useNavigate } from "react-router";
-import { useContext } from "react";
 import { useAuth } from "../../Hooks/useAuth";
 
 
@@ -36,11 +34,13 @@ const Icons = styled.div`
   }
 `;
 
-export function NavContainer(props) {
+type props = {
+  title: string;
+}
 
-    const navigate = useNavigate();
+export function NavContainer(props : props) {
 
-    const { dispatch} = useAuth();
+    const { dispatch } = useAuth();
 
     return (
         <nav>
@@ -51,7 +51,7 @@ export function NavContainer(props) {
           <Icons>
             <MdOutlineEmail />
             <CiBellOn />
-            <IoLogOutOutline onClick={() => {dispatch('logout')}} />
+            <IoLogOutOutline onClick={() => dispatch('logout')} />
           </Icons>
         </nav>
     )

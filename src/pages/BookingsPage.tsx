@@ -4,7 +4,6 @@ import { NavContainer } from '../components/NavBar/NavBar.jsx';
 import { BookingFilter } from "../components/ListSelector/ListSelector.js";
 import { FaEdit } from "react-icons/fa";
 import { RxCrossCircled } from "react-icons/rx";
-import { useDispatch, useSelector } from "react-redux";
 import { getAll, getAllStatus, getAllError } from "../app/store/Bookings/BookingsSlice.js";
 import { useEffect, useState } from "react";
 import { fetchBookings } from "../app/store/Bookings/BookingsThunk.js";
@@ -13,7 +12,11 @@ import { sortData } from "../app/filters.js";
 import { Link } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from "../Hooks/hooks.js";
 
-function Bookings(props) {
+type props = {
+  title: string;
+}
+
+function Bookings(props : props) {
   
   const dispatch = useAppDispatch();
   const multipleBookings = useAppSelector(getAll);

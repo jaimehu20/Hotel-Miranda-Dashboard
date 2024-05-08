@@ -1,7 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { data } from "../../../data/CustomerData/";
+import { data } from "../../../data/CustomerData";
 import { delay } from "../../delay";
-
 
 export const fetchComments = createAsyncThunk("comments/fetchComments", async () => {
     const response = await delay(data);
