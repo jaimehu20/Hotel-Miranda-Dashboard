@@ -4,13 +4,14 @@ import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { getOnly } from "../app/store/Bookings/BookingsSlice";
 import { useEffect, useState } from "react";
+import { useAppDispatch, useAppSelector } from "../Hooks/hooks";
 import { fetchBooking } from "../app/store/Bookings/BookingsThunk";
 
 export function BookingDetails() {
 
     let { id } = useParams();
-    const dispatch = useDispatch();
-    const individualBooking = useSelector(getOnly);
+    const dispatch = useAppDispatch();
+    const individualBooking = useAppSelector(getOnly);
     const [ loading, setLoading ] = useState(true);
 
     useEffect(() => {

@@ -12,7 +12,11 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { filteredByEmployee, filteredByEmployeeStatus } from "../app/filters";
 
-function Users(props) {
+type props = {
+  title?: string
+}
+
+function Users(props : props) {
 
   const dispatch = useDispatch();
   const multipleEmployees = useSelector(getAllEmployees);
@@ -38,7 +42,7 @@ function Users(props) {
 
     
   const columns = [
-      {property: "employee_name", label: "Name", display: e => (
+      {property: "employee_name", label: "Name", display: (e : any) => (
       <>
       <Link to={`/users/${e.employee_id}`}>
           <div className="employee-container">
@@ -53,7 +57,7 @@ function Users(props) {
       </>)},
       {property: "employee_email", label: "Email"},
       {property: "employee_description", label: "Job Desk"},
-      {property: "employee_phone", label: "Contact", display: e => (<><FaPhone /><p>{e.employee_phone}</p></>)},
+      {property: "employee_phone", label: "Contact", display: (e : any) => (<><FaPhone /><p>{e.employee_phone}</p></>)},
       {property: "employee_status", label: "Status"}
   ]
   return (

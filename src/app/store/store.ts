@@ -1,5 +1,4 @@
 import { Reducer, configureStore } from "@reduxjs/toolkit";
-import { useDispatch } from "react-redux";
 import { BookingsSlice } from "./Bookings/BookingsSlice";
 import { EmployeesSlice } from "./Employees/EmployeesSlice";
 import { RoomsSlice } from "./Rooms/RoomsSlice";

@@ -8,7 +8,11 @@ import { getAllComments, getComment, getCommentsError, getCommentsStatus } from 
 import { useEffect } from "react";
 import { fetchComments } from "../app/store/Messages/MessagesThunk";
 
-function Contact(props) {
+type props = {
+  title?: string
+}
+
+function Contact(props : props) {
 
   const dispatch = useDispatch();
   const multipleComments = useSelector(getAllComments);
@@ -27,9 +31,9 @@ function Contact(props) {
       dispatch(fetchComments());
     }
   })
-
+  
   const columns = [
-    {property: "comment_info", label: "Date", display: e => (
+    {property: "comment_info", label: "Date", display: (e : any) => (
       <>
         <div className="customer-container">
           <p>{e.comment_info}</p>
@@ -38,7 +42,7 @@ function Contact(props) {
         </div>
       </>
     )},
-    {property: "comment_customer", label: "Customer", display: e => (
+    {property: "comment_customer", label: "Customer", display: (e : any) => (
       <>
         <div className="customer-container">
           <p>{e.comment_customer}</p>

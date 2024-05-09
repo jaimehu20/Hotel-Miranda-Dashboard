@@ -13,7 +13,7 @@ import { Link } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from "../Hooks/hooks.js";
 
 type props = {
-  title: string;
+  title?: string;
 }
 
 function Bookings(props : props) {
