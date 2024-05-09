@@ -1,8 +1,8 @@
-import { useEffect } from "react";
+import { ReactNode, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { useAuth } from "../Hooks/useAuth";
 
-const PrivateRoute = ({children}) => {
+const PrivateRoute = ({children} : {children : ReactNode}) => {
     const navigate = useNavigate();
     const {logged} = useAuth();
 

@@ -28,7 +28,7 @@ const VisibleModalBox = ({setVisible}: props) => {
     return (
         <ModalInfo>
             <button onClick={() => setVisible(false)}>Cerrar modal</button>
-            <form onSubmit={(event) => {event.preventDefault(); sendInfo(); setVisible(false)}}>
+            <form onSubmit={(event) => {event.preventDefault(); setVisible(false)}}>
                 <label>Room Name</label>
                 <input type="text" placeholder="Room name"/>
                 <label>Bed Type</label>

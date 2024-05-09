@@ -1,18 +1,31 @@
 import { ReactNode, createContext, useReducer } from "react";
 
-export const AuthContext = createContext()
-
 interface AuthState {
     isAuth: boolean;
     userName: string;
-    userMail: string
+    userMail: string;
 }
 
-const initialState: AuthState = {
+interface AuthContextInterface {
+    logged: AuthState,
+    dispatch: React.Dispatch<string>
+}
+
+const initialState = {
     isAuth: localStorage.getItem("AUTH_LS_KEY") !== null,
     userName: "Jaime",
-    userMail: "prueba@prueba.com"
-};
+    userMail: "prueba@prueba.com",
+}
+
+export const AuthContext = createContext<AuthContextInterface>({
+    logged : {
+        isAuth: localStorage.getItem("AUTH_LS_KEY") !== null,
+        userName: "Jaime",
+        userMail: "prueba@prueba.com",
+    },
+    dispatch: () => {}
+})
+
 
 const reducer = (state: AuthState, action: string) => {
     switch (action) {
