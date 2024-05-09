@@ -1,3 +1,3 @@
-HOTEL MIRANDA DASHBOARD
+# HOTEL MIRANDA DASHBOARD
 
 Migrated to typescript
