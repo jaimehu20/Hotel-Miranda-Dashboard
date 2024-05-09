@@ -101,3 +101,18 @@ nav {
     flex-direction: column;
     font-weight: 600;
 }
+
+a{
+  text-decoration: none;
+  color: #799283;
+}
+
+/* .modal-visible {
+  display: block;
+  
+}
+
+.modal-hidden {
+  display: none;
+  
+} */

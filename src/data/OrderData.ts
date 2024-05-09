@@ -1,5 +1,5 @@
 export const data = [{
-  "id": 1,
+  "id": "1",
   "first_name": "Angel",
   "last_name": "Bernet",
   "order_date": "Jan 17th, 2024",
@@ -8,9 +8,10 @@ export const data = [{
   "time": "4:23 PM",
   "checkIn_hour": "8:36 AM",
   "checkOut_hour": "5:34 AM",
-  "room_type": "Double Bed"
+  "room_type": "Double Bed",
+  "status": "Check Out"
   }, {
-  "id": 2,
+  "id": "2",
   "first_name": "Herta",
   "last_name": "Bowlands",
   "order_date": "Jan 9th, 2023",
@@ -19,9 +20,10 @@ export const data = [{
   "time": "7:27 PM",
   "checkIn_hour": "12:25 AM",
   "checkOut_hour": "3:58 AM",
-  "room_type": "Single Bed"
+  "room_type": "Single Bed",
+  "status": "Check In"
   }, {
-  "id": 3,
+  "id": "3",
   "first_name": "Malva",
   "last_name": "Frude",
   "order_date": "Jan 18th, 2023",
@@ -30,9 +32,10 @@ export const data = [{
   "time": "5:16 AM",
   "checkIn_hour": "5:36 AM",
   "checkOut_hour": "11:06 AM",
-  "room_type": "Double Bed Superior"
+  "room_type": "Double Bed Superior",
+  "status": "Check In"
   }, {
-  "id": 4,
+  "id": "4",
   "first_name": "Alia",
   "last_name": "Morse",
   "order_date": "Jan 1st, 2023",
@@ -41,9 +44,10 @@ export const data = [{
   "time": "1:35 AM",
   "checkIn_hour": "9:28 AM",
   "checkOut_hour": "3:53 PM",
-  "room_type": "Suite"
+  "room_type": "Suite",
+  "status": "In Progress"
   }, {
-  "id": 5,
+  "id": "5",
   "first_name": "Bevan",
   "last_name": "Havick",
   "order_date": "Jan 4th, 2023",
@@ -52,9 +56,10 @@ export const data = [{
   "time": "7:11 PM",
   "checkIn_hour": "8:58 AM",
   "checkOut_hour": "2:35 AM",
-  "room_type": "Single Bed"
+  "room_type": "Single Bed",
+  "status": "In Progress"
   }, {
-  "id": 6,
+  "id": "6",
   "first_name": "Berti",
   "last_name": "Bertin",
   "order_date": "Jan 21th, 2023",
@@ -63,9 +68,10 @@ export const data = [{
   "time": "6:06 PM",
   "checkIn_hour": "5:44 AM",
   "checkOut_hour": "5:37 AM",
-  "room_type": "Suite"
+  "room_type": "Suite",
+  "status": "In Progress"
   }, {
-  "id": 7,
+  "id": "7",
   "first_name": "Dodi",
   "last_name": "Sweet",
   "order_date": "Jan 14th, 2023",
@@ -74,9 +80,10 @@ export const data = [{
   "time": "9:58 PM",
   "checkIn_hour": "5:18 AM",
   "checkOut_hour": "3:58 PM",
-  "room_type": "Double Bed"
+  "room_type": "Double Bed",
+  "status": "Check In"
   }, {
-  "id": 8,
+  "id": "8",
   "first_name": "Tracey",
   "last_name": "Briatt",
   "order_date": "Jan 16th, 2023",
@@ -85,9 +92,10 @@ export const data = [{
   "time": "7:00 AM",
   "checkIn_hour": "12:18 AM",
   "checkOut_hour": "11:02 AM",
-  "room_type": "Single Bed"
+  "room_type": "Single Bed",
+  "status": "Check Out"
   }, {
-  "id": 9,
+  "id": "9",
   "first_name": "Tonya",
   "last_name": "Basire",
   "order_date": "Jan 15th, 2023",
@@ -96,9 +104,10 @@ export const data = [{
   "time": "8:07 AM",
   "checkIn_hour": "11:58 AM",
   "checkOut_hour": "5:30 PM",
-  "room_type": "Suite"
+  "room_type": "Suite",
+  "status": "In Progress"
   }, {
-  "id": 10,
+  "id": "1",
   "first_name": "Star",
   "last_name": "Wainer",
   "order_date": "Jan 23th, 2023",
@@ -107,6 +116,7 @@ export const data = [{
   "time": "7:26 AM",
   "checkIn_hour": "1:59 PM",
   "checkOut_hour": "12:58 PM",
-  "room_type": "Double Bed Superior"
+  "room_type": "Double Bed Superior",
+  "status": "In Progress"
   },
 ]

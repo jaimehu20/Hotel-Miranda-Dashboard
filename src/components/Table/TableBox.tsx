@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+import { data } from "../../data/RoomsList";
 
 const TableContainer = styled.div`
     display: block;
@@ -51,6 +51,9 @@ const TableContainer = styled.div`
                         border-radius: 18px;
                         object-fit: cover;
                     }
+                    a {
+                        color: black;
+                    }
                 }
                 td:nth-child(5) {
                     button{
@@ -99,9 +102,20 @@ const TableContainer = styled.div`
         }
     }
 `
-export function Table(props) {
-    
-    const displayRow = row => (
+
+interface TableColumn {
+    label: string;
+    property: string,
+    display?: (row: any) => React.ReactNode;
+}
+
+type props = {
+    columns: TableColumn[]
+    data: object[]
+}
+
+export function Table(props : props) {
+    const displayRow = (row : any) => (
          <tr>
             {props.columns.map(col => 
             <td>

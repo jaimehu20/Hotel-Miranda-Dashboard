@@ -5,8 +5,9 @@ import { SlKey } from "react-icons/sl";
 import { MdConnectWithoutContact } from "react-icons/md";
 import { FaUser } from "react-icons/fa";
 import styled from "styled-components";
-import { useNavigate } from "react-router";
 import profilePic from "../../assets/profilePic.jpg"
+import { useAuth } from "../../Hooks/useAuth";
+import { Link } from "react-router-dom";
 
 export const LateralMenu = styled.div`
   height: 100vh;
@@ -117,7 +118,7 @@ flex-direction: column;
 
 export function SideBar() {
 
-  const navigate = useNavigate();
+    const {logged} = useAuth();
 
     return (
         <LateralMenu>
@@ -129,32 +130,42 @@ export function SideBar() {
             </div>
             </Logo>
             <Options>
-            <div>
-                <MdOutlineDashboard />
-                <p onClick={() => {navigate("/home")}}>Dashboard</p>
-            </div>
-            <div>
-                <FaRegCalendarCheck />
-                <p onClick={() => {navigate("/bookings")}}>Bookings</p>
-            </div>
-            <div>
+            <Link to="/home">
+              <div>
+                  <MdOutlineDashboard />
+                  <p>Dashboard</p>
+              </div>
+            </Link>
+            <Link to="/bookings">
+              <div>
+                  <FaRegCalendarCheck />
+                  <p>Bookings</p>
+              </div>
+            </Link>
+            <Link to="/rooms">
+              <div>
                 <SlKey />
-                <p onClick={() => {navigate("/rooms")}}>Rooms</p>
-            </div>
-            <div>
-                <MdConnectWithoutContact />
-                <p onClick={() => {navigate("/contact")}}>Contact</p>
-            </div>
-            <div>
+                <p>Rooms</p>
+              </div>
+            </Link>
+            <Link to="/contact">
+              <div>
+                  <MdConnectWithoutContact />
+                  <p>Contact</p>
+              </div>
+            </Link>
+            <Link to="/users">
+              <div>
                 <FaUser />
-                <p onClick={() => {navigate("/users")}}>Users</p>
-            </div>
+                <p>Users</p>
+              </div>
+            </Link>
             </Options>
             <UserData>
             <img src={profilePic}/>
-            <p>Jaime Hurtado</p>
-            <p>jaimehu.dev@gmail.com</p>
-            <button>Contact Us</button>
+            <p>{logged.userName}</p>
+            <p>{logged.userMail}</p>
+            <button>Edit</button>
             </UserData>
             <CopyText>
             <p>Travl Hotel Admin Dashboard</p>
