@@ -20,7 +20,7 @@ const ModalInfo = styled.div`
 `
 
 type props = {
-    visible: React.Dispatch<React.SetStateAction<boolean>>,
+    visible?: React.Dispatch<React.SetStateAction<boolean>>,
     setVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }
 

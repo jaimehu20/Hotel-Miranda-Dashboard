@@ -102,13 +102,20 @@ const TableContainer = styled.div`
         }
     }
 `
+
+interface TableColumn {
+    label: string;
+    property: string,
+    display?: (row: any) => React.ReactNode;
+}
+
 type props = {
-    columns: object[]
-    data: object
+    columns: TableColumn[]
+    data: object[]
 }
 
 export function Table(props : props) {
-    const displayRow = (row : object) => (
+    const displayRow = (row : any) => (
          <tr>
             {props.columns.map(col => 
             <td>
