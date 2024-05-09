@@ -10,16 +10,20 @@ import { useEffect, useState } from "react";
 import { fetchRooms } from "../app/store/Rooms/RoomsThunk.js";
 import { Link } from "react-router-dom";
 import { filteredByRoomStatus } from "../app/filters.js";
+import { AppDispatch } from "../app/store/store.js";
 
+type props = {
+  title?: string
+}
 
-function Rooms(props) {
+function Rooms(props : props) {
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const multipleRooms = useSelector(getAllRooms);
   const roomStatus = useSelector(getRoomsStatus);
   const roomError = useSelector(getRoomError);
   const [ clicked, setClicked ] = useState("all");
-  const [visible, setVisible ] = useState(false)
+  const [visible, setVisible ] = useState<boolean>(false)
 
   useEffect(() => {
     if (roomStatus === "pending") {
@@ -33,10 +37,10 @@ function Rooms(props) {
     }
   })
 
-  const filteredRoomList = filteredByRoomStatus(multipleRooms, clicked);
+  const filteredRoomList : any = filteredByRoomStatus(multipleRooms, clicked);
 
   const columns = [
-    {property: 'room_id', label: 'Room Name', display: e => (<>
+    {property: 'room_id', label: 'Room Name', display: (e : any) => (<>
     <Link to={`/rooms/${e.room_id}`}>
       <div className="room-container">
         <img src={roomPic}/>
@@ -49,9 +53,9 @@ function Rooms(props) {
     </>)},
     {property: "room_type", label:"Bed Type"},
     {property: "room_floor", label:"Room Floor"},
-    {property: "room_amenities", label:"Amenities", display: e => (<><div className="room-amenities">{e.room_amenities}</div></>)},
+    {property: "room_amenities", label:"Amenities", display: (e : any) => (<><div className="room-amenities">{e.room_amenities}</div></>)},
     {property: "room_rate", label: "Rate"},
-    {property: "room_status", label: "Status", display: e => (<button>{e.room_status === 'Available' ? 'Available' : 'Booked'}</button>)}
+    {property: "room_status", label: "Status", display: (e : any) => (<button>{e.room_status === 'Available' ? 'Available' : 'Booked'}</button>)}
   ]
 
   return (

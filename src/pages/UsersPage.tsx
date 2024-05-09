@@ -11,6 +11,7 @@ import { fetchEmployees } from "../app/store/Employees/EmployeesThunk";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { filteredByEmployee, filteredByEmployeeStatus } from "../app/filters";
+import { AppDispatch } from "../app/store/store";
 
 type props = {
   title?: string
@@ -18,7 +19,7 @@ type props = {
 
 function Users(props : props) {
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const multipleEmployees = useSelector(getAllEmployees);
   const employeeStatus = useSelector(getEmployeeStatus);
   const employeeError = useSelector(getEmployeeError);

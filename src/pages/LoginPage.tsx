@@ -2,6 +2,7 @@ import { FaCircleUser } from "react-icons/fa6";
 import { useNavigate } from "react-router";
 import styled from "styled-components";
 import { useAuth } from "../Hooks/useAuth";
+import { useRef } from "react";
 
 
 const LogForm = styled.section`
@@ -47,9 +48,12 @@ function LoginMenu() {
 
     const {dispatch} = useAuth()
 
+    const usernameRef = useRef<HTMLInputElement>(null);
+    const passwordRef = useRef<HTMLInputElement>(null);
+
     const InputChecker = () => {
-    const userName = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
+        const userName = usernameRef.current?.value;
+        const password = passwordRef.current?.value;
     if (userName && password) {
         dispatch('login')
         navigate("/home");
@@ -61,8 +65,8 @@ function LoginMenu() {
                 <FaCircleUser />
                 <p>Welcome to Hotel Miranda Dashboard</p>
                 <p>Authorized personal only</p>
-                <input id="username" type="text" placeholder="abcdefg"/>
-                <input id="password" type="text" placeholder="123456789"/>
+                <input ref={usernameRef} type="text" placeholder="abcdefg"/>
+                <input ref={passwordRef} type="text" placeholder="123456789"/>
                 <input type="submit" value="Log In" onClick={InputChecker}/>
             </LogForm>
          

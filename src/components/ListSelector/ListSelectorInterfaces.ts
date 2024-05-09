@@ -1,7 +1,9 @@
 export interface BookingFilterInterface {
     setSearchInput : React.Dispatch<React.SetStateAction<string>>,
     setStatusFilter: React.Dispatch<React.SetStateAction<string>>,
-    setChoosen: React.Dispatch<React.SetStateAction<string>>
+    setChoosen: React.Dispatch<React.SetStateAction<string>>,
+    title?: string,
+    choosen?: string
 }
 
 export interface RoomsFilterInterface {

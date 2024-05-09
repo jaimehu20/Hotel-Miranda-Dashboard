@@ -5,14 +5,14 @@ type initialState = {
     rooms: object[],
     room: {},
     status: string,
-    error: null
+    error: string | undefined
 }
 
 const initialState : initialState = {
     rooms: [],
     room: {},
     status: "idle",
-    error: null
+    error: undefined
 }
 
 export const RoomsSlice = createSlice({
@@ -25,7 +25,7 @@ export const RoomsSlice = createSlice({
         }).addCase(fetchRooms.rejected, (state,action) => {
             state.status = "rejected";
             state.error = action.error.message
-        }).addCase(fetchRooms.fulfilled, (state,action : PayloadAction<object[]>) => {
+        }).addCase(fetchRooms.fulfilled, (state,action : PayloadAction<any>) => {
             state.rooms = action.payload;
             state.status = "fulfilled";
         })
@@ -35,7 +35,7 @@ export const RoomsSlice = createSlice({
         }).addCase(fetchRoom.rejected, (state,action) => {
             state.error = action.error.message;
             state.status = "rejected";
-        }).addCase(fetchRoom.fulfilled, (state,action : PayloadAction<object>) => {
+        }).addCase(fetchRoom.fulfilled, (state,action : PayloadAction<any>) => {
             state.room = action.payload;
             state.status = "fulfilled";
         })

@@ -5,15 +5,17 @@ import { useParams } from "react-router";
 import { useEffect, useState } from "react";
 import { fetchEmployee } from "../app/store/Employees/EmployeesThunk";
 import { getEmployee } from "../app/store/Employees/EmployeesSlice";
+import { AppDispatch } from "../app/store/store";
 
 export function UserDetails() {
 
     let { id } = useParams();
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<AppDispatch>();
     const individualEmployee = useSelector(getEmployee);
     const [ loading, setLoading ] = useState(true);
 
     useEffect(() => {
+        if (!id) return
         setLoading(false);
         dispatch(fetchEmployee(id))
     }, [])

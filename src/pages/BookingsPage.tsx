@@ -10,7 +10,9 @@ import { fetchBookings } from "../app/store/Bookings/BookingsThunk.js";
 import { filteredByName, filteredByStatus } from "../app/filters.js";
 import { sortData } from "../app/filters.js";
 import { Link } from "react-router-dom";
-import { useAppSelector, useAppDispatch } from "../Hooks/hooks.js";
+import { useAppSelector } from "../Hooks/hooks.js";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../app/store/store.js";
 
 type props = {
   title?: string;
@@ -18,7 +20,7 @@ type props = {
 
 function Bookings(props : props) {
   
-  const dispatch = useAppDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const multipleBookings = useAppSelector(getAll);
   const bookingStatus = useAppSelector(getAllStatus);
   const bookingsError = useAppSelector(getAllError);
@@ -37,21 +39,21 @@ function Bookings(props : props) {
       dispatch(fetchBookings());
     }
     },[dispatch, multipleBookings])
-    
+  
   let filteredBookingList = filteredByName(multipleBookings, searchInput);
       filteredBookingList = filteredByStatus(filteredBookingList, statusFilter);
       filteredBookingList = sortData(filteredBookingList, choosen);
       
 
   const columns = [
-    {property: 'guest', label: 'Guest', display: item => (<><Link to={`/bookings/${item.id}`}><p>{item.first_name} {item.last_name}</p><small>#{item.id}</small></Link></>)},
+    {property: 'guest', label: 'Guest', display: (item : any) => (<><Link to={`/bookings/${item.id}`}><p>{item.first_name} {item.last_name}</p><small>#{item.id}</small></Link></>)},
     {property: 'order_date', label: 'Order Date'},
     {property: 'check_in', label: 'Check In'},
     {property: 'check_out', label: 'Check Out'},
-    {property: 'special,request', label: 'Special Request', display: item => (<button>View Notes</button>)},
+    {property: 'special,request', label: 'Special Request', display: (item : any) => (<button>View Notes</button>)},
     {property: 'room_type', label: 'Room Type'},
-    {property: 'status', label: 'Status', display: item => (<button>{item.status}</button>)},
-    {property: 'actions', label: 'Actions', display: item => (<div>
+    {property: 'status', label: 'Status', display: (item : any) => (<button>{item.status}</button>)},
+    {property: 'actions', label: 'Actions', display: (item : any) => (<div>
       <FaEdit />
       <RxCrossCircled />
     </div>)}

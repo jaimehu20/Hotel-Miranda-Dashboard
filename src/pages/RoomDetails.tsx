@@ -5,22 +5,20 @@ import { getRoom } from "../app/store/Rooms/RoomsSlice";
 import { useEffect, useState } from "react";
 import { fetchRoom } from "../app/store/Rooms/RoomsThunk";
 import { useParams } from "react-router";
+import { AppDispatch } from "../app/store/store";
 
 export function RoomDetails() {
 
     let { id } = useParams();
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<AppDispatch>();
     const individualRoom = useSelector(getRoom);
     const [ loading, setLoading ] = useState(true);
 
-    console.log(loading)
-    
     useEffect(() => {
+        if (!id) return
         setLoading(false);
         dispatch(fetchRoom(id));
     }, [])
-
-    console.log(loading)
 
     return (
         <>

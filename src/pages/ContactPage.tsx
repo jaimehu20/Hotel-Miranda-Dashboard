@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllComments, getComment, getCommentsError, getCommentsStatus } from "../app/store/Messages/MessagesSlice";
 import { useEffect } from "react";
 import { fetchComments } from "../app/store/Messages/MessagesThunk";
+import { AppDispatch } from "../app/store/store";
 
 type props = {
   title?: string
@@ -14,7 +15,7 @@ type props = {
 
 function Contact(props : props) {
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const multipleComments = useSelector(getAllComments);
   const individualComment = useSelector(getComment);
   const commentsStatus = useSelector(getCommentsStatus);

@@ -5,13 +5,13 @@ type initialState = {
     comments: object[],
     comment: object,
     status: string,
-    error: null
+    error: string | undefined
 }
 const initialState : initialState = {
     comments: [],
     comment: {},
     status: "idle",
-    error: null
+    error: undefined
 }
 
 
@@ -25,7 +25,7 @@ export const CommentsSlice = createSlice({
         }).addCase(fetchComments.rejected, (state, action) => {
             state.error = action.error.message;
             state.status = "rejected";
-        }).addCase(fetchComments.fulfilled, (state,action : PayloadAction<object[]>) => {
+        }).addCase(fetchComments.fulfilled, (state,action : PayloadAction<any>) => {
             state.comments = action.payload;
             state.status = "fulfilled";
         })

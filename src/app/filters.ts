@@ -17,7 +17,7 @@ interface BookingsSort {
     check_out: string
 }
 
-export function filteredByName(data : BookingsNameFilter[], searchData : string){
+export function filteredByName(data : BookingsNameFilter[], searchData : string) : any{
     if (!searchData){
       return data;
     }
@@ -36,7 +36,7 @@ export function filteredByStatus(data : BookingsStatusFilter[], clicked : string
     }
 }
 
-export function sortData(data : BookingsSort[], choosen : string){
+export function sortData(data : BookingsSort[], choosen : string) : any{
     if (choosen === "all"){
         return [...data];
     } else if (choosen === "order_date"){
