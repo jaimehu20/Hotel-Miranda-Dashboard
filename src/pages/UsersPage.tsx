@@ -2,27 +2,26 @@ import { SideBar } from "../components/SideBar/SideBar";
 import { NavContainer } from "../components/NavBar/NavBar";
 import { EmployeesFilter } from "../components/ListSelector/ListSelector";
 import { Table } from "../components/Table/TableBox";
-import { data } from "../data/EmployeeData";
 import { FaPhone } from "react-icons/fa6";
 import userPic from "../assets/employee.jpg"
-import { useDispatch, useSelector } from "react-redux";
-import { getAllEmployees, getEmployee, getEmployeeError, getEmployeeStatus } from "../app/store/Employees/EmployeesSlice";
+import { getAllEmployees, getEmployeeError, getEmployeeStatus } from "../app/store/Employees/EmployeesSlice";
 import { fetchEmployees } from "../app/store/Employees/EmployeesThunk";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { filteredByEmployee, filteredByEmployeeStatus } from "../app/filters";
-import { AppDispatch } from "../app/store/store";
+import { useAppDispatch, useAppSelector } from "../Hooks/hooks";
 
 type props = {
   title?: string
 }
 
+
 function Users(props : props) {
 
-  const dispatch = useDispatch<AppDispatch>();
-  const multipleEmployees = useSelector(getAllEmployees);
-  const employeeStatus = useSelector(getEmployeeStatus);
-  const employeeError = useSelector(getEmployeeError);
+  const dispatch = useAppDispatch();
+  const multipleEmployees = useAppSelector(getAllEmployees);
+  const employeeStatus = useAppSelector(getEmployeeStatus);
+  const employeeError = useAppSelector(getEmployeeError);
   const [ searchInput, setSearchInput ] = useState<string>("");
   const [ clicked, setClicked ] = useState<string>("all");
   

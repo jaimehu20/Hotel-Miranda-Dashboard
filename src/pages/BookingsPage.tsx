@@ -10,9 +10,7 @@ import { fetchBookings } from "../app/store/Bookings/BookingsThunk.js";
 import { filteredByName, filteredByStatus } from "../app/filters.js";
 import { sortData } from "../app/filters.js";
 import { Link } from "react-router-dom";
-import { useAppSelector } from "../Hooks/hooks.js";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "../app/store/store.js";
+import { useAppDispatch, useAppSelector } from "../Hooks/hooks.js";
 
 type props = {
   title?: string;
@@ -20,7 +18,7 @@ type props = {
 
 function Bookings(props : props) {
   
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
   const multipleBookings = useAppSelector(getAll);
   const bookingStatus = useAppSelector(getAllStatus);
   const bookingsError = useAppSelector(getAllError);

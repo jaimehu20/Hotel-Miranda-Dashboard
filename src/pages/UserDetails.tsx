@@ -1,17 +1,16 @@
 import { SideBar } from "../components/SideBar/SideBar"
 import { NavContainer } from "../components/NavBar/NavBar"
-import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router";
 import { useEffect, useState } from "react";
 import { fetchEmployee } from "../app/store/Employees/EmployeesThunk";
 import { getEmployee } from "../app/store/Employees/EmployeesSlice";
-import { AppDispatch } from "../app/store/store";
+import { useAppDispatch, useAppSelector } from "../Hooks/hooks";
 
 export function UserDetails() {
 
     let { id } = useParams();
-    const dispatch = useDispatch<AppDispatch>();
-    const individualEmployee = useSelector(getEmployee);
+    const dispatch = useAppDispatch();
+    const individualEmployee = useAppSelector(getEmployee);
     const [ loading, setLoading ] = useState(true);
 
     useEffect(() => {

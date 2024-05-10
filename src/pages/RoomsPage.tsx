@@ -4,13 +4,12 @@ import { RoomsFilter } from "../components/ListSelector/ListSelector.js";
 import { Table } from "../components/Table/TableBox.jsx";
 import { NewRoomModal } from "../components/RoomModal/Modal.jsx";
 import roomPic from "../assets/room1.jpg"
-import { useDispatch, useSelector } from "react-redux";
 import { getAllRooms, getRoomError, getRoomsStatus } from "../app/store/Rooms/RoomsSlice.js";
 import { useEffect, useState } from "react";
 import { fetchRooms } from "../app/store/Rooms/RoomsThunk.js";
 import { Link } from "react-router-dom";
 import { filteredByRoomStatus } from "../app/filters.js";
-import { AppDispatch } from "../app/store/store.js";
+import { useAppDispatch, useAppSelector } from "../Hooks/hooks.js";
 
 type props = {
   title?: string
@@ -18,10 +17,10 @@ type props = {
 
 function Rooms(props : props) {
 
-  const dispatch = useDispatch<AppDispatch>();
-  const multipleRooms = useSelector(getAllRooms);
-  const roomStatus = useSelector(getRoomsStatus);
-  const roomError = useSelector(getRoomError);
+  const dispatch = useAppDispatch();
+  const multipleRooms = useAppSelector(getAllRooms);
+  const roomStatus = useAppSelector(getRoomsStatus);
+  const roomError = useAppSelector(getRoomError);
   const [ clicked, setClicked ] = useState("all");
   const [visible, setVisible ] = useState<boolean>(false)
 

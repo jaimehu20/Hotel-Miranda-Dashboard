@@ -1,17 +1,16 @@
 import { SideBar } from "../components/SideBar/SideBar"
 import { NavContainer } from "../components/NavBar/NavBar"
 import { useParams } from "react-router";
-import { useDispatch, useSelector } from "react-redux";
 import { getOnly } from "../app/store/Bookings/BookingsSlice";
 import { useEffect, useState } from "react";
-import { useAppSelector } from "../Hooks/hooks";
+import { useAppDispatch, useAppSelector } from "../Hooks/hooks";
 import { fetchBooking } from "../app/store/Bookings/BookingsThunk";
-import { AppDispatch } from "../app/store/store";
+
 
 export function BookingDetails() {
 
     let { id } = useParams();
-    const dispatch = useDispatch<AppDispatch>();
+    const dispatch = useAppDispatch();
     const individualBooking = useAppSelector(getOnly);
     const [ loading, setLoading ] = useState(true);
 

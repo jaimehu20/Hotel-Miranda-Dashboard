@@ -1,17 +1,16 @@
 import { SideBar } from "../components/SideBar/SideBar"
 import { NavContainer } from "../components/NavBar/NavBar"
-import { useDispatch, useSelector } from "react-redux"
 import { getRoom } from "../app/store/Rooms/RoomsSlice";
 import { useEffect, useState } from "react";
 import { fetchRoom } from "../app/store/Rooms/RoomsThunk";
 import { useParams } from "react-router";
-import { AppDispatch } from "../app/store/store";
+import { useAppDispatch, useAppSelector } from "../Hooks/hooks";
 
 export function RoomDetails() {
 
     let { id } = useParams();
-    const dispatch = useDispatch<AppDispatch>();
-    const individualRoom = useSelector(getRoom);
+    const dispatch = useAppDispatch();
+    const individualRoom = useAppSelector(getRoom);
     const [ loading, setLoading ] = useState(true);
 
     useEffect(() => {
