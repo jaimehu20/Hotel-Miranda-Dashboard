@@ -107,12 +107,44 @@ a{
   color: #799283;
 }
 
-/* .modal-visible {
-  display: block;
-  
+
+
+ /* button styles */
+
+.checkin {
+  background: Green;
+  border-radius: 18px;
+  border: none;
+  padding : 10px;
+  font-family: 'Poppins';
+}
+.checkout {
+  background: red;
+  border-radius: 18px;
+  border: none;
+  padding : 10px;
+  font-family: 'Poppins';
+}
+.inprogress {
+  background: orange;
+  border-radius: 18px;
+  border: none;
+  padding : 10px;
+  font-family: 'Poppins';
 }
 
-.modal-hidden {
-  display: none;
-  
-} */
+.available {
+  background: Green;
+  border-radius: 18px;
+  border: none;
+  padding : 10px;
+  font-family: 'Poppins';
+}
+
+.booked {
+  background: red;
+  border-radius: 18px;
+  border: none;
+  padding : 10px;
+  font-family: 'Poppins';
+}

@@ -25,6 +25,7 @@ function Bookings(props : props) {
   const [ searchInput, setSearchInput ] = useState<string>("");
   const [ statusFilter, setStatusFilter ] = useState("all");
   const [ choosen, setChoosen ] = useState<string>("all");
+  let className : string = "";
   
   useEffect(() => {
     if (bookingStatus === "pending"){
@@ -50,7 +51,19 @@ function Bookings(props : props) {
     {property: 'check_out', label: 'Check Out'},
     {property: 'special,request', label: 'Special Request', display: (item : any) => (<button>View Notes</button>)},
     {property: 'room_type', label: 'Room Type'},
-    {property: 'status', label: 'Status', display: (item : any) => (<button>{item.status}</button>)},
+    {property: 'status', label: 'Status', display: (item : any) => {
+      
+      if (item.status === "Check In"){
+        className = "checkin"
+      } else if (item.status === "Check Out"){
+        className = "checkout"
+      } else if (item.status === "In Progress"){
+        className = "inprogress"
+      }
+      return (
+        <button className={className}>{item.status}</button>
+      )
+    }},
     {property: 'actions', label: 'Actions', display: (item : any) => (<div>
       <FaEdit />
       <RxCrossCircled />

@@ -23,6 +23,7 @@ function Rooms(props : props) {
   const roomError = useAppSelector(getRoomError);
   const [ clicked, setClicked ] = useState("all");
   const [visible, setVisible ] = useState<boolean>(false)
+  let className : string = "";
 
   useEffect(() => {
     if (roomStatus === "pending") {
@@ -54,7 +55,17 @@ function Rooms(props : props) {
     {property: "room_floor", label:"Room Floor"},
     {property: "room_amenities", label:"Amenities", display: (e : any) => (<><div className="room-amenities">{e.room_amenities}</div></>)},
     {property: "room_rate", label: "Rate"},
-    {property: "room_status", label: "Status", display: (e : any) => (<button>{e.room_status === 'Available' ? 'Available' : 'Booked'}</button>)}
+    {property: "room_status", label: "Status", display: (e : any) => {
+      
+      if (e.room_status === "Available"){
+        className = "available"
+      } else if (e.room_status === "Booked"){
+        className = "booked"
+      }
+      return (
+      <button className={className}>{e.room_status === 'Available' ? 'Available' : 'Booked'}</button>
+    )
+    } }
   ]
 
   return (
