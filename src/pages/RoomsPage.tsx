@@ -23,29 +23,35 @@ function Rooms(props : props) {
   const roomError = useAppSelector(getRoomError);
   const [ clicked, setClicked ] = useState("all");
   const [visible, setVisible ] = useState<boolean>(false)
+  const [ loaded, setLoaded ] = useState<boolean>(false)
   let className : string = "";
 
   useEffect(() => {
-    if (roomStatus === "pending") {
-      // Petición pendiente
-    } else if (roomStatus === "rejected"){
-      console.log(roomError);
-    } else if (roomStatus === "fulfilled") {
-      // Petición correcta
-    } else if (roomStatus === "idle"){
-      dispatch(fetchRooms());
+    const fetcher = async () => {
+      await dispatch(fetchRooms());
+      setLoaded(true);
     }
-  })
+    fetcher()
+      
+  },[])
 
-  const filteredRoomList : any = filteredByRoomStatus(multipleRooms, clicked);
+  if (!loaded){
+    return (
+      <>
+        <p>Loading...</p>
+      </>
+    )
+  }
+
+  const filteredRoomList : any = filteredByRoomStatus(multipleRooms.allRooms, clicked);
 
   const columns = [
-    {property: 'room_id', label: 'Room Name', display: (e : any) => (<>
-    <Link to={`/rooms/${e.room_id}`}>
+    {property: '_id', label: 'Room Name', display: (e : any) => (<>
+    <Link to={`/rooms/${e._id}`}>
       <div className="room-container">
         <img src={roomPic}/>
         <div>
-          <p>#{e.room_id}</p>
+          <p>#{e._id}</p>
           <p>{e.room_code}</p>
         </div>
       </div>

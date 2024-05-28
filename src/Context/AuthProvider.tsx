@@ -2,8 +2,8 @@ import { ReactNode, createContext, useReducer } from "react";
 
 interface AuthState {
     isAuth: boolean;
-    userName: string;
-    userMail: string;
+    email: string;
+    password: string;
 }
 
 interface AuthContextInterface {
@@ -13,15 +13,15 @@ interface AuthContextInterface {
 
 const initialState = {
     isAuth: false,
-    userName: "",
-    userMail: "",
+    email: "",
+    password: ""
 }
 
 export const AuthContext = createContext<AuthContextInterface>({
     logged : {
         isAuth: localStorage.getItem("AUTH_LS_KEY") !== null,
-        userName: "Jaime",
-        userMail: "jaimehu20@hotelmiranda.com",
+        email: "jaimehu20@hotelmiranda.com",
+        password: "jaimehu20@co"
     },
     dispatch: () => {}
 })

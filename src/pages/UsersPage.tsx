@@ -24,32 +24,37 @@ function Users(props : props) {
   const employeeError = useAppSelector(getEmployeeError);
   const [ searchInput, setSearchInput ] = useState<string>("");
   const [ clicked, setClicked ] = useState<string>("all");
+  const [ loaded, setLoaded ] = useState<boolean>(false);
   
   useEffect(() => {
-    if (employeeStatus === "pending"){
-      console.log(employeeStatus);
-    } else if (employeeStatus === "rejected"){
-      console.log(employeeError)
-    } else if (employeeStatus === "fulfilled") {
-      console.log(employeeStatus)
-    } else if (employeeStatus === "idle") {
-      dispatch(fetchEmployees());
+    const fetcher = async () => {
+      await dispatch(fetchEmployees());
+      setLoaded(true)
     }
-    },[dispatch, multipleEmployees])
+    fetcher();
+    },[])
+
+    if (!loaded){
+      return (
+        <>
+          <p>Loading...</p>
+        </>
+      )
+    }
     
-    let filteredEmployeeList = filteredByEmployee(multipleEmployees, searchInput);
+    let filteredEmployeeList : any = filteredByEmployee(multipleEmployees.allUsers, searchInput);
     filteredEmployeeList = filteredByEmployeeStatus(filteredEmployeeList, clicked);
 
     
   const columns = [
       {property: "employee_name", label: "Name", display: (e : any) => (
       <>
-      <Link to={`/users/${e.employee_id}`}>
+      <Link to={`/users/${e._id}`}>
           <div className="employee-container">
           <img src={userPic}/>
           <div>
-            <p>{e.employee_name}</p>
-            <p>#{e.employee_id}</p>
+            <p>{e.employee_fullName}</p>
+            <p>#{e._id}</p>
             <p>{e.employee_startDate}</p>
           </div>
           </div>

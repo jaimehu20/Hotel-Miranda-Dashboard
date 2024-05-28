@@ -25,13 +25,13 @@ const ReviewsBox = styled.div`
     }
 `
 
-export function ReviewsContainer() {
+export function ReviewsContainer(props : any) {
     return (
         <>
             <ReviewsSection>
                 <ReviewsBox>
                     <h3>Latest Reviews by Customers</h3>
-                    <Slider />
+                    <Slider multipleComments={props.multipleComments}/>
                 </ReviewsBox>
             </ReviewsSection>
         </>

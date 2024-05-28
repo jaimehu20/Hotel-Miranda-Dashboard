@@ -4,7 +4,7 @@ import { ReviewsContainer } from "../components/Reviews/Reviews";
 import { ContactFilter } from "../components/ListSelector/ListSelector";
 import { Table } from "../components/Table/TableBox";
 import { getAllComments, getComment, getCommentsError, getCommentsStatus } from "../app/store/Messages/MessagesSlice";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { fetchComments } from "../app/store/Messages/MessagesThunk";
 import { useAppDispatch, useAppSelector } from "../Hooks/hooks";
 
@@ -19,39 +19,44 @@ function Contact(props : props) {
   const individualComment = useAppSelector(getComment);
   const commentsStatus = useAppSelector(getCommentsStatus);
   const commentsError = useAppSelector(getCommentsError);
+  const [ loaded, setLoaded ] = useState<boolean>(false)
 
   useEffect(() => {
-    if (commentsStatus === "pending"){
-      console.log(commentsStatus)
-    } else if (commentsStatus === "rejected"){
-      console.log(commentsError);
-    } else if (commentsStatus === "fulfilled"){
-      console.log("fulfilled")
-    } else if (commentsStatus === "idle") {
-      dispatch(fetchComments());
+    const fetcher = async () => {
+      await dispatch(fetchComments());
+      setLoaded(true);
     }
-  })
+    fetcher();
+  }, [])
+
+  if (!loaded){
+    return (
+      <>
+        <p>Loading...</p>
+      </>
+    )
+  }
   
   const columns = [
-    {property: "comment_info", label: "Date", display: (e : any) => (
+    {property: "review_date", label: "Date", display: (e : any) => (
       <>
         <div className="customer-container">
-          <p>{e.comment_info}</p>
-          <p>{e.comment_hour}</p>
-          <p>#{e.comment_id}</p>
+          <p>{e.review_date}</p>
+          <p>{e.review_time}</p>
+          <p>#{e._id}</p>
         </div>
       </>
     )},
-    {property: "comment_customer", label: "Customer", display: (e : any) => (
+    {property: "review_customer", label: "Customer", display: (e : any) => (
       <>
         <div className="customer-container">
-          <p>{e.comment_customer}</p>
-          <p>{e.comment_customerMail}</p>
-          <p>{e.comment_customerPhone}</p>
+          <p>{e.review_customer}</p>
+          <p>{e.review_customerMail}</p>
+          <p>{e.review_customerPhone}</p>
         </div>
       </>
     )},
-    {property: "comment_review", label: "Review"}
+    {property: "review_comment", label: "Review"}
   ]
 
   return (
@@ -59,9 +64,9 @@ function Contact(props : props) {
     <SideBar />
       <main className="contact-container">
         <NavContainer title="Contact" />
-        <ReviewsContainer />
+        <ReviewsContainer multipleComments={multipleComments} />
         <ContactFilter />
-        <Table columns={columns} data={multipleComments} />
+        <Table columns={columns} data={[...multipleComments.allReviews]} />
       </main>
     </>
   )

@@ -11,7 +11,6 @@ import { filteredByName, filteredByStatus } from "../app/filters";
 import { sortData } from "../app/filters";
 import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../Hooks/hooks";
-import { button } from "../components/button/button";
 
 type props = {
   title?: string;
@@ -26,27 +25,31 @@ function Bookings(props : props) {
   const [ searchInput, setSearchInput ] = useState<string>("");
   const [ statusFilter, setStatusFilter ] = useState("all");
   const [ choosen, setChoosen ] = useState<string>("all");
+  const [ loaded, setLoaded ] = useState<boolean>(false)
   let className : string = "";
   
   useEffect(() => {
-    if (bookingStatus === "pending"){
-      console.log(bookingStatus);
-    } else if (bookingStatus === "rejected"){
-      console.log(bookingsError)
-    } else if (bookingStatus === "fulfilled") {
-      console.log(bookingStatus)
-    } else if (bookingStatus === "idle") {
-      dispatch(fetchBookings());
+    const fetcher = async () => {
+      await dispatch(fetchBookings());
+      setLoaded(true)
     }
-    },[dispatch, multipleBookings])
-  
-  let filteredBookingList = filteredByName(multipleBookings, searchInput);
+    fetcher()
+    },[])
+    if (!loaded){
+      return (
+        <>
+          <p>loading</p>
+        </>
+      )
+    }
+
+    
+  let filteredBookingList = filteredByName(multipleBookings.allBookings, searchInput);
       filteredBookingList = filteredByStatus(filteredBookingList, statusFilter);
       filteredBookingList = sortData(filteredBookingList, choosen);
       
-
   const columns = [
-    {property: 'guest', label: 'Guest', display: (item : any) => (<><Link to={`/bookings/${item.id}`}><p>{item.first_name} {item.last_name}</p><small>#{item.id}</small></Link></>)},
+    {property: 'guest', label: 'Guest', display: (item : any) => (<><Link to={`/bookings/${item._id}`}><p>{item.first_name} {item.last_name}</p><small>#{item._id}</small></Link></>)},
     {property: 'order_date', label: 'Order Date'},
     {property: 'check_in', label: 'Check In'},
     {property: 'check_out', label: 'Check Out'},

@@ -1,7 +1,6 @@
 import { SwiperSlide, Swiper } from "swiper/react"
 import 'swiper/swiper-bundle.css';
 import styled from "styled-components";
-import { data } from "../../data/OrderData";
 import { SiTicktick } from "react-icons/si";
 import { RxCrossCircled } from "react-icons/rx";
 import profilePic from "../../assets/profilePic.jpg"
@@ -57,7 +56,7 @@ const SlideContainer = styled.div`
     }
 `
 
-export const Slider = () => {
+export const Slider = (props : any) => {
     return (
         <Swiper
             loop={true}
@@ -69,7 +68,7 @@ export const Slider = () => {
                         <div>
                             <img src={profilePic}/>
                             <div>
-                                <p>{`${data[0].first_name} ${data[0].last_name}`}</p>
+                               
                                 <small>4m ago</small>
                             </div>
                             <div>
@@ -85,7 +84,7 @@ export const Slider = () => {
                         <div>
                             <img src={profilePic}/>
                             <div>
-                                <p>{`${data[0].first_name} ${data[0].last_name}`}</p>
+                               
                                 <small>4m ago</small>
                             </div>
                             <div>
@@ -101,7 +100,7 @@ export const Slider = () => {
                         <div>
                             <img src={profilePic}/>
                             <div>
-                                <p>{`${data[0].first_name} ${data[0].last_name}`}</p>
+                               
                                 <small>4m ago</small>
                             </div>
                             <div>
@@ -117,7 +116,7 @@ export const Slider = () => {
                         <div>
                             <img src={profilePic}/>
                             <div>
-                                <p>{`${data[0].first_name} ${data[0].last_name}`}</p>
+                               
                                 <small>4m ago</small>
                             </div>
                             <div>

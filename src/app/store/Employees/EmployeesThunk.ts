@@ -1,10 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { data } from "../../../data/EmployeeData";
-import { delay } from "../../delay";
+import { fetchInfo } from "../../fetchInfo";
 
 
 export const fetchEmployees = createAsyncThunk('employees/fetchEmployees', async () => {
-    const response = await delay(data);
+    const response = await fetchInfo("/employees");
     return response;
 })
 
