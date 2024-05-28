@@ -45,20 +45,37 @@ const LogForm = styled.section`
 function LoginMenu() {
     
     const navigate = useNavigate();
-
     const {dispatch} = useAuth()
-
     const usernameRef = useRef<HTMLInputElement>(null);
     const passwordRef = useRef<HTMLInputElement>(null);
 
-    const InputChecker = () => {
-        const userName = usernameRef.current?.value;
+    const login = async (e: any) => {
+        e.preventDefault();
+        const email = usernameRef.current?.value;
         const password = passwordRef.current?.value;
-    if (userName && password) {
-        dispatch('login')
-        navigate("/home");
+        const response = await fetch(import.meta.env.VITE_URL + '/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({email, password}),
+        })
+        const loginData = await response.json();
+        if (response.status === 200){
+            const user = {
+                userMail: loginData.userName,
+                userPassword: loginData.password,
+                isAuth: true
+            }
+            localStorage.setItem('authTOKEN', loginData.token);
+            dispatch('login')
+            if(localStorage.getItem("authTOKEN") != null){
+                navigate("/home")
+            }
+        } else {
+            alert("Login failed or login data is missing, try again")
+        }
     }
-}
         return (
             <>
             <LogForm>
@@ -67,7 +84,7 @@ function LoginMenu() {
                 <p>Authorized personal only</p>
                 <input ref={usernameRef} type="text" placeholder="abcdefg"/>
                 <input ref={passwordRef} type="text" placeholder="123456789"/>
-                <input type="submit" value="Log In" onClick={InputChecker}/>
+                <input type="submit" value="Log In" onClick={login}/>
             </LogForm>
          
             </>

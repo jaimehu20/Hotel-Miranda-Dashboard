@@ -1,16 +1,17 @@
-import { Table } from "../components/Table/TableBox.jsx"
-import { SideBar } from '../components/SideBar/SideBar.jsx';
-import { NavContainer } from '../components/NavBar/NavBar.jsx';
-import { BookingFilter } from "../components/ListSelector/ListSelector.js";
+import { Table } from "../components/Table/TableBox"
+import { SideBar } from '../components/SideBar/SideBar';
+import { NavContainer } from '../components/NavBar/NavBar';
+import { BookingFilter } from "../components/ListSelector/ListSelector";
 import { FaEdit } from "react-icons/fa";
 import { RxCrossCircled } from "react-icons/rx";
-import { getAll, getAllStatus, getAllError } from "../app/store/Bookings/BookingsSlice.js";
+import { getAll, getAllStatus, getAllError } from "../app/store/Bookings/BookingsSlice";
 import { useEffect, useState } from "react";
-import { fetchBookings } from "../app/store/Bookings/BookingsThunk.js";
-import { filteredByName, filteredByStatus } from "../app/filters.js";
-import { sortData } from "../app/filters.js";
+import { fetchBookings } from "../app/store/Bookings/BookingsThunk";
+import { filteredByName, filteredByStatus } from "../app/filters";
+import { sortData } from "../app/filters";
 import { Link } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../Hooks/hooks.js";
+import { useAppDispatch, useAppSelector } from "../Hooks/hooks";
+import { button } from "../components/button/button";
 
 type props = {
   title?: string;
@@ -77,6 +78,7 @@ function Bookings(props : props) {
         <NavContainer title="Bookings"  />
         <BookingFilter title="All Bookings" setSearchInput={setSearchInput} setStatusFilter={setStatusFilter} setChoosen={setChoosen} choosen={choosen}/>
         <Table columns={columns} data={filteredBookingList}/>
+        <button />
       </main>
     </>
   )
