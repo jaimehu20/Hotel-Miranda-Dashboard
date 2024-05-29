@@ -64,7 +64,7 @@ function Contact(props : props) {
     <SideBar />
       <main className="contact-container">
         <NavContainer title="Contact" />
-        <ReviewsContainer multipleComments={multipleComments} />
+        <ReviewsContainer  />
         <ContactFilter />
         <Table columns={columns} data={[...multipleComments.allReviews]} />
       </main>

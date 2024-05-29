@@ -56,7 +56,8 @@ const SlideContainer = styled.div`
     }
 `
 
-export const Slider = (props : any) => {
+export const Slider = () => {
+    
     return (
         <Swiper
             loop={true}
