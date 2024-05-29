@@ -43,7 +43,7 @@ function Contact(props : props) {
         <div className="customer-container">
           <p>{e.review_date}</p>
           <p>{e.review_time}</p>
-          <p>#{e._id}</p>
+          <p>#{e._id.slice(0, 8).toUpperCase()}</p>
         </div>
       </>
     )},

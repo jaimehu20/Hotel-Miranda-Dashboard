@@ -112,21 +112,27 @@ a{
  /* button styles */
 
 .checkin {
-  background: Green;
+  background-color: rgb(205, 248, 216);
+  color: rgb(90, 208, 122);
+  font-weight: bold;
   border-radius: 18px;
   border: none;
   padding : 10px;
   font-family: 'Poppins';
 }
 .checkout {
-  background: red;
+  color: rgb(226, 52, 40);
+  background-color: rgb(244, 190, 187);
+  font-weight: bold;
   border-radius: 18px;
   border: none;
   padding : 10px;
   font-family: 'Poppins';
 }
 .inprogress {
-  background: orange;
+  color: rgb(255, 168, 0);
+  background-color: rgb(246, 219, 160);
+  font-weight: bold;
   border-radius: 18px;
   border: none;
   padding : 10px;

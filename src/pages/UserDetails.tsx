@@ -10,36 +10,41 @@ export function UserDetails() {
 
     let { id } = useParams();
     const dispatch = useAppDispatch();
-    const individualEmployee = useAppSelector(getEmployee);
-    const [ loading, setLoading ] = useState(true);
+    const fetchedEmployee = useAppSelector(getEmployee);
+    const [ loaded, setLoaded ] = useState<boolean>(false);
 
     useEffect(() => {
-        if (!id) return
-        setLoading(false);
-        dispatch(fetchEmployee(id))
+        const fetcher = async () => {
+            if (!id) return
+            await dispatch(fetchEmployee(id))
+            setLoaded(true);
+        }
+        fetcher()
     }, [])
+
+    if (!loaded){
+        return (
+            <>
+                <p>Loading...</p>
+            </>
+        )
+    }
 
     return (
         <>
-        {loading ?
-        <p>Loading content...</p>
-            :
-            <>
-                <SideBar />
-                <main className="contact-container">
-                    <NavContainer title="Room Details" />
-                    <p>{`This is employee with id #${id}.`}</p>
-                    <p>{`His name is ${individualEmployee.employee_name}.`}</p>
-                    <p>Here is his personal info:</p>
-                    <ul>
-                        <li>{`Phone contact: ${individualEmployee.employee_phone}`}</li>
-                        <li>{`Mail: ${individualEmployee.employee_email}`}</li>
-                    </ul>
-                    <p>{`His job is/was ${individualEmployee.employee_description}.`}</p>
-                    <p>{`He/her is started working here at ${individualEmployee.employee_startDate} and is actually ${individualEmployee.employee_status} in the company.`}</p>
-                </main>
-            </>
-        }
+            <SideBar />
+            <main className="contact-container">
+                <NavContainer title="Room Details" />
+                <p>{`This is employee with id #${id.slice(0, 10).toUpperCase()}.`}</p>
+                <p>{`His name is ${fetchedEmployee.individualUser.employee_fullName}.`}</p>
+                <p>Here is his personal info:</p>
+                <ul>
+                    <li>{`Phone contact: ${fetchedEmployee.individualUser.employee_phone.slice(0, 13)}`}</li>
+                    <li>{`Mail: ${fetchedEmployee.individualUser.employee_email}`}</li>
+                </ul>
+                <p>{`His job is/was ${fetchedEmployee.individualUser.employee_description}.`}</p>
+                <p>{`He/her started working here at ${fetchedEmployee.individualUser.employee_startDate.slice(0, 10)} and is actually ${fetchedEmployee.individualUser.employee_status} in the company.`}</p>
+            </main>
         </>
     )
 }

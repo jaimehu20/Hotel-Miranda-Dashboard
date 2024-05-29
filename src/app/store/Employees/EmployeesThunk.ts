@@ -8,7 +8,7 @@ export const fetchEmployees = createAsyncThunk('employees/fetchEmployees', async
 })
 
 export const fetchEmployee = createAsyncThunk('employees/fetchEmployee', async (id : string) => {
-    const fetchedEmployee = data.find((item) => item.employee_id === id)
+    const fetchedEmployee = await fetchInfo(`/employees/${id}`)
     return fetchedEmployee;
 })
 

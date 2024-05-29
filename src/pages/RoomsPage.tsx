@@ -51,7 +51,7 @@ function Rooms(props : props) {
       <div className="room-container">
         <img src={roomPic}/>
         <div>
-          <p>#{e._id}</p>
+          <p>#{e._id.slice(0, 8).toUpperCase()}</p>
           <p>{e.room_code}</p>
         </div>
       </div>

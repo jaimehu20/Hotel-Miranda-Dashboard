@@ -38,21 +38,20 @@ function Bookings(props : props) {
     if (!loaded){
       return (
         <>
-          <p>loading</p>
+          <p>Loading...</p>
         </>
       )
     }
-
     
   let filteredBookingList = filteredByName(multipleBookings.allBookings, searchInput);
       filteredBookingList = filteredByStatus(filteredBookingList, statusFilter);
       filteredBookingList = sortData(filteredBookingList, choosen);
       
   const columns = [
-    {property: 'guest', label: 'Guest', display: (item : any) => (<><Link to={`/bookings/${item._id}`}><p>{item.first_name} {item.last_name}</p><small>#{item._id}</small></Link></>)},
-    {property: 'order_date', label: 'Order Date'},
-    {property: 'check_in', label: 'Check In'},
-    {property: 'check_out', label: 'Check Out'},
+    {property: 'guest', label: 'Guest', display: (item : any) => (<><Link to={`/bookings/${item._id}`}><p>{item.first_name} {item.last_name}</p><small>#{item._id.slice(0, 10).toUpperCase()}</small></Link></>)},
+    {property: 'order_date', label: 'Order Date', display: (item: any) => (<p>{item.order_date.slice(0, 10)}</p>)},
+    {property: 'check_in', label: 'Check In', display: (item: any) => (<p>{item.check_in.slice(0, 10)}</p>)},
+    {property: 'check_out', label: 'Check Out', display: (item: any) => (<p>{item.check_out.slice(0, 10)}</p>)},
     {property: 'special,request', label: 'Special Request', display: (item : any) => (<button>View Notes</button>)},
     {property: 'room_type', label: 'Room Type'},
     {property: 'status', label: 'Status', display: (item : any) => {

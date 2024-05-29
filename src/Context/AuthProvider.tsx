@@ -19,7 +19,7 @@ const initialState = {
 
 export const AuthContext = createContext<AuthContextInterface>({
     logged : {
-        isAuth: localStorage.getItem("AUTH_LS_KEY") !== null,
+        isAuth: localStorage.getItem("authTOKEN") !== null,
         email: "jaimehu20@hotelmiranda.com",
         password: "jaimehu20@co"
     },
