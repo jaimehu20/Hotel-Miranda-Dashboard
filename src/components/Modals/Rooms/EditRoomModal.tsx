@@ -94,9 +94,7 @@ return (
 }
 
 const HiddenModalBox = () => {
-    return (
-        <br/>
-    )
+    return <></>
 }
 
 export function EditRoomModal({modalEdit, setModalEdit, id}: props) {

@@ -13,6 +13,7 @@ import { fetchRooms } from "../app/store/Rooms/RoomsThunk.js";
 import { Link } from "react-router-dom";
 import { filteredByRoomStatus } from "../app/filters.js";
 import { useAppDispatch, useAppSelector } from "../Hooks/hooks.js";
+import { DeleteRoomModal } from "../components/Modals/Rooms/DeleteRoomModal.js";
 
 type props = {
   title?: string
@@ -27,6 +28,7 @@ function Rooms(props : props) {
   const [ clicked, setClicked ] = useState<string>("all");
   const [ modalAdd, setModalAdd ] = useState<boolean>(false);
   const [ modalEdit, setModalEdit ] = useState<boolean>(false);
+  const [ modalDelete, setModalDelete ] = useState<boolean>(false);
   const [ loaded, setLoaded ] = useState<boolean>(false);
   const [ id, setId ] = useState<string>("")
   let className : string = "";
@@ -84,8 +86,8 @@ function Rooms(props : props) {
     )
     }},
     {property: 'actions', label: 'Actions', display: (item : any) => (<div>
-      <FaEdit onClick={() => {setModalEdit(true), idFinder(item._id)}}/>
-      <RxCrossCircled />
+      <FaEdit onClick={() => {setModalEdit(true), setModalDelete(false), idFinder(item._id)}}/>
+      <RxCrossCircled onClick={() => {setModalDelete(true), setModalEdit(false), idFinder(item._id)}}/>
     </div>)}
   ]
 
@@ -98,6 +100,7 @@ function Rooms(props : props) {
         <Table columns={columns} data={filteredRoomList}/>
         <NewRoomModal modalAdd={modalAdd} setModalAdd={setModalAdd}/>
         <EditRoomModal modalEdit={modalEdit} setModalEdit={setModalEdit} id={id} />
+        <DeleteRoomModal modalDelete={modalDelete} setModalDelete={setModalDelete} id={id}/>
       </main>
     </>
   )

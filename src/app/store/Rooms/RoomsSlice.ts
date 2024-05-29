@@ -60,6 +60,16 @@ export const RoomsSlice = createSlice({
             state.room = action.payload;
             state.status = "fulfilled";
         })
+
+        builder.addCase(deleteRoom.pending, (state, action) => {
+            state.status = "pending";
+        }).addCase(deleteRoom.rejected, (state, action) => {
+            state.error = action.error.message;
+            state.status = "rejected";
+        }).addCase(deleteRoom.fulfilled, (state, action) => {
+            state.rooms = action.payload;
+            state.status = "fulfilled";
+        })
     }
 })
 

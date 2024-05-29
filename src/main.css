@@ -139,3 +139,6 @@ a{
   font-family: 'Poppins';
 }
 
+.modalButton{
+  cursor: pointer;
+}

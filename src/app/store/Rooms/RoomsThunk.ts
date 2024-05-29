@@ -22,6 +22,6 @@ export const editRoom = createAsyncThunk('rooms/editRoom', async (data: {id : st
 })
 
 export const deleteRoom = createAsyncThunk('rooms/deleteRoom', async (id: string) => {
-    const response = await fetchInfo(`/rooms/${id}`);
+    const response = await fetchInfo(`/rooms/${id}`, "DELETE");
     return response;
 })

@@ -89,9 +89,7 @@ const VisibleModalBox = ({setModalAdd}: props) => {
 }
 
 const HiddenModalBox = () => {
-    return (
-        <br/>
-    )
+    return <></>
 }
 
 export function NewRoomModal({modalAdd, setModalAdd}: props) {
