@@ -54,19 +54,6 @@ const TableContainer = styled.div`
                         color: black;
                     }
                 }
-                td:nth-child(5) {
-                    button{
-                        background: #EBF1EF;
-                        color: #135846;
-                        font-weight: bold;
-                        font-family: 'Poppins';
-                        border: none;
-                        border-radius: 18px;
-                        padding: 10px;
-                        margin-left: 20px;
-                        cursor: pointer;
-                    }
-                }
                 td:nth-child(4) {
                     p{
                         display: inline;
@@ -98,6 +85,9 @@ const TableContainer = styled.div`
                     
                 }
             }
+        }
+        svg {
+            cursor: pointer;
         }
     }
 `

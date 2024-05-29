@@ -2,8 +2,10 @@ import { SideBar } from "../components/SideBar/SideBar.jsx";
 import { NavContainer } from "../components/NavBar/NavBar.jsx";
 import { RoomsFilter } from "../components/ListSelector/ListSelector.js";
 import { Table } from "../components/Table/TableBox.jsx";
-import { NewRoomModal } from "../components/RoomModal/Modal.jsx";
-import roomPic from "../assets/room1.jpg"
+import { NewRoomModal } from "../components/Modals/Rooms/NewRoomModal.js";
+import { FaEdit } from "react-icons/fa";
+import { RxCrossCircled } from "react-icons/rx";
+import roomPic from "../assets/room1.jpg";
 import { getAllRooms, getRoomError, getRoomsStatus } from "../app/store/Rooms/RoomsSlice.js";
 import { useEffect, useState } from "react";
 import { fetchRooms } from "../app/store/Rooms/RoomsThunk.js";
@@ -64,14 +66,18 @@ function Rooms(props : props) {
     {property: "room_status", label: "Status", display: (e : any) => {
       
       if (e.room_status === "Available"){
-        className = "available"
+        className = "greenButton"
       } else if (e.room_status === "Booked"){
-        className = "booked"
+        className = "redButton"
       }
       return (
       <button className={className}>{e.room_status === 'Available' ? 'Available' : 'Booked'}</button>
     )
-    } }
+    }},
+    {property: 'actions', label: 'Actions', display: (item : any) => (<div>
+      <FaEdit />
+      <RxCrossCircled />
+    </div>)}
   ]
 
   return (

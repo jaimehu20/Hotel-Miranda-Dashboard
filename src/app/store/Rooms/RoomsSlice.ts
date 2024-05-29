@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { fetchRoom, fetchRooms } from "./RoomsThunk";
+import { fetchRooms, fetchRoom, newRoom, editRoom, deleteRoom  } from "./RoomsThunk";
 
 type initialState = {
     rooms: object[],
@@ -38,6 +38,16 @@ export const RoomsSlice = createSlice({
         }).addCase(fetchRoom.fulfilled, (state,action : PayloadAction<any>) => {
             state.room = action.payload;
             state.status = "fulfilled";
+        })
+
+        builder.addCase(newRoom.pending, (state, action) => {
+            state.status = "pending";
+        }).addCase(newRoom.rejected, (state, action) => {
+            state.error = action.error.message;
+            state.status = "rejected";
+        }).addCase(newRoom.fulfilled, (state, action) => {
+            state.room = action.payload;
+            state.status = "fulfilled"
         })
     }
 })

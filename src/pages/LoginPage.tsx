@@ -61,7 +61,7 @@ function LoginMenu() {
             body: JSON.stringify({email, password}),
         })
         const loginData = await response.json();
-        if (response.status === 200){
+        if (response.ok){
             localStorage.setItem('authTOKEN', loginData.token);
             dispatch('login')
             if(localStorage.getItem("authTOKEN") != null){

@@ -4,6 +4,7 @@ import { NavContainer } from '../components/NavBar/NavBar';
 import { BookingFilter } from "../components/ListSelector/ListSelector";
 import { FaEdit } from "react-icons/fa";
 import { RxCrossCircled } from "react-icons/rx";
+import { NewBookingModal } from "../components/Modals/Bookings/NewBookingModal"
 import { getAll, getAllStatus, getAllError } from "../app/store/Bookings/BookingsSlice";
 import { useEffect, useState } from "react";
 import { fetchBookings } from "../app/store/Bookings/BookingsThunk";
@@ -24,8 +25,9 @@ function Bookings(props : props) {
   const bookingsError = useAppSelector(getAllError);
   const [ searchInput, setSearchInput ] = useState<string>("");
   const [ statusFilter, setStatusFilter ] = useState("all");
-  const [ choosen, setChoosen ] = useState<string>("all");
-  const [ loaded, setLoaded ] = useState<boolean>(false)
+  const [ choosen, setChoosen ] = useState<string>("order_date");
+  const [ loaded, setLoaded ] = useState<boolean>(false);
+  const [ visible, setVisible ] = useState<boolean>(false);
   let className : string = "";
   
   useEffect(() => {
@@ -57,11 +59,11 @@ function Bookings(props : props) {
     {property: 'status', label: 'Status', display: (item : any) => {
       
       if (item.status === "Check In"){
-        className = "checkin"
+        className = "greenButton"
       } else if (item.status === "Check Out"){
-        className = "checkout"
+        className = "redButton"
       } else if (item.status === "In Progress"){
-        className = "inprogress"
+        className = "orangeButton"
       }
       return (
         <button className={className}>{item.status}</button>
@@ -78,8 +80,9 @@ function Bookings(props : props) {
       <SideBar />
       <main>
         <NavContainer title="Bookings"  />
-        <BookingFilter title="All Bookings" setSearchInput={setSearchInput} setStatusFilter={setStatusFilter} setChoosen={setChoosen} choosen={choosen}/>
+        <BookingFilter title="All Bookings" setSearchInput={setSearchInput} setStatusFilter={setStatusFilter} setChoosen={setChoosen} choosen={choosen} setVisible={setVisible}/>
         <Table columns={columns} data={filteredBookingList}/>
+        <NewBookingModal visible={visible} setVisible={setVisible}/>
         <button />
       </main>
     </>

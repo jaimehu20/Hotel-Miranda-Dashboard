@@ -1,5 +1,4 @@
-import styled from "styled-components"
-
+import styled from "styled-components";
 
 const ModalInfo = styled.div`
     position: absolute;
@@ -20,7 +19,7 @@ const ModalInfo = styled.div`
 `
 
 type props = {
-    visible?: any, //React.Dispatch<React.SetStateAction<boolean>>
+    visible?: any,
     setVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
@@ -51,11 +50,10 @@ const HiddenModalBox = () => {
 }
 
 
-export function NewRoomModal({visible, setVisible}: props) {
+export function NewBookingModal({visible, setVisible}: props) {
     return (
         <>
         {visible ? <VisibleModalBox setVisible={setVisible}/> : <HiddenModalBox/>}
         </>
     )
 }
-

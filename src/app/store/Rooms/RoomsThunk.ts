@@ -11,17 +11,17 @@ export const fetchRoom = createAsyncThunk('rooms/fetchRoom', async (id : string)
     return fetchedRoom;
 })
 
-export const newRoom = createAsyncThunk('rooms/newRoom', async () => {
-    const response = await fetchInfo(data);
+export const newRoom = createAsyncThunk('rooms/newRoom', async (data : any) => {
+    const response = await fetchInfo("/rooms", "POST", data );
     return response;
 })
 
-export const editRoom = createAsyncThunk('rooms/editRoom', async () => {
-    const response = await fetchInfo(data);
+export const editRoom = createAsyncThunk('rooms/editRoom', async (id: string) => {
+    const response = await fetchInfo(`/rooms/${id}`);
     return response;
 })
 
-export const deleteRoom = createAsyncThunk('rooms/deleteRoom', async () => {
-    const response = await fetchInfo(data);
+export const deleteRoom = createAsyncThunk('rooms/deleteRoom', async (id: string) => {
+    const response = await fetchInfo(`/rooms/${id}`);
     return response;
 })

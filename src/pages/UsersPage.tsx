@@ -25,6 +25,7 @@ function Users(props : props) {
   const [ searchInput, setSearchInput ] = useState<string>("");
   const [ clicked, setClicked ] = useState<string>("all");
   const [ loaded, setLoaded ] = useState<boolean>(false);
+  let className : string = "";
   
   useEffect(() => {
     const fetcher = async () => {
@@ -63,7 +64,17 @@ function Users(props : props) {
       {property: "employee_email", label: "Email"},
       {property: "employee_description", label: "Job Desk"},
       {property: "employee_phone", label: "Contact", display: (e : any) => (<><FaPhone /><p>{e.employee_phone.slice(0, 13)}</p></>)},
-      {property: "employee_status", label: "Status"}
+      {property: "employee_status", label: "Status", display: (item : any) => {
+
+        if (item.employee_status === "Active"){
+          className = "greenButton"
+        } else if (item.employee_status === "Inactive"){
+          className = "redButton"
+        }
+        return (
+          <button className={className}>{item.employee_status}</button>
+        )
+      }}
   ]
   return (
     <>

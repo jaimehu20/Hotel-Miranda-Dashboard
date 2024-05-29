@@ -63,7 +63,7 @@ const Select = styled.select`
 
 
 
-export function BookingFilter({ setSearchInput, setStatusFilter, setChoosen,}: BookingFilterInterface) {
+export function BookingFilter({ setSearchInput, setStatusFilter, setChoosen, setVisible}: BookingFilterInterface) {
 
     const selectRef = useRef<HTMLSelectElement>(null);
 
@@ -101,7 +101,7 @@ export function BookingFilter({ setSearchInput, setStatusFilter, setChoosen,}: B
                         <option value="checkin">Check In</option>
                         <option value="checkout">Check Out</option>
                     </Select>
-                    <ButtonNew>+ NEW BOOKING</ButtonNew>
+                    <ButtonNew onClick={() => setVisible(true)}>+ NEW BOOKING</ButtonNew>
                 </div>
             </Container>
         </>
