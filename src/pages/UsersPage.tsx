@@ -3,7 +3,9 @@ import { NavContainer } from "../components/NavBar/NavBar";
 import { EmployeesFilter } from "../components/ListSelector/ListSelector";
 import { Table } from "../components/Table/TableBox";
 import { FaPhone } from "react-icons/fa6";
-import userPic from "../assets/employee.jpg"
+import { FaEdit } from "react-icons/fa";
+import { RxCrossCircled } from "react-icons/rx";
+import userPic from "../assets/employee.jpg";
 import { getAllEmployees, getEmployeeError, getEmployeeStatus } from "../app/store/Employees/EmployeesSlice";
 import { fetchEmployees } from "../app/store/Employees/EmployeesThunk";
 import { useEffect, useState } from "react";
@@ -74,7 +76,11 @@ function Users(props : props) {
         return (
           <button className={className}>{item.employee_status}</button>
         )
-      }}
+      }},
+      {property: 'actions', label: 'Actions', display: (item : any) => (<div>
+        <FaEdit />
+        <RxCrossCircled />
+      </div>)}
   ]
   return (
     <>

@@ -3,6 +3,7 @@ import { NavContainer } from "../components/NavBar/NavBar.jsx";
 import { RoomsFilter } from "../components/ListSelector/ListSelector.js";
 import { Table } from "../components/Table/TableBox.jsx";
 import { NewRoomModal } from "../components/Modals/Rooms/NewRoomModal.js";
+import { EditRoomModal } from "../components/Modals/Rooms/EditRoomModal.js"
 import { FaEdit } from "react-icons/fa";
 import { RxCrossCircled } from "react-icons/rx";
 import roomPic from "../assets/room1.jpg";
@@ -23,9 +24,11 @@ function Rooms(props : props) {
   const multipleRooms = useAppSelector(getAllRooms);
   const roomStatus = useAppSelector(getRoomsStatus);
   const roomError = useAppSelector(getRoomError);
-  const [ clicked, setClicked ] = useState("all");
-  const [visible, setVisible ] = useState<boolean>(false)
-  const [ loaded, setLoaded ] = useState<boolean>(false)
+  const [ clicked, setClicked ] = useState<string>("all");
+  const [ modalAdd, setModalAdd ] = useState<boolean>(false);
+  const [ modalEdit, setModalEdit ] = useState<boolean>(false);
+  const [ loaded, setLoaded ] = useState<boolean>(false);
+  const [ id, setId ] = useState<string>("")
   let className : string = "";
 
   useEffect(() => {
@@ -47,6 +50,12 @@ function Rooms(props : props) {
 
   const filteredRoomList : any = filteredByRoomStatus(multipleRooms.allRooms, clicked);
 
+  const idFinder = async (id : string) => {
+    const result = await multipleRooms.allRooms.find((item : any) => item._id === id);
+    setId(result)
+    return result
+  }
+
   const columns = [
     {property: '_id', label: 'Room Name', display: (e : any) => (<>
     <Link to={`/rooms/${e._id}`}>
@@ -62,7 +71,7 @@ function Rooms(props : props) {
     {property: "room_type", label:"Bed Type"},
     {property: "room_floor", label:"Room Floor"},
     {property: "room_amenities", label:"Amenities", display: (e : any) => (<><div className="room-amenities">{e.room_amenities}</div></>)},
-    {property: "room_rate", label: "Rate"},
+    {property: "room_rate", label: "Rate", display: (e: any) => (<><p>${e.room_rate}</p></>)},
     {property: "room_status", label: "Status", display: (e : any) => {
       
       if (e.room_status === "Available"){
@@ -75,7 +84,7 @@ function Rooms(props : props) {
     )
     }},
     {property: 'actions', label: 'Actions', display: (item : any) => (<div>
-      <FaEdit />
+      <FaEdit onClick={() => {setModalEdit(true), idFinder(item._id)}}/>
       <RxCrossCircled />
     </div>)}
   ]
@@ -85,9 +94,10 @@ function Rooms(props : props) {
       <SideBar />
       <main>
         <NavContainer title="Rooms" />
-        <RoomsFilter setClicked={setClicked} setVisible={setVisible}/>
+        <RoomsFilter setClicked={setClicked} setModalAdd={setModalAdd}/>
         <Table columns={columns} data={filteredRoomList}/>
-        <NewRoomModal visible={visible} setVisible={setVisible}/>
+        <NewRoomModal modalAdd={modalAdd} setModalAdd={setModalAdd}/>
+        <EditRoomModal modalEdit={modalEdit} setModalEdit={setModalEdit} id={id} />
       </main>
     </>
   )

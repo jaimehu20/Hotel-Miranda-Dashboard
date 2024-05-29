@@ -63,7 +63,7 @@ const Select = styled.select`
 
 
 
-export function BookingFilter({ setSearchInput, setStatusFilter, setChoosen, setVisible}: BookingFilterInterface) {
+export function BookingFilter({ setSearchInput, setStatusFilter, setChoosen, setModalAdd}: BookingFilterInterface) {
 
     const selectRef = useRef<HTMLSelectElement>(null);
 
@@ -101,14 +101,14 @@ export function BookingFilter({ setSearchInput, setStatusFilter, setChoosen, set
                         <option value="checkin">Check In</option>
                         <option value="checkout">Check Out</option>
                     </Select>
-                    <ButtonNew onClick={() => setVisible(true)}>+ NEW BOOKING</ButtonNew>
+                    <ButtonNew onClick={() => setModalAdd(true)}>+ NEW BOOKING</ButtonNew>
                 </div>
             </Container>
         </>
     )
 }
 
-export function RoomsFilter({setClicked, setVisible} : RoomsFilterInterface) {
+export function RoomsFilter({setClicked, setModalAdd} : RoomsFilterInterface) {
 
     return (
         <>
@@ -125,7 +125,7 @@ export function RoomsFilter({setClicked, setVisible} : RoomsFilterInterface) {
                     </li>
                 </List>
                 <div>
-                    <ButtonNew onClick={() => setVisible(true)}>+ NEW ROOM</ButtonNew>
+                    <ButtonNew onClick={() => setModalAdd(true)}>+ NEW ROOM</ButtonNew>
                 </div>
             </Container>
         </>

@@ -3,15 +3,12 @@ import { IoCloseOutline } from "react-icons/io5";
 import { newRoom } from "../../../app/store/Rooms/RoomsThunk";
 import { useAppDispatch } from "../../../Hooks/hooks";
 
-
-
 const ModalInfo = styled.div`
     position: absolute;
     top: 500px;
     left: 1000px;
     flex-direction: column;
     width: 400px;
-    height: 400px;
     background: #c0bdbd;
     border-radius: 10px;
     padding: 10px 20px 20px 20px;
@@ -28,23 +25,26 @@ const ModalInfo = styled.div`
     }
     svg {
         cursor: pointer;
-        align-self: flex-end;
         width: 30px;
         height: 30px;
+    }
+    div {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
 `
 
 type props = {
-    visible?: any,
-    setVisible: React.Dispatch<React.SetStateAction<boolean>>;
+    modalAdd: any,
+    setModalAdd: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-
-const VisibleModalBox = ({setVisible}: props) => {
+const VisibleModalBox = ({setModalAdd}: props) => {
 
     const dispatch = useAppDispatch();
-    const setVisibleToggler = () => {
-        setVisible(false)
+    const setModalAddToggler = () => {
+        setModalAdd(false)
     }
 
     const handleSubmit = async (e: any)  => {
@@ -58,12 +58,15 @@ const VisibleModalBox = ({setVisible}: props) => {
             room_status: "Available"
         };
         await dispatch(newRoom(rooms));
-        setVisibleToggler();
+        setModalAddToggler();
 }
 
     return (
         <ModalInfo>
-            <IoCloseOutline onClick={() => setVisible(false)} />
+            <div>
+                <h1>Create Room</h1>
+                <IoCloseOutline onClick={() => setModalAdd(false)} />
+            </div>
             <form action="/rooms" method="POST" onSubmit={handleSubmit} >
                 <label htmlFor="room_name">Room Name</label>
                 <input type="text" name="room_name" placeholder="e.g. Deluxe A-38912"/>
@@ -91,10 +94,10 @@ const HiddenModalBox = () => {
     )
 }
 
-export function NewRoomModal({visible, setVisible}: props) {
+export function NewRoomModal({modalAdd, setModalAdd}: props) {
     return (
         <>
-        {visible ? <VisibleModalBox setVisible={setVisible}/> : <HiddenModalBox/>}
+        {modalAdd ? <VisibleModalBox setModalAdd={setModalAdd} modalAdd={modalAdd}/> : <HiddenModalBox/>}
         </>
     )
 }

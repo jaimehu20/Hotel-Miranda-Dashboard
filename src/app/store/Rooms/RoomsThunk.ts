@@ -16,8 +16,8 @@ export const newRoom = createAsyncThunk('rooms/newRoom', async (data : any) => {
     return response;
 })
 
-export const editRoom = createAsyncThunk('rooms/editRoom', async (id: string) => {
-    const response = await fetchInfo(`/rooms/${id}`);
+export const editRoom = createAsyncThunk('rooms/editRoom', async (data: {id : string, data : any}) => {
+    const response = await fetchInfo(`/rooms/${data.id}`, "PATCH", data.data);
     return response;
 })
 
