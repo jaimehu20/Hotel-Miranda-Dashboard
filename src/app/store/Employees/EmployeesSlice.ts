@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { fetchEmployees, fetchEmployee } from "./EmployeesThunk";
+import { fetchEmployees, fetchEmployee, newEmployee, deleteEmployee, editEmployee } from "./EmployeesThunk";
 
 
 type initialState = {
@@ -38,6 +38,35 @@ export const EmployeesSlice = createSlice({
             state.error = action.error.message;
         }).addCase(fetchEmployee.fulfilled, (state,action: PayloadAction<any>) => {
             state.employee = action.payload;
+            state.status = "fulfilled";
+        })
+
+        builder.addCase(newEmployee.pending, (state,action) => {
+            state.status = "pending";
+        }).addCase(newEmployee.rejected, (state,action) => {
+            state.status = "rejected"
+            state.error = action.error.message;
+        }).addCase(newEmployee.fulfilled, (state,action: PayloadAction<any>) => {
+            state.employee = action.payload;
+            state.status = "fulfilled";
+        })
+
+        builder.addCase(editEmployee.pending, (state,action) => {
+            state.status = "pending";
+        }).addCase(editEmployee.rejected, (state,action) => {
+            state.status = "rejected"
+            state.error = action.error.message;
+        }).addCase(editEmployee.fulfilled, (state,action: PayloadAction<any>) => {
+            state.employee = action.payload;
+            state.status = "fulfilled";
+        })
+
+        builder.addCase(deleteEmployee.pending, (state,action) => {
+            state.status = "pending";
+        }).addCase(deleteEmployee.rejected, (state,action) => {
+            state.status = "rejected"
+            state.error = action.error.message;
+        }).addCase(deleteEmployee.fulfilled, (state,action: PayloadAction<any>) => {
             state.status = "fulfilled";
         })
     }

@@ -30,7 +30,7 @@ function Rooms(props : props) {
   const [ modalEdit, setModalEdit ] = useState<boolean>(false);
   const [ modalDelete, setModalDelete ] = useState<boolean>(false);
   const [ loaded, setLoaded ] = useState<boolean>(false);
-  const [ id, setId ] = useState<string>("")
+  const [ id, setId ] = useState<string>("");
   let className : string = "";
 
   useEffect(() => {

@@ -12,11 +12,13 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { filteredByEmployee, filteredByEmployeeStatus } from "../app/filters";
 import { useAppDispatch, useAppSelector } from "../Hooks/hooks";
+import { NewEmployeeModal } from "../components/Modals/Employees/NewEmployeeModal";
+import { DeleteEmployeeModal } from "../components/Modals/Employees/DeleteEmployeeModal";
+import { EditEmployeeModal } from "../components/Modals/Employees/EditEmployeeModal";
 
 type props = {
   title?: string
 }
-
 
 function Users(props : props) {
 
@@ -27,6 +29,10 @@ function Users(props : props) {
   const [ searchInput, setSearchInput ] = useState<string>("");
   const [ clicked, setClicked ] = useState<string>("all");
   const [ loaded, setLoaded ] = useState<boolean>(false);
+  const [ id, setId ] = useState<string>("");
+  const [ modalAdd, setModalAdd ] = useState<boolean>(false);
+  const [ modalEdit, setModalEdit ] = useState<boolean>(false);
+  const [ modalDelete, setModalDelete ] = useState<boolean>(false);
   let className : string = "";
   
   useEffect(() => {
@@ -35,7 +41,7 @@ function Users(props : props) {
       setLoaded(true)
     }
     fetcher();
-    },[])
+    },[multipleEmployees])
 
     if (!loaded){
       return (
@@ -47,6 +53,15 @@ function Users(props : props) {
     
     let filteredEmployeeList : any = filteredByEmployee(multipleEmployees.allUsers, searchInput);
     filteredEmployeeList = filteredByEmployeeStatus(filteredEmployeeList, clicked);
+
+    const idFinder = (id : string) => {
+      if (id){
+        const result = multipleEmployees.allUsers.find((item : any) => item._id === id);
+        setId(result)
+        return result   
+      }
+      return
+    }
 
     
   const columns = [
@@ -78,8 +93,8 @@ function Users(props : props) {
         )
       }},
       {property: 'actions', label: 'Actions', display: (item : any) => (<div>
-        <FaEdit />
-        <RxCrossCircled />
+        <FaEdit onClick={() => {setModalEdit(true), setModalDelete(false), idFinder(item._id)}} />
+        <RxCrossCircled onClick={() => {setModalDelete(true), idFinder(item._id)}} />
       </div>)}
   ]
   return (
@@ -87,8 +102,11 @@ function Users(props : props) {
       <SideBar />
       <main>
         <NavContainer title="Users" />
-        <EmployeesFilter setSearchInput={setSearchInput} setClicked={setClicked}/>
+        <EmployeesFilter setSearchInput={setSearchInput} setClicked={setClicked} setModalAdd={setModalAdd}/>
         <Table columns={columns} data={filteredEmployeeList}/>
+        <NewEmployeeModal setModalAdd={setModalAdd} modalAdd={modalAdd}/>
+        <EditEmployeeModal modalEdit={modalEdit} setModalEdit={setModalEdit} id={id} />
+        <DeleteEmployeeModal modalDelete={modalDelete} setModalDelete={setModalDelete} id={id} />
       </main>
     </>
   )

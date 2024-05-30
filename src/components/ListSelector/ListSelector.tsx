@@ -149,7 +149,7 @@ export function ContactFilter() {
     )
 }
 
-export function EmployeesFilter({setSearchInput, setClicked}: EmployeesFilterInterface) {
+export function EmployeesFilter({setSearchInput, setClicked, setModalAdd}: EmployeesFilterInterface) {
     return (
         <>
             <Container>
@@ -166,7 +166,7 @@ export function EmployeesFilter({setSearchInput, setClicked}: EmployeesFilterInt
                     <input type="text" placeholder="Filter by employee name..." onChange={(event) => setSearchInput(event.target.value)}/>
                 </List>
                 <div>
-                    <ButtonNew>+ NEW EMPLOYEE</ButtonNew>
+                    <ButtonNew onClick={() => setModalAdd(true)}>+ NEW EMPLOYEE</ButtonNew>
                 </div>
             </Container>
         </>

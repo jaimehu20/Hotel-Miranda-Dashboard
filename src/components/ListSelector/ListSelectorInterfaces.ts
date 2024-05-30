@@ -14,5 +14,6 @@ export interface RoomsFilterInterface {
 
 export interface EmployeesFilterInterface {
     setSearchInput : React.Dispatch<React.SetStateAction<string>>,
-    setClicked : React.Dispatch<React.SetStateAction<string>>
+    setClicked : React.Dispatch<React.SetStateAction<string>>,
+    setModalAdd: React.Dispatch<React.SetStateAction<boolean>>,
 }
