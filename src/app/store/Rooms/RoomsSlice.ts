@@ -48,7 +48,6 @@ export const RoomsSlice = createSlice({
         }).addCase(newRoom.fulfilled, (state, action) => {
             state.room = action.payload;
             state.status = "fulfilled"
-            console.log(state.room)
         })
 
         builder.addCase(editRoom.pending, (state, action) => {

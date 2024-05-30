@@ -12,6 +12,8 @@ import { filteredByName, filteredByStatus } from "../app/filters";
 import { sortData } from "../app/filters";
 import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../Hooks/hooks";
+import { EditBookingModal } from "../components/Modals/Bookings/EditBookingModal";
+import { DeleteBookingModal } from "../components/Modals/Bookings/DeleteBookingModal";
 
 type props = {
   title?: string;
@@ -28,6 +30,9 @@ function Bookings(props : props) {
   const [ choosen, setChoosen ] = useState<string>("order_date");
   const [ loaded, setLoaded ] = useState<boolean>(false);
   const [ newBookingModal, setNewBookingModal ] = useState<boolean>(false);
+  const [ modalEdit, setModalEdit ] = useState<boolean>(false);
+  const [ modalDelete, setModalDelete ] = useState<boolean>(false);
+  const [ id, setId ] = useState<string>("")
   let className : string = "";
   
   useEffect(() => {
@@ -36,7 +41,8 @@ function Bookings(props : props) {
       setLoaded(true)
     }
     fetcher()
-    },[])
+    },[multipleBookings])
+
     if (!loaded){
       return (
         <>
@@ -48,7 +54,16 @@ function Bookings(props : props) {
   let filteredBookingList = filteredByName(multipleBookings.allBookings, searchInput);
       filteredBookingList = filteredByStatus(filteredBookingList, statusFilter);
       filteredBookingList = sortData(filteredBookingList, choosen);
-      
+
+  const idFinder = (id : string) => {
+    if (id){
+      const result = multipleBookings.allBookings.find((item : any) => item._id === id);
+      setId(result)
+      return result
+      }
+      return
+    }
+   
   const columns = [
     {property: 'guest', label: 'Guest', display: (item : any) => (<><Link to={`/bookings/${item._id}`}><p>{item.first_name} {item.last_name}</p><small>#{item._id.slice(0, 10).toUpperCase()}</small></Link></>)},
     {property: 'order_date', label: 'Order Date', display: (item: any) => (<p>{item.order_date.slice(0, 10)}</p>)},
@@ -70,8 +85,8 @@ function Bookings(props : props) {
       )
     }},
     {property: 'actions', label: 'Actions', display: (item : any) => (<div>
-      <FaEdit />
-      <RxCrossCircled />
+      <FaEdit onClick={() => {setModalEdit(true), idFinder(item._id)}}/>
+      <RxCrossCircled onClick={() => {setModalDelete(true), setModalEdit(false), idFinder(item._id)}}/>
     </div>)}
 ];
 
@@ -80,9 +95,11 @@ function Bookings(props : props) {
       <SideBar />
       <main>
         <NavContainer title="Bookings"  />
-        <BookingFilter title="All Bookings" setSearchInput={setSearchInput} setStatusFilter={setStatusFilter} setChoosen={setChoosen} choosen={choosen} setNewBookingModal={setNewBookingModal}/>
+        <BookingFilter title="All Bookings" setSearchInput={setSearchInput} setStatusFilter={setStatusFilter} setChoosen={setChoosen} choosen={choosen} setNewBookingModal={setNewBookingModal} />
         <Table columns={columns} data={filteredBookingList}/>
         <NewBookingModal newBookingModal={newBookingModal} setNewBookingModal={setNewBookingModal}/>
+        <EditBookingModal setModalEdit={setModalEdit} modalEdit={modalEdit} id={id} />
+        <DeleteBookingModal modalDelete={modalDelete} setModalDelete={setModalDelete} id={id}/>
         <button />
       </main>
     </>

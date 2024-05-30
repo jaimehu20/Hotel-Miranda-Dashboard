@@ -74,11 +74,11 @@ return (
         <p>Modify all or only those fields you need</p>
         <form action="/rooms" method="POST" onSubmit={handleSubmit}>
                 <label htmlFor="room_name">Room Name</label>
-                <input type="text" name="room_name" placeholder={id.room_code}/>
+                <input type="text" name="room_name" defaultValue={id.room_code}/>
                 <label htmlFor="bed_type">Bed Type</label>
-                <input type="text" name="bed_type" placeholder={id.room_type}/>
+                <input type="text" name="bed_type" defaultValue={id.room_type}/>
                 <label htmlFor="room_price">Price Per Night<small>($)</small></label>
-                <input type="text" name="room_price" placeholder={id.room_rate}/>
+                <input type="text" name="room_price" defaultValue={id.room_rate}/>
                 <label htmlFor="room_floor">Room Floor</label>
                 <select name="room_floor">
                     <option value="Floor A-1">Floor A-1</option>
@@ -86,7 +86,7 @@ return (
                     <option value="Floor A-3">Floor A-3</option>
                 </select>
                 <label htmlFor="room_amenities">Amenities</label>
-                <textarea name="room_amenities" placeholder={id.room_amenities}/>
+                <textarea name="room_amenities" defaultValue={id.room_amenities}/>
                 <input type="submit" value="Edit room"/>
             </form> 
     </ModalInfo>

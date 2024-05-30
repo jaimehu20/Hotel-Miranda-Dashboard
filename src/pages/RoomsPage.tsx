@@ -52,10 +52,13 @@ function Rooms(props : props) {
 
   const filteredRoomList : any = filteredByRoomStatus(multipleRooms.allRooms, clicked);
 
-  const idFinder = async (id : string) => {
-    const result = await multipleRooms.allRooms.find((item : any) => item._id === id);
-    setId(result)
-    return result
+  const idFinder = (id : string) => {
+    if (id){
+      const result = multipleRooms.allRooms.find((item : any) => item._id === id);
+      setId(result)
+      return result   
+    }
+    return
   }
 
   const columns = [

@@ -49,7 +49,7 @@ const VisibleModalBox = ({setModalAdd}: props) => {
 
     const handleSubmit = async (e: any)  => {
         e.preventDefault();
-        const rooms = {
+        const room = {
             room_code: e.target.room_name.value,
             room_floor: e.target.room_floor.value,
             room_type: e.target.bed_type.value,
@@ -57,7 +57,7 @@ const VisibleModalBox = ({setModalAdd}: props) => {
             room_rate: `$${e.target.room_price.value}`,
             room_status: "Available"
         };
-        await dispatch(newRoom(rooms));
+        await dispatch(newRoom(room));
         setModalAddToggler();
 }
 
@@ -99,4 +99,3 @@ export function NewRoomModal({modalAdd, setModalAdd}: props) {
         </>
     )
 }
-

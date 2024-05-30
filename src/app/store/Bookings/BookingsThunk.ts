@@ -11,17 +11,17 @@ export const fetchBooking = createAsyncThunk('bookings/fetchBooking', async (id 
     return fetchedBooking;
 })
 
-/* export const newBooking = createAsyncThunk('bookings/newBooking', async  () => {
-    const response = await delayData(data);
+export const newBooking = createAsyncThunk('bookings/newBooking', async (data : any) => {
+    const response = await fetchInfo("/bookings", "POST", data );
     return response;
 })
 
-export const editBooking = createAsyncThunk('bookings/editBooking', async  () => {
-    const response = await delayData([]);
+export const editBooking = createAsyncThunk('bookings/editBooking', async (data: {id : string, data : any}) => {
+    const response = await fetchInfo(`/bookings/${data.id}`, "PATCH", data.data);
     return response;
 })
 
-export const deleteBooking = createAsyncThunk('bookings/deleteBooking', async  (id) => {
-    await delayData();
-    return id;
-}) */
+export const deleteBooking = createAsyncThunk('bookings/deleteBooking', async (id: string) => {
+    const response = await fetchInfo(`/bookings/${id}`, "DELETE");
+    return response;
+})
