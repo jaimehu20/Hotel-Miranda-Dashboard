@@ -67,7 +67,6 @@ export const RoomsSlice = createSlice({
             state.error = action.error.message;
             state.status = "rejected";
         }).addCase(deleteRoom.fulfilled, (state, action) => {
-            state.rooms = action.payload;
             state.status = "fulfilled";
         })
     }

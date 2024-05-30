@@ -38,9 +38,9 @@ function Rooms(props : props) {
       await dispatch(fetchRooms());
       setLoaded(true);
     }
-    fetcher()
+    fetcher();
       
-  },[])
+  },[multipleRooms])
 
   if (!loaded){
     return (

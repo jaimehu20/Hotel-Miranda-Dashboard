@@ -4,7 +4,7 @@ export interface BookingFilterInterface {
     setChoosen: React.Dispatch<React.SetStateAction<string>>,
     setModalAdd: React.Dispatch<React.SetStateAction<boolean>>
     title?: string,
-    choosen?: string
+    choosen?: string,
 }
 
 export interface RoomsFilterInterface {

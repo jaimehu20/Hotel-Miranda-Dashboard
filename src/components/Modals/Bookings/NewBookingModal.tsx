@@ -19,15 +19,15 @@ const ModalInfo = styled.div`
 `
 
 type props = {
-    visible?: any,
-    setVisible: React.Dispatch<React.SetStateAction<boolean>>;
+    newBookingModal?: any,
+    setNewBookingModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const VisibleModalBox = ({setVisible}: props) => {
+const VisibleModalBox = ({setNewBookingModal}: props) => {
     return (
         <ModalInfo>
-            <button onClick={() => setVisible(false)}>Cerrar modal</button>
-            <form onSubmit={(event) => {event.preventDefault(); setVisible(false)}}>
+            <button onClick={() => setNewBookingModal(false)}>Cerrar modal</button>
+            <form onSubmit={(event) => {event.preventDefault(); setNewBookingModal(false)}}>
                 <label>Room Name</label>
                 <input type="text" placeholder="Room name"/>
                 <label>Bed Type</label>
@@ -50,10 +50,10 @@ const HiddenModalBox = () => {
 }
 
 
-export function NewBookingModal({visible, setVisible}: props) {
+export function NewBookingModal({newBookingModal, setNewBookingModal}: props) {
     return (
         <>
-        {visible ? <VisibleModalBox setVisible={setVisible}/> : <HiddenModalBox/>}
+        {newBookingModal ? <VisibleModalBox setNewBookingModal={setNewBookingModal}/> : <HiddenModalBox/>}
         </>
     )
 }

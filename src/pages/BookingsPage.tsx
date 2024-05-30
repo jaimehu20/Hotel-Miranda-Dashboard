@@ -27,7 +27,7 @@ function Bookings(props : props) {
   const [ statusFilter, setStatusFilter ] = useState("all");
   const [ choosen, setChoosen ] = useState<string>("order_date");
   const [ loaded, setLoaded ] = useState<boolean>(false);
-  const [ visible, setVisible ] = useState<boolean>(false);
+  const [ newBookingModal, setNewBookingModal ] = useState<boolean>(false);
   let className : string = "";
   
   useEffect(() => {
@@ -80,9 +80,9 @@ function Bookings(props : props) {
       <SideBar />
       <main>
         <NavContainer title="Bookings"  />
-        <BookingFilter title="All Bookings" setSearchInput={setSearchInput} setStatusFilter={setStatusFilter} setChoosen={setChoosen} choosen={choosen} setVisible={setVisible}/>
+        <BookingFilter title="All Bookings" setSearchInput={setSearchInput} setStatusFilter={setStatusFilter} setChoosen={setChoosen} choosen={choosen} setNewBookingModal={setNewBookingModal}/>
         <Table columns={columns} data={filteredBookingList}/>
-        <NewBookingModal visible={visible} setVisible={setVisible}/>
+        <NewBookingModal newBookingModal={newBookingModal} setNewBookingModal={setNewBookingModal}/>
         <button />
       </main>
     </>

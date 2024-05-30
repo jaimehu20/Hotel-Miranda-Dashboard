@@ -66,7 +66,6 @@ export function filteredByRoomStatus(data : RoomsFilter[], clicked : string){
     }
 }
 
-
 // USERS SECTION FILTERS
 
 interface EmployeeNameFilter {
