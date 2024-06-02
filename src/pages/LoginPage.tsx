@@ -53,7 +53,7 @@ function LoginMenu() {
         e.preventDefault();
         const email = usernameRef.current?.value;
         const password = passwordRef.current?.value;
-        const response = await fetch(import.meta.env.VITE_URL + '/login', {
+        const response = await fetch(import.meta.env.VITE_URL + 'login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

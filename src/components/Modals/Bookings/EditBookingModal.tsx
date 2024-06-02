@@ -111,8 +111,8 @@ return (
                 <input type="date" name="check_in" id="checkIn" defaultValue={checkInDate}/>
                 <label htmlFor="check_out">Check Out</label>
                 <input type="date" name="check_out" id="checkOut" defaultValue={checkOutDate}/>
-                <label htmlFor="check_out">Room Floor</label>
-                <select name="room_type">
+                <label htmlFor="room_type">Room Floor</label>
+                <select name="room_type" defaultValue={id.room_type}>
                     <option value="Single Bed">Single Bed</option>
                     <option value="Double Bed">Double Bed</option>
                     <option value="Double Bed Superior">Double Bed Superior</option>

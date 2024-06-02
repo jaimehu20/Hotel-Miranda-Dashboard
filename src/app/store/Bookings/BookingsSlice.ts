@@ -48,7 +48,6 @@ export const BookingsSlice = createSlice({
             state.error = action.error.message
         }).addCase(newBooking.fulfilled, (state,action: PayloadAction<any>) => {
             state.booking = action.payload;
-            console.log(action.payload)
             state.status = "fulfilled";
         })
 

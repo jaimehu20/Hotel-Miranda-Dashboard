@@ -80,7 +80,7 @@ return (
                 <label htmlFor="room_price">Price Per Night<small>($)</small></label>
                 <input type="text" name="room_price" defaultValue={id.room_rate}/>
                 <label htmlFor="room_floor">Room Floor</label>
-                <select name="room_floor">
+                <select name="room_floor" defaultValue={id.room_floor}>
                     <option value="Floor A-1">Floor A-1</option>
                     <option value="Floor A-2">Floor A-2</option>
                     <option value="Floor A-3">Floor A-3</option>
