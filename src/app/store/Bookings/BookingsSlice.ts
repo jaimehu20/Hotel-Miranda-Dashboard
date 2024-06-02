@@ -37,7 +37,7 @@ export const BookingsSlice = createSlice({
             state.status = "rejected";
             state.error = action.error.message
         }).addCase(fetchBooking.fulfilled, (state,action: PayloadAction<any>) => {
-            state.booking = action.payload;
+            state.booking = action.payload.individualBooking;
             state.status = "fulfilled";
         })
 
@@ -57,7 +57,7 @@ export const BookingsSlice = createSlice({
             state.status = "rejected";
             state.error = action.error.message
         }).addCase(editBooking.fulfilled, (state,action: PayloadAction<any>) => {
-            state.booking = action.payload;
+            state.bookings = state.bookings.map((item) => item._id == action.payload.booking._id ? action.payload.booking : item)
             state.status = "fulfilled";
         })
 
@@ -67,14 +67,11 @@ export const BookingsSlice = createSlice({
             state.status = "rejected";
             state.error = action.error.message
         }).addCase(deleteBooking.fulfilled, (state,action: PayloadAction<any>) => {
+            state.bookings = state.bookings.filter((item) => item._id != action.payload.booking._id)
             state.status = "fulfilled";
         })
-
-        
     }
 })
 
 export const getAll = (state : RootState) => state.getBookings.bookings;
-export const getOnly = (state : RootState) => state.getBookings.booking;
-export const getAllStatus = (state : RootState) => state.getBookings.status;
-export const getAllError = (state : RootState) => state.getBookings.error; 
+export const getOnly = (state : RootState) => state.getBookings.booking; 

@@ -53,38 +53,29 @@ const VisibleModalBox = ({setModalEdit, id }: props) => {
     const setModalEditToggler = () =>{
         setModalEdit(false);
     }
+    const checkInDate = new Date(id.check_in);
+    const defaultCheckInDate = checkInDate.toISOString().slice(0, 10);
+    const checkOutDate = new Date(id.check_out);
+    const defaultCheckOutDate = checkOutDate.toISOString().slice(0, 10);
 
-    const getDate = async (inputValue : any) => {
-        const value = await inputValue.value;
-        return value
-    }
-
-    let checkInDate = "";
-    let checkOutDate = "";
-    if(id){
-        checkInDate = id.check_in.slice(0, 10);
-        checkOutDate = id.check_out.slice(0, 10)
-    }
-    
     const handleSubmit = async (e : any,) => {
         e.preventDefault();
 
-        let checkInData = "";
-        let checkOutData  = "";
+        const checkInValue = e.target.check_in.value;
+        const checkInConversion = new Date(checkInValue)
+        const checkInDate = checkInConversion.toISOString();
 
-        if (checkIn && checkOut){
-            checkInData = await getDate(checkIn)
-            checkOutData = await getDate(checkOut)
-        }
-
+        const checkOutValue = e.target.check_out.value;
+        const checkOutConversion = new Date(checkOutValue);
+        const checkOutDate = checkOutConversion.toISOString()
 
         const editedBooking : any = {
             first_name: e.target.first_name.value || id.first_name,
             last_name: e.target.last_name.value || id.last_name,
             order_date: id.order_date,
-            check_in: checkInData || id.check_in,
+            check_in: checkInDate || id.check_in,
             check_inTime: id.check_inTime,
-            check_out: checkOutData || id.check_out,
+            check_out: checkOutDate || id.check_out,
             check_OutTime: id.check_OutTime,
             booking_time: id.booking_time,
             room_type: e.target.room_type.value || id.room_type,
@@ -108,9 +99,9 @@ return (
                 <label htmlFor="last_name">Last Name</label>
                 <input type="text" name="last_name" defaultValue={id.last_name}/>
                 <label htmlFor="check_in">Check In</label>
-                <input type="date" name="check_in" id="checkIn" defaultValue={checkInDate}/>
+                <input type="date" name="check_in" id="checkIn" defaultValue={defaultCheckInDate}/>
                 <label htmlFor="check_out">Check Out</label>
-                <input type="date" name="check_out" id="checkOut" defaultValue={checkOutDate}/>
+                <input type="date" name="check_out" id="checkOut" defaultValue={defaultCheckOutDate}/>
                 <label htmlFor="room_type">Room Floor</label>
                 <select name="room_type" defaultValue={id.room_type}>
                     <option value="Single Bed">Single Bed</option>

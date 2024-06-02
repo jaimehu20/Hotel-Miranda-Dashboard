@@ -37,10 +37,10 @@ export function BookingDetails() {
             <main className="contact-container">
                 <NavContainer title="Room Details" />
                 <p>{`Este es el booking con id #${id?.slice(0, 10).toUpperCase()}`}</p>
-                <p>{`La reserva se hizo en la fecha: ${fetchedBooking.individualBooking.order_date.slice(0, 10)}`}</p>
-                <p>{`La fecha del Check In es: ${fetchedBooking.individualBooking.check_in.slice(0, 10)} y la fecha del Check Out es: ${fetchedBooking.individualBooking.check_out.slice(0, 10)}`}</p>
-                <p>{`El tipo de habitación es: ${fetchedBooking.individualBooking.room_type}`}</p>
-                <p>{`Actualmente, el estado de la reserva es: ${fetchedBooking.individualBooking.status}`}</p>
+                <p>{`La reserva se hizo en la fecha: ${fetchedBooking.order_date.slice(0, 10)}`}</p>
+                <p>{`La fecha del Check In es: ${fetchedBooking.check_in.slice(0, 10)} y la fecha del Check Out es: ${fetchedBooking.check_out.slice(0, 10)}`}</p>
+                <p>{`El tipo de habitación es: ${fetchedBooking.room_type}`}</p>
+                <p>{`Actualmente, el estado de la reserva es: ${fetchedBooking.status}`}</p>
             </main>
         </>
     )

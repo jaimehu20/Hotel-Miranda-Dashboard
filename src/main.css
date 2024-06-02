@@ -142,3 +142,8 @@ a{
 .modalButton{
   cursor: pointer;
 }
+
+.inputDate {
+  border: none;
+  background: none;
+}

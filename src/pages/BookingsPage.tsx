@@ -5,7 +5,7 @@ import { BookingFilter } from "../components/ListSelector/ListSelector";
 import { FaEdit } from "react-icons/fa";
 import { RxCrossCircled } from "react-icons/rx";
 import { NewBookingModal } from "../components/Modals/Bookings/NewBookingModal"
-import { getAll, getAllStatus, getAllError } from "../app/store/Bookings/BookingsSlice";
+import { getAll } from "../app/store/Bookings/BookingsSlice";
 import { useEffect, useState } from "react";
 import { fetchBookings } from "../app/store/Bookings/BookingsThunk";
 import { filteredByName, filteredByStatus } from "../app/filters";
@@ -23,8 +23,6 @@ function Bookings(props : props) {
   
   const dispatch = useAppDispatch();
   const multipleBookings = useAppSelector(getAll);
-  const bookingStatus = useAppSelector(getAllStatus);
-  const bookingsError = useAppSelector(getAllError);
   const [ searchInput, setSearchInput ] = useState<string>("");
   const [ statusFilter, setStatusFilter ] = useState("all");
   const [ choosen, setChoosen ] = useState<string>("order_date");
