@@ -1,4 +1,4 @@
-export async function fetchInfo(path : string, method = 'GET', bodyData = null){
+export async function apiRequest(path : string, method = 'GET', bodyData = null){
     const response = await fetch(import.meta.env.VITE_URL + path, {
         method,
         headers: {
