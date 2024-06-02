@@ -77,8 +77,8 @@ function LoginMenu() {
                 <FaCircleUser />
                 <p>Welcome to Hotel Miranda Dashboard</p>
                 <p>Authorized personal only</p>
-                <input ref={usernameRef} type="text" placeholder="abcdefg"/>
-                <input ref={passwordRef} type="text" placeholder="123456789"/>
+                <input ref={usernameRef} type="text" placeholder="e.g. example@hotelmiranda.com"/>
+                <input ref={passwordRef} type="password" placeholder="Password"/>
                 <input type="submit" value="Log In" onClick={login}/>
             </LogForm>
          
