@@ -44,35 +44,29 @@ const VisibleModalBox = ({setNewBookingModal}: props) => {
 
     const orderDate = new Date();
     const dispatch = useAppDispatch();
-    const checkIn = document.getElementById("checkIn");
-    const checkOut = document.getElementById("checkOut");
 
     const setModalAddToggler = () => {
         setNewBookingModal(false)
-    }
-
-    const getDate = async (inputValue : any) => {
-        const value = await inputValue.value;
-        return value
     }
     
     const handleSubmit = async (e : any) => {
         e.preventDefault();
 
-        let checkInData = "";
-        let checkOutData  = "";
+        const checkInValue = e.target.check_in.value;
+        const checkInConversion = new Date(checkInValue)
+        const checkInDate = checkInConversion.toISOString();
 
-        if (checkIn && checkOut){
-            checkInData = await getDate(checkIn)
-            checkOutData = await getDate(checkOut)
-        }
+        const checkOutValue = e.target.check_out.value;
+        const checkOutConversion = new Date(checkOutValue);
+        const checkOutDate = checkOutConversion.toISOString();
+
         const booking = {
             first_name: e.target.first_name.value,
             last_name: e.target.last_name.value,
             order_date: e.target.order_date.value,
-            check_in: checkInData,
+            check_in: checkInDate,
             check_inTime: orderDate.toISOString(),
-            check_out: checkOutData,
+            check_out: checkOutDate,
             check_OutTime: orderDate.toISOString(),
             booking_time: e.target.order_date.value,
             room_type: e.target.room_type.value,
@@ -90,11 +84,11 @@ const VisibleModalBox = ({setNewBookingModal}: props) => {
             </div>
             <form action="/bookings" method="POST" onSubmit={handleSubmit} >
                 <label htmlFor="first_name">First name</label>
-                <input type="text" name="first_name" placeholder="e.g. John"/>
+                <input type="text" name="first_name" placeholder="e.g. John" id="hola"/>
                 <label htmlFor="last_name">Last name</label>
                 <input type="text" name="last_name" placeholder="e.g. Cooper"/>
                 <label htmlFor="check_in">Check in</label>
-                <input type="date" name="check in" id="checkIn" />
+                <input type="date" name="check_in" id="checkIn" />
                 <label htmlFor="check_out">Check out</label>
                 <input type="date" name="check_out" id="checkOut" />
                 <label htmlFor="room_type">Room type</label>

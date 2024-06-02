@@ -41,7 +41,7 @@ function Bookings(props : props) {
       setLoaded(true)
     }
     fetcher()
-    },[multipleBookings])
+    },[])
 
     if (!loaded){
       return (
@@ -51,10 +51,10 @@ function Bookings(props : props) {
       )
     }
     
-  let filteredBookingList = filteredByName(multipleBookings.allBookings, searchInput);
+ let filteredBookingList = filteredByName(multipleBookings, searchInput);
       filteredBookingList = filteredByStatus(filteredBookingList, statusFilter);
       filteredBookingList = sortData(filteredBookingList, choosen);
-   
+
   const columns = [
     {property: 'guest', label: 'Guest', display: (item : any) => (<><Link to={`/bookings/${item._id}`}><p>{item.first_name} {item.last_name}</p><small>#{item._id.slice(0, 10).toUpperCase()}</small></Link></>)},
     {property: 'order_date', label: 'Order Date', display: (item: any) => (<p>{item.order_date.slice(0, 10)}</p>)},
@@ -91,7 +91,6 @@ function Bookings(props : props) {
         <NewBookingModal newBookingModal={newBookingModal} setNewBookingModal={setNewBookingModal}/>
         <EditBookingModal setModalEdit={setModalEdit} modalEdit={modalEdit} id={id} />
         <DeleteBookingModal modalDelete={modalDelete} setModalDelete={setModalDelete} id={id}/>
-        <button />
       </main>
     </>
   )

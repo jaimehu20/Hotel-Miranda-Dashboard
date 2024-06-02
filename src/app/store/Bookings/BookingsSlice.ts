@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, current, PayloadAction } from "@reduxjs/toolkit";
 import { fetchBookings, fetchBooking, newBooking, editBooking, deleteBooking } from "./BookingsThunk";
 import { RootState } from "../store";
 
@@ -27,7 +27,7 @@ export const BookingsSlice = createSlice({
             state.status = "rejected";
             state.error = action.error.message;
         }).addCase(fetchBookings.fulfilled, (state, action: PayloadAction<any>) => {
-            state.bookings = action.payload;
+            state.bookings = action.payload.allBookings;
             state.status = "fulfilled";
         })
 
@@ -47,7 +47,7 @@ export const BookingsSlice = createSlice({
             state.status = "rejected";
             state.error = action.error.message
         }).addCase(newBooking.fulfilled, (state,action: PayloadAction<any>) => {
-            state.booking = action.payload;
+            state.bookings.push(action.payload.booking[0])
             state.status = "fulfilled";
         })
 
