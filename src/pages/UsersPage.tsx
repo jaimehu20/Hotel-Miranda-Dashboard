@@ -53,16 +53,6 @@ function Users(props : props) {
     
     let filteredEmployeeList : any = filteredByEmployee(multipleEmployees.allUsers, searchInput);
     filteredEmployeeList = filteredByEmployeeStatus(filteredEmployeeList, clicked);
-
-    const idFinder = (id : string) => {
-      if (id){
-        const result = multipleEmployees.allUsers.find((item : any) => item._id === id);
-        setId(result)
-        return result   
-      }
-      return
-    }
-
     
   const columns = [
       {property: "employee_name", label: "Name", display: (e : any) => (
@@ -93,8 +83,8 @@ function Users(props : props) {
         )
       }},
       {property: 'actions', label: 'Actions', display: (item : any) => (<div>
-        <FaEdit onClick={() => {setModalEdit(true), setModalDelete(false), idFinder(item._id)}} />
-        <RxCrossCircled onClick={() => {setModalDelete(true), idFinder(item._id)}} />
+        <FaEdit onClick={() => {setModalEdit(true), setModalDelete(false), setId(item)}} />
+        <RxCrossCircled onClick={() => {setModalDelete(true), setId(item)}} />
       </div>)}
   ]
   return (

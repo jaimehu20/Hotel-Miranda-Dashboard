@@ -54,15 +54,6 @@ function Bookings(props : props) {
   let filteredBookingList = filteredByName(multipleBookings.allBookings, searchInput);
       filteredBookingList = filteredByStatus(filteredBookingList, statusFilter);
       filteredBookingList = sortData(filteredBookingList, choosen);
-
-  const idFinder = (id : string) => {
-    if (id){
-      const result = multipleBookings.allBookings.find((item : any) => item._id === id);
-      setId(result)
-      return result
-      }
-      return
-    }
    
   const columns = [
     {property: 'guest', label: 'Guest', display: (item : any) => (<><Link to={`/bookings/${item._id}`}><p>{item.first_name} {item.last_name}</p><small>#{item._id.slice(0, 10).toUpperCase()}</small></Link></>)},
@@ -85,8 +76,8 @@ function Bookings(props : props) {
       )
     }},
     {property: 'actions', label: 'Actions', display: (item : any) => (<div>
-      <FaEdit onClick={() => {setModalEdit(true), idFinder(item._id)}}/>
-      <RxCrossCircled onClick={() => {setModalDelete(true), setModalEdit(false), idFinder(item._id)}}/>
+      <FaEdit onClick={() => {setModalEdit(true), setId(item)}}/>
+      <RxCrossCircled onClick={() => {setModalDelete(true), setModalEdit(false), setId(item)}}/>
     </div>)}
 ];
 

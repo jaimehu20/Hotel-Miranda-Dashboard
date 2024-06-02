@@ -52,15 +52,6 @@ function Rooms(props : props) {
 
   const filteredRoomList : any = filteredByRoomStatus(multipleRooms.allRooms, clicked);
 
-  const idFinder = (id : string) => {
-    if (id){
-      const result = multipleRooms.allRooms.find((item : any) => item._id === id);
-      setId(result)
-      return result   
-    }
-    return
-  }
-
   const columns = [
     {property: '_id', label: 'Room Name', display: (e : any) => (<>
     <Link to={`/rooms/${e._id}`}>
@@ -89,8 +80,8 @@ function Rooms(props : props) {
     )
     }},
     {property: 'actions', label: 'Actions', display: (item : any) => (<div>
-      <FaEdit onClick={() => {setModalEdit(true), setModalDelete(false), idFinder(item._id)}}/>
-      <RxCrossCircled onClick={() => {setModalDelete(true), setModalEdit(false), idFinder(item._id)}}/>
+      <FaEdit onClick={() => {setModalEdit(true), setModalDelete(false), setId(item)}}/>
+      <RxCrossCircled onClick={() => {setModalDelete(true), setModalEdit(false), setId(item)}}/>
     </div>)}
   ]
 
