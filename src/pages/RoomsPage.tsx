@@ -7,7 +7,7 @@ import { EditRoomModal } from "../components/Modals/Rooms/EditRoomModal.js"
 import { FaEdit } from "react-icons/fa";
 import { RxCrossCircled } from "react-icons/rx";
 import roomPic from "../assets/room1.jpg";
-import { getAllRooms, getRoomError, getRoomsStatus } from "../app/store/Rooms/RoomsSlice.js";
+import { getAllRooms } from "../app/store/Rooms/RoomsSlice.js";
 import { useEffect, useState } from "react";
 import { fetchRooms } from "../app/store/Rooms/RoomsThunk.js";
 import { Link } from "react-router-dom";
@@ -23,8 +23,6 @@ function Rooms(props : props) {
 
   const dispatch = useAppDispatch();
   const multipleRooms = useAppSelector(getAllRooms);
-  const roomStatus = useAppSelector(getRoomsStatus);
-  const roomError = useAppSelector(getRoomError);
   const [ clicked, setClicked ] = useState<string>("all");
   const [ modalAdd, setModalAdd ] = useState<boolean>(false);
   const [ modalEdit, setModalEdit ] = useState<boolean>(false);
@@ -40,7 +38,7 @@ function Rooms(props : props) {
     }
     fetcher();
       
-  },[multipleRooms])
+  },[])
 
   if (!loaded){
     return (
@@ -50,33 +48,33 @@ function Rooms(props : props) {
     )
   }
 
-  const filteredRoomList : any = filteredByRoomStatus(multipleRooms.allRooms, clicked);
+  const filteredRoomList : any = filteredByRoomStatus(multipleRooms, clicked);
 
   const columns = [
-    {property: '_id', label: 'Room Name', display: (e : any) => (<>
-    <Link to={`/rooms/${e._id}`}>
+    {property: '_id', label: 'Room Name', display: (item : any) => (<>
+    <Link to={`/rooms/${item._id}`}>
       <div className="room-container">
         <img src={roomPic}/>
         <div>
-          <p>#{e._id.slice(0, 8).toUpperCase()}</p>
-          <p>{e.room_code}</p>
+          <p>#{item._id.slice(0, 8).toUpperCase()}</p>
+          <p>{item.room_code}</p>
         </div>
       </div>
     </Link>
     </>)},
     {property: "room_type", label:"Bed Type"},
     {property: "room_floor", label:"Room Floor"},
-    {property: "room_amenities", label:"Amenities", display: (e : any) => (<><div className="room-amenities">{e.room_amenities}</div></>)},
-    {property: "room_rate", label: "Rate", display: (e: any) => (<><p>${e.room_rate}</p></>)},
-    {property: "room_status", label: "Status", display: (e : any) => {
+    {property: "room_amenities", label:"Amenities", display: (item : any) => (<><div className="room-amenities">{item.room_amenities}</div></>)},
+    {property: "room_rate", label: "Rate", display: (item: any) => (<><p>${item.room_rate}</p></>)},
+    {property: "room_status", label: "Status", display: (item : any) => {
       
-      if (e.room_status === "Available"){
+      if (item.room_status === "Available"){
         className = "greenButton"
-      } else if (e.room_status === "Booked"){
+      } else if (item.room_status === "Booked"){
         className = "redButton"
       }
       return (
-      <button className={className}>{e.room_status === 'Available' ? 'Available' : 'Booked'}</button>
+      <button className={className}>{item.room_status === 'Available' ? 'Available' : 'Booked'}</button>
     )
     }},
     {property: 'actions', label: 'Actions', display: (item : any) => (<div>

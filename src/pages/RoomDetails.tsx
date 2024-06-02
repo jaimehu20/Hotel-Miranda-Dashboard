@@ -35,12 +35,12 @@ export function RoomDetails() {
                     <SideBar />
                     <main className="contact-container">
                         <NavContainer title="Room Details" />
-                        <p>{`This is a ${fetchedRoom.individualRoom.room_type} room.`}</p>
-                        <p>{`Its code is ${fetchedRoom.individualRoom.room_code}.`}</p>
-                        <p>{`The room is located in: ${fetchedRoom.individualRoom.room_floor}.`}</p>
-                        <p>{`The room amenities are: ${fetchedRoom.individualRoom.room_amenities}.`}</p>
-                        <p>{`Price for this room is ${fetchedRoom.individualRoom.room_rate}.`}</p>
-                        <h1>{`Status: ${fetchedRoom.individualRoom.room_status}`}</h1>
+                        <p>{`This is a ${fetchedRoom.room_type} room.`}</p>
+                        <p>{`Its code is ${fetchedRoom.room_code}.`}</p>
+                        <p>{`The room is located in: ${fetchedRoom.room_floor}.`}</p>
+                        <p>{`The room amenities are: ${fetchedRoom.room_amenities}.`}</p>
+                        <p>{`Price for this room is ${fetchedRoom.room_rate}.`}</p>
+                        <h1>{`Status: ${fetchedRoom.room_status}`}</h1>
                     </main>
         </>
     )

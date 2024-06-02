@@ -3,7 +3,7 @@ import { fetchRooms, fetchRoom, newRoom, editRoom, deleteRoom  } from "./RoomsTh
 
 type initialState = {
     rooms: object[],
-    room: {},
+    room: object | null,
     status: string,
     error: string | undefined
 }
@@ -26,7 +26,7 @@ export const RoomsSlice = createSlice({
             state.status = "rejected";
             state.error = action.error.message
         }).addCase(fetchRooms.fulfilled, (state,action : PayloadAction<any>) => {
-            state.rooms = action.payload;
+            state.rooms = action.payload.allRooms;
             state.status = "fulfilled";
         })
 
@@ -36,7 +36,7 @@ export const RoomsSlice = createSlice({
             state.error = action.error.message;
             state.status = "rejected";
         }).addCase(fetchRoom.fulfilled, (state,action : PayloadAction<any>) => {
-            state.room = action.payload;
+            state.room = action.payload.individualRoom;
             state.status = "fulfilled";
         })
 
@@ -46,7 +46,7 @@ export const RoomsSlice = createSlice({
             state.error = action.error.message;
             state.status = "rejected";
         }).addCase(newRoom.fulfilled, (state, action) => {
-            state.room = action.payload;
+            state.rooms.push(action.payload.room[0])
             state.status = "fulfilled"
         })
 
@@ -56,7 +56,7 @@ export const RoomsSlice = createSlice({
             state.error = action.error.message;
             state.status = "rejected";
         }).addCase(editRoom.fulfilled, (state, action) => {
-            state.room = action.payload;
+            state.rooms = state.rooms.map((item) => item._id == action.payload.room._id ? action.payload.room : item)
             state.status = "fulfilled";
         })
 
@@ -66,6 +66,7 @@ export const RoomsSlice = createSlice({
             state.error = action.error.message;
             state.status = "rejected";
         }).addCase(deleteRoom.fulfilled, (state, action) => {
+            state.rooms = state.rooms.filter((item) => item._id != action.payload.room._id)
             state.status = "fulfilled";
         })
     }
@@ -73,5 +74,3 @@ export const RoomsSlice = createSlice({
 
 export const getAllRooms = (state : any) => state.getRooms.rooms;
 export const getRoom = (state : any) => state.getRooms.room;
-export const getRoomsStatus = (state : any) => state.getRooms.status;
-export const getRoomError = (state : any) => state.getRooms.status;
