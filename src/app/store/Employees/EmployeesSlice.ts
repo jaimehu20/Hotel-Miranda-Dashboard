@@ -4,14 +4,14 @@ import { fetchEmployees, fetchEmployee, newEmployee, deleteEmployee, editEmploye
 
 type initialState = {
     employees: object[],
-    employee: object[],
+    employee: object | null,
     status: string,
     error: string | undefined
 
 }
 const initialState : initialState = {
     employees: [],
-    employee: [],
+    employee: null,
     status: "idle",
     error: undefined
 }
@@ -27,7 +27,7 @@ export const EmployeesSlice = createSlice({
             state.status = "rejected";
             state.error = action.error.message 
         }).addCase(fetchEmployees.fulfilled, (state, action: PayloadAction<any>) => {
-            state.employees = action.payload;
+            state.employees = action.payload.allUsers;
             state.status = "fulfilled";
         })
 
@@ -37,7 +37,7 @@ export const EmployeesSlice = createSlice({
             state.status = "rejected"
             state.error = action.error.message;
         }).addCase(fetchEmployee.fulfilled, (state,action: PayloadAction<any>) => {
-            state.employee = action.payload;
+            state.employee = action.payload.individualUser;
             state.status = "fulfilled";
         })
 
@@ -47,7 +47,7 @@ export const EmployeesSlice = createSlice({
             state.status = "rejected"
             state.error = action.error.message;
         }).addCase(newEmployee.fulfilled, (state,action: PayloadAction<any>) => {
-            state.employee = action.payload;
+            state.employees.push(action.payload.user[0])
             state.status = "fulfilled";
         })
 
@@ -57,7 +57,7 @@ export const EmployeesSlice = createSlice({
             state.status = "rejected"
             state.error = action.error.message;
         }).addCase(editEmployee.fulfilled, (state,action: PayloadAction<any>) => {
-            state.employee = action.payload;
+            state.employees = state.employees.map((item) => item._id == action.payload.user._id ? action.payload.user : item)
             state.status = "fulfilled";
         })
 
@@ -67,6 +67,7 @@ export const EmployeesSlice = createSlice({
             state.status = "rejected"
             state.error = action.error.message;
         }).addCase(deleteEmployee.fulfilled, (state,action: PayloadAction<any>) => {
+            state.employees = state.employees.filter((item) => item._id != action.payload.user._id)
             state.status = "fulfilled";
         })
     }

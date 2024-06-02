@@ -36,14 +36,14 @@ export function UserDetails() {
             <main className="contact-container">
                 <NavContainer title="Room Details" />
                 <p>{`This is employee with id #${id.slice(0, 10).toUpperCase()}.`}</p>
-                <p>{`His name is ${fetchedEmployee.individualUser.employee_fullName}.`}</p>
+                <p>{`His name is ${fetchedEmployee.employee_fullName}.`}</p>
                 <p>Here is his personal info:</p>
                 <ul>
-                    <li>{`Phone contact: ${fetchedEmployee.individualUser.employee_phone.slice(0, 13)}`}</li>
-                    <li>{`Mail: ${fetchedEmployee.individualUser.employee_email}`}</li>
+                    <li>{`Phone contact: ${fetchedEmployee.employee_phone.slice(0, 13)}`}</li>
+                    <li>{`Mail: ${fetchedEmployee.employee_email}`}</li>
                 </ul>
-                <p>{`His job is/was ${fetchedEmployee.individualUser.employee_description}.`}</p>
-                <p>{`He/her started working here at ${fetchedEmployee.individualUser.employee_startDate.slice(0, 10)} and is actually ${fetchedEmployee.individualUser.employee_status} in the company.`}</p>
+                <p>{`His job is/was ${fetchedEmployee.employee_description}.`}</p>
+                <p>{`He/her started working here at ${fetchedEmployee.employee_startDate.slice(0, 10)} and is actually ${fetchedEmployee.employee_status} in the company.`}</p>
             </main>
         </>
     )

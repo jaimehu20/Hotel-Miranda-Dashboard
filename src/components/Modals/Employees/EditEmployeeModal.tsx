@@ -47,34 +47,25 @@ type props = {
 const VisibleModalBox = ({setModalEdit, id }: props) => {
 
     const dispatch = useAppDispatch();
-    const startDate = document.getElementById("startDate");
-
     const setModalEditToggler = () =>{
         setModalEdit(false);
     }
 
-    const getDate = async (inputValue : any) => {
-        const value = await inputValue.value;
-        return value
-    }
-    let fixedStartDate = "";
-    if (id){
-        fixedStartDate = id.employee_startDate.slice(0, 10)
-    }
+    const startDate= new Date(id.employee_startDate);
+    const defaultStartDate = startDate.toISOString().slice(0, 10)
 
     const handleSubmit = async (e : any,) => {
         e.preventDefault();
 
-        let startDateValue = "";
+        const startDateValue = e.target.employee_startDate.value;
+        const startDateConversion = new Date(startDateValue);
+        const startDate = startDateConversion.toISOString();
 
-        if (startDate){
-            startDateValue = await getDate(startDate);
-        }
         const editedEmployee : any = {
             employee_fullName: e.target.employee_fullName.value || id.employee_fullName,
             employee_email: e.target.employee_email.value || id.employee_email,
             employee_password: id.employee_password,
-            employee_startDate: startDateValue || id.employee_startDate,
+            employee_startDate: startDate || id.employee_startDate,
             employee_description: e.target.employee_description.value || id.employee_description,
             employee_phone: e.target.employee_phone.value || id.employee_phone,
             employee_status: e.target.employee_status.value || id.employee_status
@@ -97,7 +88,7 @@ return (
                 <label htmlFor="employee_email">Email</label>
                 <input type="email" name="employee_email" defaultValue={id.employee_email}/>
                 <label htmlFor="employee_startDate">Start Date</label>
-                <input type="date" name="employee_startDate" id="startDate" defaultValue={fixedStartDate}/>
+                <input type="date" name="employee_startDate" defaultValue={defaultStartDate}/>
                 <label htmlFor="employee_description">Workstation</label>
                 <select name="employee_description" defaultValue={id.employee_description}>
                     <option value="VP Accounting">VP Accounting</option>

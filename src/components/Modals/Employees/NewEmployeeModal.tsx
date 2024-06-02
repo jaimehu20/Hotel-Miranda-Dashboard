@@ -43,30 +43,23 @@ type props = {
 const VisibleModalBox = ({setModalAdd}: props) => {
 
     const dispatch = useAppDispatch();
-    const startDate = document.getElementById("startDate");
-
     const setModalAddToggler = () => {
         setModalAdd(false)
     }
 
-    const getDate = async (inputValue : any) => {
-        const value = await inputValue.value;
-        return value
-    }
 
     const handleSubmit = async (e: any)  => {
         e.preventDefault();
 
-        let startDateValue = "";
+        const startDateValue = e.target.employee_startDate.value;
+        const startDateConversion = new Date(startDateValue);
+        const startDate = startDateConversion.toISOString();
 
-        if (startDate){
-            startDateValue = await getDate(startDate);
-        }
         const employee = {
             employee_fullName: e.target.employee_fullName.value,
             employee_email: e.target.employee_email.value,
             employee_password: "$2a$10$MCfKIChnqRntUjYkjiEOMOeG6OcPpEAUZzFXnNPYrLz.blOiShrdW",
-            employee_startDate: startDateValue,
+            employee_startDate: startDate,
             employee_description: e.target.employee_description.value,
             employee_phone: e.target.employee_phone.value,
             employee_status: e.target.employee_status.value
@@ -86,8 +79,8 @@ const VisibleModalBox = ({setModalAdd}: props) => {
                 <input type="text" name="employee_fullName" placeholder="e.g. John Doe"/>
                 <label htmlFor="employee_email">Email</label>
                 <input type="email" name="employee_email" placeholder="e.g. test@test.com"/>
-                <label htmlFor="employee_startDate">Start Date<small>($)</small></label>
-                <input type="date" name="employee_startDate" id="startDate"/>
+                <label htmlFor="employee_startDate">Start Date</label>
+                <input type="date" name="employee_startDate" />
                 <label htmlFor="employee_description">Workstation</label>
                 <select name="employee_description">
                     <option value="VP Accounting">VP Accounting</option>

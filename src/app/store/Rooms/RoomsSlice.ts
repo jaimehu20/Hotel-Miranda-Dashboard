@@ -10,7 +10,7 @@ type initialState = {
 
 const initialState : initialState = {
     rooms: [],
-    room: {},
+    room: null,
     status: "idle",
     error: undefined
 }

@@ -41,7 +41,7 @@ function Users(props : props) {
       setLoaded(true)
     }
     fetcher();
-    },[multipleEmployees])
+    },[])
 
     if (!loaded){
       return (
@@ -51,26 +51,26 @@ function Users(props : props) {
       )
     }
     
-    let filteredEmployeeList : any = filteredByEmployee(multipleEmployees.allUsers, searchInput);
+    let filteredEmployeeList : any = filteredByEmployee(multipleEmployees, searchInput);
     filteredEmployeeList = filteredByEmployeeStatus(filteredEmployeeList, clicked);
     
   const columns = [
-      {property: "employee_name", label: "Name", display: (e : any) => (
+      {property: "employee_name", label: "Name", display: (item : any) => (
       <>
-      <Link to={`/users/${e._id}`}>
+      <Link to={`/users/${item._id}`}>
           <div className="employee-container">
           <img src={userPic}/>
           <div>
-            <p>{e.employee_fullName}</p>
-            <p>#{e._id.slice(0, 8).toUpperCase()}</p>
-            <p>{e.employee_startDate.slice(0, 10)}</p>
+            <p>{item.employee_fullName}</p>
+            <p>#{item._id.slice(0, 8).toUpperCase()}</p>
+            <p>{item.employee_startDate.slice(0, 10)}</p>
           </div>
           </div>
         </Link>
       </>)},
       {property: "employee_email", label: "Email"},
       {property: "employee_description", label: "Job Desk"},
-      {property: "employee_phone", label: "Contact", display: (e : any) => (<><FaPhone /><p>{e.employee_phone.slice(0, 13)}</p></>)},
+      {property: "employee_phone", label: "Contact", display: (item : any) => (<><FaPhone /><p>{item.employee_phone.slice(0, 13)}</p></>)},
       {property: "employee_status", label: "Status", display: (item : any) => {
 
         if (item.employee_status === "Active"){

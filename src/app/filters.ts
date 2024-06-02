@@ -69,7 +69,7 @@ export function filteredByRoomStatus(data : RoomsFilter[], clicked : string){
 // USERS SECTION FILTERS
 
 interface EmployeeNameFilter {
-    employee_name: string
+    employee_fullName: string
 }
 
 interface EmployeeStatusFilter {
@@ -80,12 +80,12 @@ export function filteredByEmployee(data : EmployeeNameFilter[], searchData : str
     if (!searchData){
       return data;
     }
-    return data.filter((item) => item.employee_name.toLowerCase().includes(searchData.toLowerCase()));
+    return data.filter((item) => item.employee_fullName.toLowerCase().includes(searchData.toLowerCase()));
   }
 
 export function filteredByEmployeeStatus(data : EmployeeStatusFilter[], clicked : string){
     if (clicked === "all"){
-        return data;
+        return [...data];
     } else if (clicked === "Inactive"){
         return data.filter((item) => item.employee_status === "Inactive")
     } else if (clicked === "Active"){

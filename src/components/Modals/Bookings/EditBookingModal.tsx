@@ -47,8 +47,6 @@ type props = {
 const VisibleModalBox = ({setModalEdit, id }: props) => {
 
     const dispatch = useAppDispatch();
-    const checkIn = document.getElementById("checkIn");
-    const checkOut = document.getElementById("checkOut");
 
     const setModalEditToggler = () =>{
         setModalEdit(false);
@@ -99,9 +97,9 @@ return (
                 <label htmlFor="last_name">Last Name</label>
                 <input type="text" name="last_name" defaultValue={id.last_name}/>
                 <label htmlFor="check_in">Check In</label>
-                <input type="date" name="check_in" id="checkIn" defaultValue={defaultCheckInDate}/>
+                <input type="date" name="check_in" defaultValue={defaultCheckInDate}/>
                 <label htmlFor="check_out">Check Out</label>
-                <input type="date" name="check_out" id="checkOut" defaultValue={defaultCheckOutDate}/>
+                <input type="date" name="check_out" defaultValue={defaultCheckOutDate}/>
                 <label htmlFor="room_type">Room Floor</label>
                 <select name="room_type" defaultValue={id.room_type}>
                     <option value="Single Bed">Single Bed</option>
