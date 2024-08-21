@@ -6,7 +6,10 @@ import { NewRoomModal } from "../components/Modals/Rooms/NewRoomModal.js";
 import { EditRoomModal } from "../components/Modals/Rooms/EditRoomModal.js"
 import { FaEdit } from "react-icons/fa";
 import { RxCrossCircled } from "react-icons/rx";
-import roomPic from "../assets/room1.jpg";
+import room1 from "../assets/room1.jpg"
+import room2 from "../assets/room2.jpg"
+import luxuryRoom from "../assets/luxuryRoom.jpg"
+import luxuryDoubleBed from "../assets/luxuryDoubleBed.jpg"
 import { getAllRooms } from "../app/store/Rooms/RoomsSlice.js";
 import { useEffect, useState } from "react";
 import { fetchRooms } from "../app/store/Rooms/RoomsThunk.js";
@@ -14,6 +17,7 @@ import { Link } from "react-router-dom";
 import { filteredByRoomStatus } from "../app/filters.js";
 import { useAppDispatch, useAppSelector } from "../Hooks/hooks.js";
 import { DeleteRoomModal } from "../components/Modals/Rooms/DeleteRoomModal.js";
+import { LoadingContent } from "../components/Icons/LoadingContent.js";
 
 type props = {
   title?: string
@@ -40,22 +44,30 @@ function Rooms(props : props) {
     fetcher();
       
   },[])
-
-  if (!loaded){
-    return (
-      <>
-        <p>Loading...</p>
-      </>
-    )
-  }
+  
+  const getBookingImage = (roomType : string) => {
+    switch (roomType) {
+        case 'Single Bed':
+            return room1;
+        case 'Double Bed':
+            return room2
+        case 'Double Bed Superior':
+            return luxuryDoubleBed
+        case 'Suite':
+            return luxuryRoom
+        default:
+            return room1
+    }
+};
 
   const filteredRoomList : any = filteredByRoomStatus(multipleRooms, clicked);
+  
 
   const columns = [
     {property: '_id', label: 'Room Name', display: (item : any) => (<>
     <Link to={`/rooms/${item._id}`}>
       <div className="room-container">
-        <img src={roomPic}/>
+        <img src={getBookingImage(item.room_type)}/>
         <div>
           <p>#{item._id.slice(0, 8).toUpperCase()}</p>
           <p>{item.room_code}</p>
@@ -90,7 +102,7 @@ function Rooms(props : props) {
       <main>
         <NavContainer title="Rooms" setHidden={setHidden} hidden={hidden} />
         <RoomsFilter setClicked={setClicked} setModalAdd={setModalAdd}/>
-        <Table columns={columns} data={filteredRoomList}/>
+        {!loaded ? <LoadingContent /> : <Table columns={columns} data={filteredRoomList}/>}
         <NewRoomModal modalAdd={modalAdd} setModalAdd={setModalAdd}/>
         <EditRoomModal modalEdit={modalEdit} setModalEdit={setModalEdit} id={id} />
         <DeleteRoomModal modalDelete={modalDelete} setModalDelete={setModalDelete} id={id}/>

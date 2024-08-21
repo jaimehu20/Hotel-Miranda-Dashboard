@@ -14,6 +14,7 @@ import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../Hooks/hooks";
 import { EditBookingModal } from "../components/Modals/Bookings/EditBookingModal";
 import { DeleteBookingModal } from "../components/Modals/Bookings/DeleteBookingModal";
+import { LoadingContent } from "../components/Icons/LoadingContent";
 
 type props = {
   title?: string;
@@ -42,14 +43,6 @@ function Bookings(props : props) {
     }
     fetcher()
     },[])
-
-    if (!loaded){
-      return (
-        <>
-          <p>Loading...</p>
-        </>
-      )
-    }
     
  let filteredBookingList = filteredByName(multipleBookings, searchInput);
       filteredBookingList = filteredByStatus(filteredBookingList, statusFilter);
@@ -87,7 +80,7 @@ function Bookings(props : props) {
       <main>
         <NavContainer title="Bookings" setHidden={setHidden} hidden={hidden}  />
         <BookingFilter title="All Bookings" setSearchInput={setSearchInput} setStatusFilter={setStatusFilter} setChoosen={setChoosen} choosen={choosen} setNewBookingModal={setNewBookingModal} />
-        <Table columns={columns} data={filteredBookingList}/>
+        {!loaded ? <LoadingContent /> : <Table columns={columns} data={filteredBookingList}/>}
         <NewBookingModal newBookingModal={newBookingModal} setNewBookingModal={setNewBookingModal}/>
         <EditBookingModal setModalEdit={setModalEdit} modalEdit={modalEdit} id={id} />
         <DeleteBookingModal modalDelete={modalDelete} setModalDelete={setModalDelete} id={id}/>

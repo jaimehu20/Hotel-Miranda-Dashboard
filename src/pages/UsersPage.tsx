@@ -5,16 +5,17 @@ import { Table } from "../components/Table/TableBox";
 import { FaPhone } from "react-icons/fa6";
 import { FaEdit } from "react-icons/fa";
 import { RxCrossCircled } from "react-icons/rx";
-import userPic from "../assets/employee.jpg";
+import userPic from "../assets/employee.webp";
 import { getAllEmployees, getEmployeeError, getEmployeeStatus } from "../app/store/Employees/EmployeesSlice";
 import { fetchEmployees } from "../app/store/Employees/EmployeesThunk";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { filteredByEmployee, filteredByEmployeeStatus } from "../app/filters";
 import { useAppDispatch, useAppSelector } from "../Hooks/hooks";
 import { NewEmployeeModal } from "../components/Modals/Employees/NewEmployeeModal";
 import { DeleteEmployeeModal } from "../components/Modals/Employees/DeleteEmployeeModal";
 import { EditEmployeeModal } from "../components/Modals/Employees/EditEmployeeModal";
+import { LoadingContent } from "../components/Icons/LoadingContent";
+import { EmployeeIcon } from "../components/Icons/EmployeeIcon";
 
 type props = {
   title?: string
@@ -43,14 +44,6 @@ function Users(props : props) {
     }
     fetcher();
     },[])
-
-    if (!loaded){
-      return (
-        <>
-          <p>Loading...</p>
-        </>
-      )
-    }
     
     let filteredEmployeeList : any = filteredByEmployee(multipleEmployees, searchInput);
     filteredEmployeeList = filteredByEmployeeStatus(filteredEmployeeList, clicked);
@@ -58,16 +51,14 @@ function Users(props : props) {
   const columns = [
       {property: "employee_name", label: "Name", display: (item : any) => (
       <>
-      <Link to={`/users/${item._id}`}>
           <div className="employee-container">
-          <img src={userPic}/>
+          <EmployeeIcon />
           <div>
             <p>{item.employee_fullName}</p>
             <p>#{item._id.slice(0, 8).toUpperCase()}</p>
             <p>{item.employee_startDate.slice(0, 10)}</p>
           </div>
           </div>
-        </Link>
       </>)},
       {property: "employee_email", label: "Email"},
       {property: "employee_description", label: "Job Desk"},
@@ -94,7 +85,7 @@ function Users(props : props) {
       <main>
         <NavContainer title="Users" setHidden={setHidden} hidden={hidden} />
         <EmployeesFilter setSearchInput={setSearchInput} setClicked={setClicked} setModalAdd={setModalAdd}/>
-        <Table columns={columns} data={filteredEmployeeList}/>
+        {!loaded ? <LoadingContent /> : <Table columns={columns} data={filteredEmployeeList}/>}
         <NewEmployeeModal setModalAdd={setModalAdd} modalAdd={modalAdd}/>
         <EditEmployeeModal modalEdit={modalEdit} setModalEdit={setModalEdit} id={id} />
         <DeleteEmployeeModal modalDelete={modalDelete} setModalDelete={setModalDelete} id={id} />

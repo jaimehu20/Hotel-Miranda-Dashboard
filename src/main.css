@@ -24,7 +24,6 @@ nav {
   font-family: 'Poppins';
   font-weight: 500;
   width: 100%;
-  padding-left: 100px;
   box-shadow: 0px 3px 10px #00000005;
   height: 82px;
   img {
@@ -86,9 +85,6 @@ nav {
       color: #393939;
     }
   }
-  
-  
-
 }
 
 .contact-container {
@@ -97,10 +93,27 @@ nav {
   }
 }
 
-.customer-container {
+.customer-container-date {
     flex-direction: column;
     font-weight: 600;
 }
+
+.customer-container-date p {
+  margin-bottom: 10px !important;
+}
+
+.customer-container-data {
+  flex-direction: column;
+  font-weight: 400;
+}
+
+.customer-container-data p {
+margin-bottom: 10px;
+}
+
+.customer-container-data p:first-of-type {
+  font-weight: bold;
+  }
 
 a{
   text-decoration: none;
@@ -147,3 +160,10 @@ a{
   border: none;
   background: none;
 }
+
+.checkinlabel {
+  background-color: rgb(90, 208, 122);}
+.checkoutlabel {
+  background-color: rgb(244, 122, 108); }
+.inprogresslabel {
+  background-color: rgb(246, 219, 160); }

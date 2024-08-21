@@ -7,6 +7,7 @@ import { getAllComments, getComment, getCommentsError, getCommentsStatus } from 
 import { useEffect, useState } from "react";
 import { fetchComments } from "../app/store/Messages/MessagesThunk";
 import { useAppDispatch, useAppSelector } from "../Hooks/hooks";
+import { LoadingContent } from "../components/Icons/LoadingContent";
 
 type props = {
   title?: string
@@ -29,31 +30,23 @@ function Contact(props : props) {
     }
     fetcher();
   }, [])
-
-  if (!loaded){
-    return (
-      <>
-        <p>Loading...</p>
-      </>
-    )
-  }
   
   const columns = [
     {property: "review_date", label: "Date", display: (e : any) => (
       <>
-        <div className="customer-container">
-          <p>{e.review_date}</p>
-          <p>{e.review_time}</p>
-          <p>#{e._id.slice(0, 8).toUpperCase()}</p>
+        <div className="customer-container-date">
+          <p>{`Date: ${e.review_date.slice(0, 10)}`}</p>
+          <p>{`Time: ${e.review_time.slice(11, 19)}`}</p>
+          <p>{`Review ID: #${e._id.slice(0, 8).toUpperCase()}`}</p>
         </div>
       </>
     )},
     {property: "review_customer", label: "Customer", display: (e : any) => (
       <>
-        <div className="customer-container">
+        <div className="customer-container-data">
           <p>{e.review_customer}</p>
-          <p>{e.review_customerMail}</p>
-          <p>{e.review_customerPhone}</p>
+          <p>{`Email: ${e.review_customerMail}`}</p>
+          <p>{`Phone: ${e.review_customerPhone}`}</p>
         </div>
       </>
     )},
@@ -67,7 +60,7 @@ function Contact(props : props) {
         <NavContainer title="Contact" setHidden={setHidden} hidden={hidden}/>
         <ReviewsContainer  />
         <ContactFilter />
-        <Table columns={columns} data={[...multipleComments.allReviews]} />
+        {!loaded ? <LoadingContent /> : <Table columns={columns} data={[...multipleComments.allReviews]} />}
       </main>
     </>
   )

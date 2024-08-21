@@ -3,7 +3,7 @@ import { Slider } from "./Slider"
 
 const ReviewsSection = styled.section`
     background: #f8f8f8;
-    height: 100vh;
+    height: 78vh;
     padding-top: 10px;
 `
 

@@ -5,12 +5,12 @@ import { SlKey } from "react-icons/sl";
 import { MdConnectWithoutContact } from "react-icons/md";
 import { FaUser } from "react-icons/fa";
 import styled from "styled-components";
-import profilePic from "../../assets/profilePic.jpg"
+import profilePic from "../../assets/user.webp"
 import { useAuth } from "../../Hooks/useAuth";
 import { Link } from "react-router-dom";
 
 export const LateralMenu = styled.div`
-  height: 100vh;
+  height: 78vh;
   width: 250px;
   flex-direction: column;
   align-items: center;
@@ -81,9 +81,9 @@ export const UserData = styled.div`
   padding-bottom: 26px;
   margin-top: 70px;
   img {
-    width: 70px;
+    width: 85px;
     border-radius: 8px;
-    height: 90px;
+    height: 85px;
     object-fit: cover;
   }
   p:first-of-type{
@@ -92,8 +92,7 @@ export const UserData = styled.div`
   }
   p:last-of-type{
     font-size: 12px;
-    color: lightgray;
-  }
+    color: black; }
   button{
     background: #EBF1EF;
     font-weight: bold;
@@ -126,6 +125,7 @@ type props = {
 export function SideBar(props : props) {
 
     const {logged} = useAuth();
+    const { dispatch } = useAuth();
 
     return (
         <>
@@ -174,7 +174,9 @@ export function SideBar(props : props) {
             </Options>
             <UserData>
               <img src={profilePic}/>
-              <button>Edit</button>
+              <p>Jaime Hurtado</p>
+              <p>{logged.email}</p>
+              <button onClick={() => dispatch('logout')}>Log Out</button>
             </UserData>
             <CopyText>
               <p>Travl Hotel Admin Dashboard</p>

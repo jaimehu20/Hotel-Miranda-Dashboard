@@ -30,7 +30,7 @@ export const AuthContext = createContext<AuthContextInterface>({
 const reducer = (state: AuthState, action: string) => {
     switch (action) {
         case 'login':
-            return {...state, isAuth: true};
+            return {...state, isAuth: true, email: state.email, password: state.password};
         case 'logout':
             localStorage.removeItem("authTOKEN");
             return {...state, isAuth: false};

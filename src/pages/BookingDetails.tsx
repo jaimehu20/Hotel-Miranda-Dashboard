@@ -5,6 +5,8 @@ import { getOnly } from "../app/store/Bookings/BookingsSlice";
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../Hooks/hooks";
 import { fetchBooking } from "../app/store/Bookings/BookingsThunk";
+import { BookingData } from "../components/BookingData/BookingData";
+import { LoadingContent } from "../components/Icons/LoadingContent";
 
 
 export function BookingDetails() {
@@ -13,6 +15,7 @@ export function BookingDetails() {
     const dispatch = useAppDispatch();
     const fetchedBooking = useAppSelector(getOnly);
     const [ loaded, setLoaded ] = useState<boolean>(false);
+    const [ hidden, setHidden ] = useState<boolean>(false);
 
     useEffect(() => {
         const fetcher = async () => {
@@ -23,24 +26,12 @@ export function BookingDetails() {
         fetcher()
     }, [])
 
-    if (!loaded){
-        return (
-            <>
-                <p>Loading content...</p>
-            </>
-        )
-    }
-
     return (
         <>
-            <SideBar />
+            <SideBar hidden={hidden} />
             <main className="contact-container">
-                <NavContainer title="Room Details" />
-                <p>{`Este es el booking con id #${id?.slice(0, 10).toUpperCase()}`}</p>
-                <p>{`La reserva se hizo en la fecha: ${fetchedBooking.order_date.slice(0, 10)}`}</p>
-                <p>{`La fecha del Check In es: ${fetchedBooking.check_in.slice(0, 10)} y la fecha del Check Out es: ${fetchedBooking.check_out.slice(0, 10)}`}</p>
-                <p>{`El tipo de habitación es: ${fetchedBooking.room_type}`}</p>
-                <p>{`Actualmente, el estado de la reserva es: ${fetchedBooking.status}`}</p>
+                <NavContainer title="Booking Details" setHidden={setHidden} hidden={hidden} />
+                {!loaded ? <LoadingContent /> : <BookingData fetchedBooking={fetchedBooking} id={id}/>}
             </main>
         </>
     )

@@ -22,7 +22,7 @@ const Icons = styled.div`
   display:flex;
   align-items: center;
   gap: 24px;
-  margin-right: 140px;
+  margin-right: 10px;
   height: 80px;
   svg {
     width: 22px;

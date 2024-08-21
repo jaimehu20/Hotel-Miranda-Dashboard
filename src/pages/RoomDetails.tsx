@@ -5,13 +5,16 @@ import { useEffect, useState } from "react";
 import { fetchRoom } from "../app/store/Rooms/RoomsThunk";
 import { useParams } from "react-router";
 import { useAppDispatch, useAppSelector } from "../Hooks/hooks";
+import { RoomData } from "../components/RoomData/RoomData";
+import { LoadingContent } from "../components/Icons/LoadingContent";
 
 export function RoomDetails() {
 
     let { id } = useParams();
     const dispatch = useAppDispatch();
     const fetchedRoom = useAppSelector(getRoom);
-    const [ loaded, setLoaded ] = useState<boolean>(false)
+    const [ loaded, setLoaded ] = useState<boolean>(false);
+    const [ hidden, setHidden ] = useState<boolean>(false);
 
     useEffect(() => {
         const fetcher = async () => {
@@ -21,27 +24,14 @@ export function RoomDetails() {
         }
         fetcher()
     }, [])
-
-    if (!loaded){
-        return (
-            <>
-                <p>Loading...</p>
-            </>
-        )
-    }
     
     return (
         <>
-                    <SideBar />
-                    <main className="contact-container">
-                        <NavContainer title="Room Details" />
-                        <p>{`This is a ${fetchedRoom.room_type} room.`}</p>
-                        <p>{`Its code is ${fetchedRoom.room_code}.`}</p>
-                        <p>{`The room is located in: ${fetchedRoom.room_floor}.`}</p>
-                        <p>{`The room amenities are: ${fetchedRoom.room_amenities}.`}</p>
-                        <p>{`Price for this room is ${fetchedRoom.room_rate}.`}</p>
-                        <h1>{`Status: ${fetchedRoom.room_status}`}</h1>
-                    </main>
+            <SideBar hidden={hidden} />
+            <main className="contact-container">
+                <NavContainer title="Room Details" setHidden={setHidden} hidden={hidden} />
+                {!loaded ? <LoadingContent /> : <RoomData fetchedRoom={fetchedRoom} id={id}/>}
+            </main>
         </>
     )
 }
