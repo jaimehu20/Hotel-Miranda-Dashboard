@@ -19,7 +19,8 @@ function Contact(props : props) {
   const individualComment = useAppSelector(getComment);
   const commentsStatus = useAppSelector(getCommentsStatus);
   const commentsError = useAppSelector(getCommentsError);
-  const [ loaded, setLoaded ] = useState<boolean>(false)
+  const [ loaded, setLoaded ] = useState<boolean>(false);
+  const [ hidden, setHidden ] = useState<boolean>(false);
 
   useEffect(() => {
     const fetcher = async () => {
@@ -61,9 +62,9 @@ function Contact(props : props) {
 
   return (
     <>
-    <SideBar />
+    <SideBar hidden={hidden} />
       <main className="contact-container">
-        <NavContainer title="Contact" />
+        <NavContainer title="Contact" setHidden={setHidden} hidden={hidden}/>
         <ReviewsContainer  />
         <ContactFilter />
         <Table columns={columns} data={[...multipleComments.allReviews]} />

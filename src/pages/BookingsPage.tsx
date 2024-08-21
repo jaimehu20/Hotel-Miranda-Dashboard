@@ -30,8 +30,10 @@ function Bookings(props : props) {
   const [ newBookingModal, setNewBookingModal ] = useState<boolean>(false);
   const [ modalEdit, setModalEdit ] = useState<boolean>(false);
   const [ modalDelete, setModalDelete ] = useState<boolean>(false);
-  const [ id, setId ] = useState<string>("")
+  const [ id, setId ] = useState<string>("");
+  const [ hidden, setHidden ] = useState<boolean>(false);
   let className : string = "";
+
   
   useEffect(() => {
     const fetcher = async () => {
@@ -81,9 +83,9 @@ function Bookings(props : props) {
 
   return (
     <>
-      <SideBar />
+      <SideBar hidden={hidden} />
       <main>
-        <NavContainer title="Bookings"  />
+        <NavContainer title="Bookings" setHidden={setHidden} hidden={hidden}  />
         <BookingFilter title="All Bookings" setSearchInput={setSearchInput} setStatusFilter={setStatusFilter} setChoosen={setChoosen} choosen={choosen} setNewBookingModal={setNewBookingModal} />
         <Table columns={columns} data={filteredBookingList}/>
         <NewBookingModal newBookingModal={newBookingModal} setNewBookingModal={setNewBookingModal}/>

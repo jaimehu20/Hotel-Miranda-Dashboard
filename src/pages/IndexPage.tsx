@@ -6,6 +6,7 @@ import { LuArrowLeftFromLine } from "react-icons/lu";
 import { SideBar } from '../components/SideBar/SideBar';
 import { NavContainer } from '../components/NavBar/NavBar';
 import { ReviewsContainer } from '../components/Reviews/Reviews';
+import { useState } from 'react';
 
 const Stats = styled.section`
   display: flex;
@@ -58,11 +59,13 @@ const StatsContainer = styled.div`
 `
 function Home() {
 
+  const [ hidden, setHidden ] = useState<boolean>(false);
+
   return (
     <>
-      <SideBar />
+      <SideBar hidden={hidden} />
       <main>
-        <NavContainer title="Dashboard" />
+        <NavContainer title="Dashboard" setHidden={setHidden} hidden={hidden} />
         <Stats>
           <StatsContainer>
             <IoBedOutline />

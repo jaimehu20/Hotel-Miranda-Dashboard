@@ -15,6 +15,7 @@ const NavBar = styled.div`
   gap: 24px;
   svg {
     transform: rotate(90deg);
+    cursor: pointer;
   }
 `;
 const Icons = styled.div`
@@ -36,16 +37,21 @@ const Icons = styled.div`
 
 type props = {
   title: string;
+  setHidden: any;
+  hidden: boolean;
 }
 
 export function NavContainer(props : props) {
 
     const { dispatch } = useAuth();
+    const handleClick = () => {
+      props.setHidden(!props.hidden)
+    }
 
     return (
         <nav>
           <NavBar>
-            <IoIosStats />
+            <IoIosStats onClick={handleClick} />
             <p>{props.title}</p>
           </NavBar>
           <Icons>

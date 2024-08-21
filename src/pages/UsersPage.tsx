@@ -33,6 +33,7 @@ function Users(props : props) {
   const [ modalAdd, setModalAdd ] = useState<boolean>(false);
   const [ modalEdit, setModalEdit ] = useState<boolean>(false);
   const [ modalDelete, setModalDelete ] = useState<boolean>(false);
+  const [ hidden, setHidden ] = useState<boolean>(false);
   let className : string = "";
   
   useEffect(() => {
@@ -89,9 +90,9 @@ function Users(props : props) {
   ]
   return (
     <>
-      <SideBar />
+      <SideBar hidden={hidden} />
       <main>
-        <NavContainer title="Users" />
+        <NavContainer title="Users" setHidden={setHidden} hidden={hidden} />
         <EmployeesFilter setSearchInput={setSearchInput} setClicked={setClicked} setModalAdd={setModalAdd}/>
         <Table columns={columns} data={filteredEmployeeList}/>
         <NewEmployeeModal setModalAdd={setModalAdd} modalAdd={modalAdd}/>

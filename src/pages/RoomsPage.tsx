@@ -29,6 +29,7 @@ function Rooms(props : props) {
   const [ modalDelete, setModalDelete ] = useState<boolean>(false);
   const [ loaded, setLoaded ] = useState<boolean>(false);
   const [ id, setId ] = useState<string>("");
+  const [ hidden, setHidden ] = useState<boolean>(false);
   let className : string = "";
 
   useEffect(() => {
@@ -85,9 +86,9 @@ function Rooms(props : props) {
 
   return (
     <>
-      <SideBar />
+      <SideBar hidden={hidden} />
       <main>
-        <NavContainer title="Rooms" />
+        <NavContainer title="Rooms" setHidden={setHidden} hidden={hidden} />
         <RoomsFilter setClicked={setClicked} setModalAdd={setModalAdd}/>
         <Table columns={columns} data={filteredRoomList}/>
         <NewRoomModal modalAdd={modalAdd} setModalAdd={setModalAdd}/>

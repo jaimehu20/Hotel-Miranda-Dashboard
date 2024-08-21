@@ -19,6 +19,9 @@ export const LateralMenu = styled.div`
   padding-right: 40px;
   padding-left: 40px;
 `
+export const HiddenLateralMenu = styled.div`
+  display: none;
+`
 export const Logo = styled.div`
 margin-left: 32px;
 svg {
@@ -116,61 +119,69 @@ flex-direction: column;
   }
 `
 
-export function SideBar() {
+type props = {
+  hidden: boolean;
+}
+
+export function SideBar(props : props) {
 
     const {logged} = useAuth();
 
     return (
-        <LateralMenu>
+        <>
+        {props.hidden ? (
+          <HiddenLateralMenu />
+        ) : (
+          <LateralMenu>
             <Logo>
-            <FaHotel />
-            <div>
-                <p>travl</p>
-                <p>Hotel Admin Dashboard</p>
-            </div>
+              <FaHotel />
+              <div>
+                  <p>travl</p>
+                  <p>Hotel Admin Dashboard</p>
+              </div>
             </Logo>
             <Options>
-            <Link to="/home">
-              <div>
-                  <MdOutlineDashboard />
-                  <p>Dashboard</p>
-              </div>
-            </Link>
-            <Link to="/bookings">
-              <div>
-                  <FaRegCalendarCheck />
-                  <p>Bookings</p>
-              </div>
-            </Link>
-            <Link to="/rooms">
-              <div>
-                <SlKey />
-                <p>Rooms</p>
-              </div>
-            </Link>
-            <Link to="/contact">
-              <div>
-                  <MdConnectWithoutContact />
-                  <p>Contact</p>
-              </div>
-            </Link>
-            <Link to="/users">
-              <div>
-                <FaUser />
-                <p>Users</p>
-              </div>
-            </Link>
+              <Link to="/home">
+                <div>
+                    <MdOutlineDashboard />
+                    <p>Dashboard</p>
+                </div>
+              </Link>
+              <Link to="/bookings">
+                <div>
+                    <FaRegCalendarCheck />
+                    <p>Bookings</p>
+                </div>
+              </Link>
+              <Link to="/rooms">
+                <div>
+                  <SlKey />
+                  <p>Rooms</p>
+                </div>
+              </Link>
+              <Link to="/contact">
+                <div>
+                    <MdConnectWithoutContact />
+                    <p>Contact</p>
+                </div>
+              </Link>
+              <Link to="/users">
+                <div>
+                  <FaUser />
+                  <p>Users</p>
+                </div>
+              </Link>
             </Options>
             <UserData>
-            <img src={profilePic}/>
-            <p>{logged.userName}</p>
-            <p>{logged.userMail}</p>
-            <button>Edit</button>
+              <img src={profilePic}/>
+              <button>Edit</button>
             </UserData>
             <CopyText>
-            <p>Travl Hotel Admin Dashboard</p>
-            <p>© 2024 All Rights Reserved</p>
+              <p>Travl Hotel Admin Dashboard</p>
+              <p>© 2024 All Rights Reserved</p>
             </CopyText>
         </LateralMenu>
+        )}
+        </>
     )
 }   
