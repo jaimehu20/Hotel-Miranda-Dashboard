@@ -6,10 +6,10 @@ import { NewRoomModal } from "../components/Modals/Rooms/NewRoomModal.js";
 import { EditRoomModal } from "../components/Modals/Rooms/EditRoomModal.js"
 import { FaEdit } from "react-icons/fa";
 import { RxCrossCircled } from "react-icons/rx";
-import room1 from "../assets/room1.jpg"
+import room1 from "../assets/room1.webp"
 import room2 from "../assets/room2.jpg"
-import luxuryRoom from "../assets/luxuryRoom.jpg"
-import luxuryDoubleBed from "../assets/luxuryDoubleBed.jpg"
+import luxuryRoom from "../assets/luxuryRoom.webp"
+import luxuryDoubleBed from "../assets/luxuryDoubleBed.webp"
 import { getAllRooms } from "../app/store/Rooms/RoomsSlice.js";
 import { useEffect, useState } from "react";
 import { fetchRooms } from "../app/store/Rooms/RoomsThunk.js";

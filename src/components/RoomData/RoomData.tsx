@@ -1,8 +1,8 @@
 import styled from "styled-components"
-import room1 from "../../assets/room1.jpg"
+import room1 from "../../assets/room1.webp"
 import room2 from "../../assets/room2.jpg"
-import luxuryRoom from "../../assets/luxuryRoom.jpg"
-import luxuryDoubleBed from "../../assets/luxuryDoubleBed.jpg"
+import luxuryRoom from "../../assets/luxuryRoom.webp"
+import luxuryDoubleBed from "../../assets/luxuryDoubleBed.webp"
 
 const RoomSection = styled.section`
     display: flex;
