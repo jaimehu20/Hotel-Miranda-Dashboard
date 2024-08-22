@@ -10,14 +10,18 @@ import { useAuth } from "../../Hooks/useAuth";
 import { Link } from "react-router-dom";
 
 export const LateralMenu = styled.div`
-  height: 78vh;
+  height: 100vh;
   width: 250px;
   flex-direction: column;
   align-items: center;
   gap: 40px;
   box-shadow: 13px 3px 40px #00000005;
-  padding-right: 40px;
-  padding-left: 40px;
+  padding-right: 0px;
+  padding-left: 0px;
+  background: #ffffff;
+  @media only screen and (min-width: 1920px) {
+    padding-right: 40px;
+    padding-left: 40px; }
 `
 export const HiddenLateralMenu = styled.div`
   display: none;
@@ -63,8 +67,11 @@ export const Options = styled.div`
   div {
     align-items: center;
     gap: 1em;
-    padding-bottom: 30px;
+    padding-bottom: 0px;
     cursor: pointer;
+    @media only screen and (min-width: 1920px) {
+      padding-bottom: 30px;
+    }
     svg {
       width: 30px;
       height: 30px;
@@ -79,7 +86,10 @@ export const UserData = styled.div`
   padding-left: 30px;
   padding-right: 30px;
   padding-bottom: 26px;
-  margin-top: 70px;
+  margin-top: 0px;
+  @media only screen and (min-width: 1920px) {
+    margin-bottom: 70px;
+  }
   img {
     width: 85px;
     border-radius: 8px;
@@ -107,9 +117,13 @@ export const UserData = styled.div`
 export const CopyText = styled.div`
 flex-direction: column;
   p:first-of-type{
-    font-size: 16px;
+    font-size: 14px;
     font-weight: bold;
     margin-bottom: 0px;
+    margin-top: 0px;
+    @media only screen and (min-width: 1920px) {
+      margin-top: 16px;
+      font-size: 16px }
   }
   p:last-of-type{
     font-size: 14px;

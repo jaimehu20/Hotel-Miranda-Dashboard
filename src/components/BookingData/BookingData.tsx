@@ -52,7 +52,7 @@ const BookingImage = styled.div`
     overflow: hidden;
     text-align: right;
     img {
-        width: 80%;
+        width: 90%;
         object-fit: cover;
         height: 80%;
         border-radius: 12px; }

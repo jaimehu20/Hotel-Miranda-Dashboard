@@ -20,11 +20,14 @@ const StatsContainer = styled.div`
   gap: 2em;
   box-shadow: 0px 4px 4px #00000005;
   border-radius: 12px;
-  padding: 0px 104px 0px 45px;
+  padding: 0px 20px 0px 16px;
   background: #ffffff;
   min-width: 164px;
   height: 90px;
   transition: all 1s ease-out ;
+  @media only screen and (min-width: 1920px) {
+    padding: 0px 104px 0px 45px;
+  }
   &:hover {
    
     transform: scale(1.2); 
@@ -57,47 +60,59 @@ const StatsContainer = styled.div`
     }
   }
 `
+
+const Main = styled.main`
+  display: flex;
+  background: #ffffff;
+`
+
+const Section = styled.section`
+  width: 100%;
+  background: #f8f8f8;
+`
 function Home() {
 
   const [ hidden, setHidden ] = useState<boolean>(false);
 
   return (
     <>
-      <SideBar hidden={hidden} />
-      <main>
-        <NavContainer title="Dashboard" setHidden={setHidden} hidden={hidden} />
-        <Stats>
-          <StatsContainer>
-            <IoBedOutline />
-            <div>
-              <p>8,461</p>
-              <p>New Booking</p>
-            </div>
-          </StatsContainer>
-          <StatsContainer>
-            <FaRegCalendarCheck />
-            <div>
-              <p>963</p>
-              <p>Scheduled Room</p>
-            </div>
-          </StatsContainer>
-          <StatsContainer>
-            <LuArrowRightFromLine />
-            <div>
-              <p>753</p>
-              <p>Check In</p>
-            </div>
-          </StatsContainer>
-          <StatsContainer>
-            <LuArrowLeftFromLine />
-            <div>
-              <p>516</p>
-              <p>Check Out</p>
-            </div>
-          </StatsContainer>
-        </Stats>
-        <ReviewsContainer />
-      </main>
+      <Main>
+        <SideBar hidden={hidden} />
+        <Section>
+          <NavContainer title="Dashboard" setHidden={setHidden} hidden={hidden} />
+          <Stats>
+            <StatsContainer>
+              <IoBedOutline />
+              <div>
+                <p>8,461</p>
+                <p>New Booking</p>
+              </div>
+            </StatsContainer>
+            <StatsContainer>
+              <FaRegCalendarCheck />
+              <div>
+                <p>963</p>
+                <p>Scheduled Room</p>
+              </div>
+            </StatsContainer>
+            <StatsContainer>
+              <LuArrowRightFromLine />
+              <div>
+                <p>753</p>
+                <p>Check In</p>
+              </div>
+            </StatsContainer>
+            <StatsContainer>
+              <LuArrowLeftFromLine />
+              <div>
+                <p>516</p>
+                <p>Check Out</p>
+              </div>
+            </StatsContainer>
+          </Stats>
+          <ReviewsContainer />
+        </Section>
+      </Main>
     </>
   )
 }
