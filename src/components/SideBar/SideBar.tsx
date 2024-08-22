@@ -175,7 +175,6 @@ export function SideBar(props : props) {
             <UserData>
               <img src={profilePic}/>
               <p>Jaime Hurtado</p>
-              <p>{logged.email}</p>
               <button onClick={() => dispatch('logout')}>Log Out</button>
             </UserData>
             <CopyText>
