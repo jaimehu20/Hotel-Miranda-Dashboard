@@ -54,7 +54,7 @@ const VisibleModalBox = ({setModalAdd}: props) => {
             room_floor: e.target.room_floor.value,
             room_type: e.target.bed_type.value,
             room_amenities: e.target.room_amenities.value,
-            room_rate: `$${e.target.room_price.value}`,
+            room_rate: `${e.target.room_price.value}`,
             room_status: "Available"
         };
         await dispatch(newRoom(room));
